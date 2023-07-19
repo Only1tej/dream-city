@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import logo from '../../src/dreamcity/DCAN_logo_sm.jpg'
 
 function Home() {
     const navigate = useNavigate()
@@ -10,6 +11,11 @@ function Home() {
     return (
         <>
             <div>
+                <div className="flex justify-center items-end mt-4">
+                    <div className="w-24 rounded ">
+                        <img src={logo} />
+                    </div>
+                </div>
                 <div className="hero min-h-screen bg-white">
                     <div className="hero-content flex-col">
                         <div className="text-center">

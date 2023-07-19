@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import logo from '../../src/dreamcity/DCAN_logo_sm.jpg'
 
 function CreateAdmin() {
     const navigate = useNavigate()
@@ -8,12 +9,17 @@ function CreateAdmin() {
     }
     return (
         <>
+            <div className="avatar flex justify-center items-end mt-4">
+                <div className="w-24 rounded ">
+                    <img src={logo} />
+                </div>
+            </div>
             <div className="hero min-h-screen bg-white">
                 <div className="hero-content flex-col">
                     <div className="text-center">
                         <h1 className="text-4xl font-bold">Create Admin</h1>
                     </div>
-                    <div className="card w-72 h-[530px] md:w-[450px] md:h-[770px] lg:w-[600px] lg:h-[400px] flex-shrink-0 min-w-sm shadow-2xl bg-base-100">
+                    <div className="card w-72 h-[530px] md:w-[450px] md:h-[770px] lg:w-[600px] lg:h-[380px] flex-shrink-0 min-w-sm shadow-2xl bg-base-100">
                         <div className="card-body">
                             <div className='lg:flex lg:space-x-16 '>
                                 <div className="form-control">

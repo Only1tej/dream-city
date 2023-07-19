@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function SignUp() {
+function CreateAdmin() {
     const navigate = useNavigate()
     const handleLogin = () => {
         navigate('/')
@@ -55,4 +55,4 @@ function SignUp() {
     )
 }
 
-export default SignUp
+export default CreateAdmin

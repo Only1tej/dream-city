@@ -19,8 +19,8 @@ function CreateAdmin() {
                             <div className="text-left">
                                 <h1 className="text-4xl font-bold text-[#008F97]">Create Admin</h1>
                             </div>
-                            <div className="w-72 h-[530px] md:w-[500px] md:h-[470px] lg:w-[600px] lg:h-[380px] flex-shrink-0 min-w-sm bg-base-100">
-                                <div className="bg-[#F5E0B8]">
+                            <div className="card w-72 h-[530px] md:w-[500px] md:h-[470px] lg:w-[600px] lg:h-[380px] flex-shrink-0 min-w-sm bg-base-100">
+                                <div className="card-body bg-[#F5E0B8]">
                                     <div className='lg:flex lg:space-x-16 '>
                                         <div className="form-control">
                                             <label className="label">

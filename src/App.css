@@ -3,3 +3,11 @@
 @tailwind utilities;
 
 /* background-image url("./src/dreamcity/realestate.png"); */
+@font-primary {
+  font-family: "Montserrat";
+  src: url("./fonts/montserrat/Montserrat-Light.otf");
+}
+@font-secondary {
+  font-family: "Montserrat-Bold";
+  src: url("./fonts/montserrat/Montserrat-Bold.otf");
+}

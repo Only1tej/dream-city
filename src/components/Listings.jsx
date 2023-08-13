@@ -57,7 +57,7 @@ const Listings = () => {
                         <p className='font-semibold text-lg text-[#008F97]'>20 minutes drive from Palms Mall.</p>
                     </div>
                 </div>
-                <div>
+                <div className='my-3'>
                     <div class="grid grid-cols-2 gap-4">
                         <div className='bg-yellow-500 rounded-sm p-3'>
                             <h1 className='text-yellow-800 font-monteserrat'>Plot</h1>

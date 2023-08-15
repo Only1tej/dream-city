@@ -12,31 +12,37 @@ const CreateListing = () => {
             <div>
                 <h1 className='font-bold text-3xl text-center p-3'>Create a Listing</h1>
             </div>
-            <div className='md:flex lg:'>
+            <div className='md:flex lg:flex justify-center'>
                 <form action="">
-                    <div className='form-control mb-2 w-[500px] p-2'>
-                        <label htmlFor="" className='text-lg'>Name</label>
-                        <input type="text" placeholder='Enter a name' className=' bg-[#F5E0B8] disabled:bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] invalid:text-[#118286] focus:border-[#ACABAB] focus:bg-[#F5E0B8] outline outline-[#118286] p-3 rounded-lg' />
+                    <div className='flex'>
+                        <div className='form-control mb-2 w-[500px] p-2'>
+                            <label htmlFor="" className='text-lg'>Name</label>
+                            <input type="text" placeholder='Enter a name' className=' bg-[#F5E0B8] disabled:bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] invalid:text-[#118286] focus:border-[#ACABAB] focus:bg-[#F5E0B8] outline outline-1 focus:outline-[#118286] p-3 rounded-lg' />
+                        </div>
+                        <div className='form-control mb-2 w-[500px] p-2'>
+                            <label htmlFor="" className='text-lg'>Price</label>
+                            <input type="number" className=' bg-[#F5E0B8] disabled:bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] invalid:text-[#118286] focus:border-[#ACABAB] focus:bg-[#F5E0B8] outline outline-1 focus:outline-[#118286]  p-3 rounded-lg' placeholder='Enter the price' />
+                        </div>
                     </div>
-                    <div className='form-control mb-2 w-[500px] p-2'>
-                        <label htmlFor="" className='text-lg'>Price</label>
-                        <input type="number" className='p-3 rounded-lg' placeholder='Enter the price' />
+                    <div className='flex'>
+                        <div className='form-control mb-2 w-[500px] p-2'>
+                            <label htmlFor="" className='text-lg'>Description</label>
+                            <input type="text" className=' bg-[#F5E0B8] disabled:bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] invalid:text-[#118286] focus:border-[#ACABAB] focus:bg-[#F5E0B8] outline outline-1 focus:outline-[#118286]  p-3 rounded-lg' placeholder='Enter the description' />
+                        </div>
+                        <div className='form-control mb-2 w-[500px] p-2'>
+                            <label htmlFor="" className='text-lg'>Location</label>
+                            <input type="text" className=' bg-[#F5E0B8] disabled:bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] invalid:text-[#118286] focus:border-[#ACABAB] focus:bg-[#F5E0B8] outline outline-1 focus:outline-[#118286]  p-3 rounded-lg' placeholder='Enter the location' />
+                        </div>
                     </div>
-                    <div className='form-control mb-2 w-[500px] p-2'>
-                        <label htmlFor="" className='text-lg'>Description</label>
-                        <input type="text" className='p-3 rounded-lg' placeholder='Enter the description' />
-                    </div>
-                    <div className='form-control mb-2 w-[500px] p-2'>
-                        <label htmlFor="" className='text-lg'>Location</label>
-                        <input type="text" className='p-3 rounded-lg' placeholder='Enter the location' />
-                    </div>
-                    <div className='form-control mb-2 w-[500px] p-2'>
-                        <label htmlFor="" className='text-lg'>Landmark</label>
-                        <input type="text" className='p-3 rounded-lg' placeholder='Enter the nearest landmark' />
-                    </div>
-                    <div className='form-control mb-2 w-[500px] p-2'>
-                        <label htmlFor="" className='text-lg'>Distance</label>
-                        <input type="text" className='p-3 rounded-lg' placeholder='Enter the distance to landmark' />
+                    <div className='flex'>
+                        <div className='form-control mb-2 w-[500px] p-2'>
+                            <label htmlFor="" className='text-lg'>Landmark</label>
+                            <input type="text" className=' bg-[#F5E0B8] disabled:bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] invalid:text-[#118286] focus:border-[#ACABAB] focus:bg-[#F5E0B8] outline outline-1 focus:outline-[#118286]  p-3 rounded-lg' placeholder='Enter the nearest landmark' />
+                        </div>
+                        <div className='form-control mb-2 w-[500px] p-2'>
+                            <label htmlFor="" className='text-lg'>Distance</label>
+                            <input type="text" className=' bg-[#F5E0B8] disabled:bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] invalid:text-[#118286] focus:border-[#ACABAB] focus:bg-[#F5E0B8] outline outline-1 focus:outline-[#118286]  p-3 rounded-lg' placeholder='Enter the distance to landmark' />
+                        </div>
                     </div>
                     <div className='form-control mb-2'>
                         <label htmlFor="" className='text-lg'>Payment</label>
@@ -57,41 +63,60 @@ const CreateListing = () => {
                         <button type="button" className={type === 'sale' ? 'formButtonActive' : 'formButton'} id="type" value='sale' onClick={onMutate}>Sell</button>
                         <button type="button" className={type === 'rent' ? 'formButtonActive' : 'formButton'} id="type" value='rent' onClick={onMutate}>Rent</button>
                     </div> */}
-                    <div className='form-control mb-2 w-[500px] p-2'>
-                        <label htmlFor="" className='text-lg'>Payment Format</label>
-                        <input type="text" className='p-3 rounded-lg' placeholder='Enter payment format' />
-                    </div>
-                    <div className='flex'>
+                    <div className='lg:flex'>
                         <div className='form-control mb-2 w-[500px] p-2'>
-                            <label htmlFor="" className='text-lg'>Plots</label>
-                            <input type="number" className='p-3 rounded-lg' placeholder='Enter number of plots' min={1} max={100} />
+                            <label htmlFor="" className='text-lg'>Payment Format</label>
+                            <input type="text" className=' bg-[#F5E0B8] disabled:bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] invalid:text-[#118286] focus:border-[#ACABAB] focus:bg-[#F5E0B8] outline outline-1 focus:outline-[#118286]  p-3 rounded-lg' placeholder='Enter payment format' />
                         </div>
-                        <div className='form-control mb-2 w-[500px] p-2'>
-                            <label htmlFor="" className='text-lg'>Apartment</label>
-                            <input type="number" className='p-3 rounded-lg' placeholder='Enter number of apartments' min={1} max={50} />
+                        <div className='flex'>
+                            <div className='form-control mb-2 w-[250px] p-2'>
+                                <label htmlFor="" className='text-lg'>Plots</label>
+                                <input type="number" className=' bg-[#F5E0B8] disabled:bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] invalid:text-[#118286] focus:border-[#ACABAB] focus:bg-[#F5E0B8] outline outline-1 focus:outline-[#118286]  p-3 rounded-lg' placeholder='Enter number of plots' min={1} max={100} />
+                            </div>
+                            <div className='form-control mb-2 w-[250px] p-2'>
+                                <label htmlFor="" className='text-lg'>Apartment</label>
+                                <input type="number" className=' bg-[#F5E0B8] disabled:bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] invalid:text-[#118286] focus:border-[#ACABAB] focus:bg-[#F5E0B8] outline outline-1 focus:outline-[#118286]  p-3 rounded-lg' placeholder='Enter number of apartments' min={1} max={50} />
+                            </div>
                         </div>
                     </div>
                     <div className='form-control mb-2 w-[500px] p-2'>
                         <label htmlFor="" className='text-lg'>Amenities</label>
-                        <input type="text" className='p-3 rounded-lg' placeholder='Enter the amenities available' />
+                        <input type="text" className=' bg-[#F5E0B8] disabled:bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] invalid:text-[#118286] focus:border-[#ACABAB] focus:bg-[#F5E0B8] outline outline-1 focus:outline-[#118286]  p-3 rounded-lg' placeholder='Enter the amenities available' />
                     </div>
-                    <div className='form-control mb-2 w-[500px] p-2'>
-                        <label htmlFor="" className='text-lg'>Documents</label>
-                        <input type="text" className='p-3 rounded-lg' placeholder='Enter documents to be provided' />
-                    </div>
-                    <div className='form-control mb-2 w-[500px] p-2'>
-                        <label htmlFor="" className='text-lg'>Purchase Type</label>
-                        <div>
-                            <input type="checkbox" name='lease' id='lease' />
-                            <label htmlFor="lease">Lease</label>
+                    <div className='lg:flex lg:space-x-4'>
+                        <div className='form-control mb-2 w-[500px] p-2'>
+                            <label htmlFor="" className='text-lg'>Documents</label>
+                            <div className='flex space-x-8'>
+                                <div>
+                                    <input type="checkbox" name='cOfO' id='cOfO' />
+                                    <label htmlFor="cOfO" className='ml-2'>Certificate of Occupancy</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name='lawDeed' id='lawDeed' />
+                                    <label htmlFor="lawDeed" className='ml-2'>Law Deed</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name='agreement' id='agreement' />
+                                    <label htmlFor="agreement" className='ml-2'>Agreement</label>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <input type="checkbox" name='rent' id='rent' />
-                            <label htmlFor="rent">Rent</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name='sale' id='sale' />
-                            <label htmlFor="sale">Sale</label>
+                        <div className='form-control mb-2 w-[500px] p-2'>
+                            <label htmlFor="" className='text-lg'>Purchase Type</label>
+                            <div className='flex space-x-8'>
+                                <div>
+                                    <input type="checkbox" name='lease' id='lease' />
+                                    <label htmlFor="lease" className='ml-2'>Lease</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name='rent' id='rent' />
+                                    <label htmlFor="rent" className='ml-2'>Rent</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name='sale' id='sale' />
+                                    <label htmlFor="sale" className='ml-2'>Sale</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className='form-control mb-2'>

@@ -24,7 +24,7 @@ const ConfirmListings = ({ values, nextStep, prevStep }) => {
         },
     };
 
-    const values = { name, address, description, location, photos };
+    // const values = { name, address, description, location, photos };
 
     const theme = {}
 
@@ -33,11 +33,11 @@ const ConfirmListings = ({ values, nextStep, prevStep }) => {
             <CssBaseline />
             <AppBar position='static' title="Confirm User Data" />
             <List>
-                <ListItem primaryText="Name" secondaryText={name} />
-                <ListItem primaryText="Address" secondaryText={address} />
-                <ListItem primaryText="Description" secondaryText={description} />
-                <ListItem primaryText="Location" secondaryText={location} />
-                <ListItem primaryText="Photos" secondaryText={photos} />
+                <ListItem primaryText="Name" secondaryText={values.name} />
+                <ListItem primaryText="Address" secondaryText={values.address} />
+                <ListItem primaryText="Description" secondaryText={values.description} />
+                <ListItem primaryText="Location" secondaryText={values.location} />
+                <ListItem primaryText="Photos" secondaryText={values.photos} />
             </List>
             <br />
             <Button

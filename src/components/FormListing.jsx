@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { CssBaseline } from '@mui/material';
 
-const FormListing = ({ }) => {
+const FormListing = () => {
     const [formData, setFormData] = useState({
         step: 1,
         name: '',
@@ -23,7 +23,7 @@ const FormListing = ({ }) => {
         e.preventDefault();
         setFormData((prevState) => ({
             ...prevState,
-            step: prevState.step + 1,
+            step: prevState + 1,
         }));
     };
 
@@ -50,12 +50,7 @@ const FormListing = ({ }) => {
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <AppBar position='static' title="Enter User Details" />
-            {/* <TextField
-                    hintText="Enter your name"
-                    floatingLabelText="Name"
-                    onChange={handleChange('name')}
-                    defaultValue={values.name}
-                /> */}
+
             <TextField
                 label="Name"
                 variant="outlined"
@@ -65,12 +60,7 @@ const FormListing = ({ }) => {
                 margin="normal"
             />
             <br />
-            {/* <TextField
-                hintText="Enter your address"
-                floatingLabelText="Address"
-                onChange={handleChange('address')}
-                defaultValue={values.address}
-            /> */}
+
             <TextField
                 label="Address"
                 variant="outlined"
@@ -89,12 +79,6 @@ const FormListing = ({ }) => {
                 margin="normal"
             />
             <br />
-            {/* <TextField
-                    hintText="Enter your location"
-                    floatingLabelText="Location"
-                    onChange={handleChange('location')}
-                    defaultValue={values.location}
-                /> */}
             <TextField
                 label="Location"
                 variant="outlined"
@@ -108,7 +92,6 @@ const FormListing = ({ }) => {
                 variant="contained"
                 color='primary'
                 label="Continue"
-                primary={true}
                 style={styles.button}
                 onClick={nextStep}
             >

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import FormListing from './FormListing';
-import ConfirmListing from './ConfirmListing';
+import ConfirmListings from './ConfirmListings';
 import Success from './Success';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
@@ -13,6 +13,11 @@ const UserForm = ({ handleChange }) => {
         location: '',
         photos: {},
     });
+
+    const steps = [
+        { id: 'formlisting' },
+        { id: 'formlisting' },
+    ]
 
     // Proceed to the next step
     const nextStep = () => {
@@ -47,7 +52,7 @@ const UserForm = ({ handleChange }) => {
                     values={values}
                 />
             )}
-            {step === 2 && <ConfirmListing nextStep={nextStep} values={values} />}
+            {step === 2 && <ConfirmListings nextStep={nextStep} values={values} />}
             {step === 3 && <Success />}
         </ThemeProvider>
     );

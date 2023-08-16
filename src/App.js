@@ -4,6 +4,7 @@ import CreateAdmin from "./components/CreateAdmin";
 import Listings from "./components/Listings";
 import CreateListing from "./components/CreateListing";
 import FormListing from "./components/FormListing";
+import ConfirmListings from "./components/ConfirmListings";
 import ListingPage from "./components/ListingPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 

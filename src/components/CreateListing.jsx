@@ -2,11 +2,24 @@ import React, { useState } from 'react'
 
 const CreateListing = () => {
     const [formData, setFormData] = useState({
+        step: 1,
         name: '',
         address: '',
         photos: {},
     })
     const { name, price, description, location, landmark, distance, payment, paymentFormat, plots, apartment, amenities, document, purchaseType, initialDeposit, duration, installment, outright, isGated, isCctv, isSecurityPersonnel, isGarage, certificateOfO, lawDeed, agreement, lease, rent, sale, photos } = formData
+
+    //Handle field change
+    const handleChange = (input) => (e) => {
+        setFormData((prevState) => ({ ...prevState, [input]: e.target.value }))
+    };
+
+    //Proceed to the next step
+    const nextStep = () => {
+        setFormData((prevState) => ({
+            step: prevState + 1,
+        }));
+    };
     return (
         <div className=' bg-[#F5E0B8] min-h-screen'>
             <div>
@@ -17,7 +30,7 @@ const CreateListing = () => {
                     <div className='flex'>
                         <div className='form-control mb-2 w-[500px] p-2'>
                             <label htmlFor="" className='text-lg'>Name</label>
-                            <input type="text" placeholder='Enter a name' className=' bg-[#F5E0B8] disabled:bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] invalid:text-[#118286] focus:border-[#ACABAB] focus:bg-[#F5E0B8] outline outline-1 focus:outline-[#118286] p-3 rounded-lg' />
+                            <input type="text" value={formData.name} handleChange={handleChange} placeholder='Enter a name' className=' bg-[#F5E0B8] disabled:bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] invalid:text-[#118286] focus:border-[#ACABAB] focus:bg-[#F5E0B8] outline outline-1 focus:outline-[#118286] p-3 rounded-lg' />
                         </div>
                         <div className='form-control mb-2 w-[500px] p-2'>
                             <label htmlFor="" className='text-lg'>Price</label>
@@ -124,7 +137,7 @@ const CreateListing = () => {
                         <p>The first image will be the cover</p>
                         <input type="file" min='4' max='6' accept='.jpg, .png, .jpeg, .avif' multiple required />
                     </div>
-                    <button type='submit' className='btn normal-case text-base font-primary bg-[#F5E0B8] hover:bg-[#F5E0B8] border-none text-[#118286]'>Create Listing</button>
+                    <button type='submit' onClick={nextStep} className='btn normal-case text-base font-primary bg-[#F5E0B8] hover:bg-[#F5E0B8] border-none text-[#118286]'>Create Listing</button>
                 </form>
             </div>
         </div>

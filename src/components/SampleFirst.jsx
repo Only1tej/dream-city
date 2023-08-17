@@ -2,9 +2,8 @@ import React from 'react'
 import { Container, TextField, Button } from '@material-ui/core'
 
 const SampleFirst = ({ formData, setForm, navigation }) => {
-
     const { name, address, description, location } = formData
-
+    console.log('formData :>> ', formData);
     return (
         <Container maxWidth='xs'>
             <h3>Names</h3>
@@ -22,6 +21,7 @@ const SampleFirst = ({ formData, setForm, navigation }) => {
                 label='Address'
                 name='address'
                 value={address}
+                onChange={setForm}
                 margin='normal'
                 variant='outlined'
                 autoComplete='off'
@@ -31,6 +31,7 @@ const SampleFirst = ({ formData, setForm, navigation }) => {
                 label='Description'
                 name='description'
                 value={description}
+                onChange={setForm}
                 margin='normal'
                 variant='outlined'
                 autoComplete='off'
@@ -40,6 +41,7 @@ const SampleFirst = ({ formData, setForm, navigation }) => {
                 label='Location'
                 name='location'
                 value={location}
+                onChange={setForm}
                 margin='normal'
                 variant='outlined'
                 autoComplete='off'

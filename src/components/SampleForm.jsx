@@ -24,13 +24,13 @@ const defaultData = {
     }],
     outright: '',
     amenities: [{
-        isGated: '', isCctv: '', isSecurityPersonnel: '', isGarage: ''
+        isGated: false, isCctv: false, isSecurityPersonnel: false, isGarage: false
     }],
     document: [{
-        certificateOfO: '', lawDeed: '', agreement: ''
+        certificateOfO: false, lawDeed: false, agreement: false
     }],
     purchaseType: [{
-        rent: '', lease: '', sale: ''
+        rent: false, lease: false, sale: false
     }],
 
 }

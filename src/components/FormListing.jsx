@@ -23,7 +23,7 @@ const FormListing = () => {
         e.preventDefault();
         setFormData((prevState) => ({
             ...prevState,
-            step: prevState + 1,
+            step: prevState.step + 1,
         }));
     };
 

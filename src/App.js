@@ -7,21 +7,26 @@ import FormListing from "./components/FormListing";
 import ConfirmListings from "./components/ConfirmListings";
 import ListingPage from "./components/ListingPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import SampleForm from "./components/SampleForm";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/create-admin" element={<CreateAdmin />} />
-          <Route path="/listings" element={<Listings />} />
-          {/* <Route path="/create-listing" element={<CreateListing />} /> */}
-          <Route path="/create-listing" element={<FormListing />} />
-          <Route path="/listing-page" element={<ListingPage />} />
-        </Routes>
-      </div>
-    </Router>
+    <div className="App">
+      <SampleForm />
+    </div>
+    // <Router>
+    //   <div className="App">
+    //     <SampleForm/>
+    //     <Routes>
+    //       <Route path="/" element={<Home />} />
+    //       <Route path="/create-admin" element={<CreateAdmin />} />
+    //       <Route path="/listings" element={<Listings />} />
+    //       {/* <Route path="/create-listing" element={<CreateListing />} /> */}
+    //       <Route path="/create-listing" element={<FormListing />} />
+    //       <Route path="/listing-page" element={<ListingPage />} />
+    //     </Routes>
+    //   </div>
+    // </Router>
   );
 }
 

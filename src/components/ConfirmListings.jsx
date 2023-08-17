@@ -6,12 +6,21 @@ import ListItem from '@mui/material/ListItem';
 import Button from '@mui/material/Button';
 import { CssBaseline } from '@mui/material';
 
-const ConfirmListings = ({ values, nextStep, prevStep }) => {
+const ConfirmListings = ({ nextStep, prevStep, values }) => {
     const continueHandler = (e) => {
         e.preventDefault();
         // Process form (in case of backend)
         nextStep();
     };
+
+    // const defaultData = {
+    //     // step: 1,
+    //     name: '',
+    //     address: '',
+    //     description: '',
+    //     location: '',
+    //     photos: {},
+    // }
 
     const backHandler = (e) => {
         e.preventDefault();

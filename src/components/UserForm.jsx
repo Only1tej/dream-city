@@ -1,31 +1,43 @@
 import React, { useState } from 'react';
+import { useForm, useStep } from 'react-hooks-helper'
 import FormListing from './FormListing';
 import ConfirmListings from './ConfirmListings';
 import Success from './Success';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
-const UserForm = ({ handleChange }) => {
-    const [formData, setFormData] = useState({
-        step: 1,
-        name: '',
-        address: '',
-        description: '',
-        location: '',
-        photos: {},
-    });
+const defaultData = {
+    // step: 1,
+    name: '',
+    address: '',
+    description: '',
+    location: '',
+    photos: {},
+}
+// const { step } = formData; 
+const { name, address, description, location, photos } = formData;
+const values = { name, address, description, location, photos };
 
-    const steps = [
-        { id: 'formlisting' },
-        { id: 'formlisting' },
-    ]
+const steps = [
+    { id: 'formlisting' },
+    { id: 'confirmlisting' },
+    { id: 'success' },
+]
+
+const UserForm = ({ handleChange }) => {
+    const [formData, setFormData] = useForm(defaultData);
+    const { step, navigation } = useStep({
+        steps,
+        initialStep: 0,
+    })
+    console.log(step)
 
     // Proceed to the next step
-    const nextStep = () => {
-        setFormData((prevState) => ({
-            ...prevState,
-            step: prevState.step + 1,
-        }));
-    };
+    // const nextStep = () => {
+    //     setFormData((prevState) => ({
+    //         ...prevState,
+    //         step: prevState.step + 1,
+    //     }));
+    // };
 
     // Handle fields change
     const handleChange = (input) => (e) => {
@@ -38,22 +50,29 @@ const UserForm = ({ handleChange }) => {
         nextStep();
     };
 
-    const { step } = formData;
-    const { name, address, description, location, photos } = formData;
-    const values = { name, address, description, location, photos };
+
+
+
+    switch (step.id) {
+        case 'formlisting':
+            return <FormListing
+                nextStep={nextStep}
+                handleChange={handleChange}
+                values={values}
+            />
+        case 'confirmlisting':
+            return
+            <ConfirmListings nextStep={nextStep} values={values} />
+        case 'success':
+            return
+            <Success />
+    }
+
     const theme = {}
     return (
         <ThemeProvider theme={theme}>
-            <CssBaseline />
-            {step === 1 && (
-                <FormListing
-                    nextStep={nextStep}
-                    handleChange={handleChange}
-                    values={values}
-                />
-            )}
-            {step === 2 && <ConfirmListings nextStep={nextStep} values={values} />}
-            {step === 3 && <Success />}
+            {/* <CssBaseline /> */}
+
         </ThemeProvider>
     );
 };

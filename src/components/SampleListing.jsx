@@ -18,6 +18,8 @@ const SampleListing = ({ formData, setForm, navigation }) => {
         duration: ''
     });
 
+    const [selectedButton, setSelectedButton] = useState(null);
+
     const handleChange = (event) => {
         setState({
             ...state,
@@ -118,19 +120,43 @@ const SampleListing = ({ formData, setForm, navigation }) => {
                 fullWidth
             /> */}
             <div className='space-x-4 my-4'>
-                <Button variant="outlined" color="primary" onClick={handleClick}
-                    <FormControl fullWidth sx={{ m: 1 }}>
-                    <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
-                    <OutlinedInput
-                        id="outlined-adornment-amount"
-                        startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                        label="Amount"
-                    />
-                </FormControl>
-                >Outright</Button>
-            <Button variant="outlined" color="primary">Installment</Button>
-        </div>
-            {/* //Document */ }
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={() => setSelectedButton('outright')}
+                >
+                    Outright
+                </Button>
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={() => setSelectedButton('installment')}
+                >
+                    Installment
+                </Button>
+                {selectedButton === 'outright' && (
+                    <div className="mt-4">
+                        <FormControl fullWidth sx={{ m: 1 }}>
+                            <InputLabel htmlFor="outlined-adornment-amount">Initial Deposit</InputLabel>
+                            <OutlinedInput
+                                id="outlined-adornment-amount"
+                                startAdornment={<InputAdornment position="start">&#x20A6;</InputAdornment>}
+                                label="Amount"
+                            />
+                            <TextField
+                                label='Duration'
+                                name='duration'
+                                value={duration}
+                                margin='normal'
+                                variant='outlined'
+                                autoComplete='off'
+                                fullWidth
+                            />
+                        </FormControl>
+                    </div>
+                )}
+            </div>
+            {/* //Document */}
             <FormControl component="fieldset">
                 <FormLabel>Documents</FormLabel>
                 <FormGroup>

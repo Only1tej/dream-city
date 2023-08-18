@@ -37,13 +37,13 @@ const SampleListing = ({ formData, setForm, navigation }) => {
 
     // const { certificateOfO, lawDeed, agreement, lease, rent, sale, isGated, isCctv, isSecurityPersonnel, isGarage, initialDeposit, duration } = state;
 
-    const { landmark, price, plots, paymentFormat, apartment, amenities, installment, outright, document, purchaseType, certificateOfO, lawDeed, agreement, lease, rent, sale, isGated, isCctv, isSecurityPersonnel, isGarage, initialDeposit, duration } = formData
+    const { landmark, price, plots, paymentFormat, apartment, certificateOfO, lawDeed, agreement, lease, rent, sale, isGated, isCctv, isSecurityPersonnel, isGarage, duration } = formData
 
     return (
         <Container maxWidth='xs'>
             <h3>Names</h3>
             <TextField
-                label='Price'
+                // label='Price'
                 name='price'
                 value={price}
                 onChange={setForm}
@@ -217,14 +217,16 @@ const SampleListing = ({ formData, setForm, navigation }) => {
                 </FormGroup>
                 {/* <FormHelperText>Be careful</FormHelperText> */}
             </FormControl>
-            <Button variant='contained' fullWidth color='primary' style={{ marginTop: '1rem' }} onClick={() => navigation.previous()}>
-                Back
-            </Button>
-            <Button variant='contained' fullWidth color='primary' style={{ marginTop: '1rem' }} onClick={() => navigation.next()}>
-                Next
-            </Button>
+            <div className="mt-1 space-x-3">
+                <Button variant='contained' color='secondary' onClick={() => navigation.previous()}>
+                    Back
+                </Button>
+                <Button variant='contained' color='primary' onClick={() => navigation.next()}>
+                    Next
+                </Button>
+            </div>
         </Container >
     )
 }
 
-export default SampleListing
+export default SampleListing 

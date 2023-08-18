@@ -18,20 +18,19 @@ const defaultData = {
     paymentFormat: '',
     plots: '',
     apartment: '',
-    installment: [{
-        initialDeposit: '',
-        duration: ''
-    }],
+    initialDeposit: '',
+    duration: '',
     outright: '',
-    amenities: [{
-        isGated: false, isCctv: false, isSecurityPersonnel: false, isGarage: false
-    }],
-    document: [{
-        certificateOfO: false, lawDeed: false, agreement: false
-    }],
-    purchaseType: [{
-        rent: false, lease: false, sale: false
-    }],
+    isGated: false,
+    isCctv: false,
+    isSecurityPersonnel: false,
+    isGarage: false,
+    certificateOfO: false,
+    lawDeed: false,
+    agreement: false,
+    rent: false,
+    lease: false,
+    sale: false,
 
 }
 

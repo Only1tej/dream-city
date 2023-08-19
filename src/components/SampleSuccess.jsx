@@ -1,8 +1,10 @@
 import React from 'react'
-import { Container, Accordion, AccordionDetails, AccordionSummary, ListItemText, IconButton, ExpandMoreIcon } from '@mui/material'
+import { Container, Button, Accordion, AccordionDetails, AccordionSummary, ListItemText, IconButton } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const SampleSuccess = ({ formData, navigation }) => {
+    const { go } = navigation
     const {
         name,
         address,
@@ -31,7 +33,7 @@ const SampleSuccess = ({ formData, navigation }) => {
     return (
         <Container>
             <h3>Confirm</h3>
-            <RenderAccordion summary='Details' details={[
+            <RenderAccordion summary='Details' go={go} details={[
                 { 'Name': name },
                 { 'Address': address },
                 { 'Description': description },
@@ -46,10 +48,17 @@ const SampleSuccess = ({ formData, navigation }) => {
                 { 'Lease': lease },
 
             ]} />
+            <Button
+                color='primary'
+                variant='contained'
+                style={{ marginTop: '1.5rem' }}
+            >
+                Submit
+            </Button>
         </Container>
     )
 }
-export const RenderAccordion = ({ summary, details }) => (
+export const RenderAccordion = ({ summary, details, go }) => (
     <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>{summary}</AccordionSummary>
         <AccordionDetails>
@@ -59,7 +68,7 @@ export const RenderAccordion = ({ summary, details }) => (
                         const objKey = Object.keys(data)[0]
                         const objValue = data[Object.keys(data)[0]]
 
-                        return <ListItemText>
+                        return <ListItemText key={index}>
                             {
                                 `${objKey}: ${objValue}`
                             }
@@ -69,6 +78,7 @@ export const RenderAccordion = ({ summary, details }) => (
                 <IconButton
                     color='primary'
                     component='span'
+                    onClick={() => go(`${summary.toLowerCase()}`)}
                 ><EditIcon /></IconButton>
             </div>
         </AccordionDetails>

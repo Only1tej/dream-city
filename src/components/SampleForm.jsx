@@ -6,6 +6,7 @@ import Success from './Success'
 import SampleFirst from './SampleFirst'
 import SampleListing from './SampleListing'
 import SampleSuccess from './SampleSuccess'
+import SampleSubmit from './SampleSubmit'
 
 const defaultData = {
     name: '',
@@ -34,28 +35,36 @@ const defaultData = {
 
 }
 
+// const steps = [
+//     { id: 'formListing' },
+//     { id: 'confirmListings' },
+//     { id: 'success' },
+// ]
 const steps = [
-    { id: 'formListing' },
-    { id: 'confirmListings' },
+    { id: 'names' },
+    { id: 'details' },
     { id: 'success' },
+    { id: 'submit' },
 ]
 
 function SampleForm() {
     const [formData, setForm] = useForm(defaultData)
     const { step, navigation } = useStep({
         steps,
-        initialStep: 2
+        initialStep: 0
     })
 
     const props = { formData, setForm, navigation }
 
     switch (step.id) {
-        case 'formListing':
+        case 'names':
             return <SampleFirst {...props} />
-        case 'confirmListings':
+        case 'details':
             return <SampleListing {...props} />
         case "success":
             return <SampleSuccess {...props} />
+        case "submit":
+            return <SampleSubmit {...props} />
     }
     console.log(step)
     return (

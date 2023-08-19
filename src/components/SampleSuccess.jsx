@@ -33,11 +33,13 @@ const SampleSuccess = ({ formData, navigation }) => {
     return (
         <Container>
             <h3>Confirm</h3>
-            <RenderAccordion summary='Details' go={go} details={[
+            <RenderAccordion summary='Names' go={go} details={[
                 { 'Name': name },
                 { 'Address': address },
                 { 'Description': description },
                 { 'Location': location },
+            ]} />
+            <RenderAccordion summary='Details' go={go} details={[
                 { 'Price': price },
                 { 'Landmark': landmark },
                 { 'Plots': plots },
@@ -52,6 +54,7 @@ const SampleSuccess = ({ formData, navigation }) => {
                 color='primary'
                 variant='contained'
                 style={{ marginTop: '1.5rem' }}
+                onClick={() => go('submit')}
             >
                 Submit
             </Button>

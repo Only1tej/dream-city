@@ -41,7 +41,7 @@ const SampleListing = ({ formData, setForm, navigation }) => {
 
     return (
         <Container maxWidth='xs'>
-            <h3>Names</h3>
+            <h3>Details</h3>
             <TextField
                 // label='Price'
                 name='price'

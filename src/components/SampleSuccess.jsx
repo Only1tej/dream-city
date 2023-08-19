@@ -1,5 +1,6 @@
 import React from 'react'
-import { Container, Accordion, AccordionDetails, AccordionSummary, ListItemText, IconButton, EditIcon } from '@mui/material'
+import { Container, Accordion, AccordionDetails, AccordionSummary, ListItemText, IconButton, ExpandMoreIcon } from '@mui/material'
+import EditIcon from '@mui/icons-material/Edit';
 
 const SampleSuccess = ({ formData, navigation }) => {
     const {
@@ -35,18 +36,22 @@ const SampleSuccess = ({ formData, navigation }) => {
                 { 'Address': address },
                 { 'Description': description },
                 { 'Location': location },
+                { 'Price': price },
+                { 'Landmark': landmark },
+                { 'Plots': plots },
+                { 'Apartment': apartment },
+                { 'Gate': isGated },
+                { 'Rent': rent },
+                { 'Sale': sale },
+                { 'Lease': lease },
+
             ]} />
         </Container>
     )
-    //  address,
-    //     description,
-    //     location,
-    //     price,
-    //     landmark,
 }
 export const RenderAccordion = ({ summary, details }) => (
     <Accordion>
-        <AccordionSummary>{summary}</AccordionSummary>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>{summary}</AccordionSummary>
         <AccordionDetails>
             <div>
                 {
@@ -61,7 +66,10 @@ export const RenderAccordion = ({ summary, details }) => (
                         </ListItemText>
                     })
                 }
-                <IconButton><EditIcon /></IconButton>
+                <IconButton
+                    color='primary'
+                    component='span'
+                ><EditIcon /></IconButton>
             </div>
         </AccordionDetails>
     </Accordion>

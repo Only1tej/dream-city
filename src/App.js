@@ -9,25 +9,27 @@ import ListingPage from "./components/ListingPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SampleForm from "./components/SampleForm";
 import DrawerPage from "./components/Drawer";
+import { AuthProvider, useAuth } from "./components/Auth/Auth";
 
 function App() {
   return (
     // <div className="App">
     //   <SampleForm />
     // </div>
-    <Router>
-      <div className="App">
-        <DrawerPage />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/create-admin" element={<CreateAdmin />} />
-          <Route path="/listings" element={<Listings />} />
-          {/* <Route path="/create-listing" element={<CreateListing />} /> */}
-          <Route path="/create-listing" element={<SampleForm />} />
-          <Route path="/listing-page" element={<ListingPage />} />
-        </Routes>
-      </div>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/create-admin" element={<CreateAdmin />} />
+            <Route path="/listings" element={<Listings />} />
+            {/* <Route path="/create-listing" element={<CreateListing />} /> */}
+            <Route path="/create-listing" element={<SampleForm />} />
+            <Route path="/listing-page" element={<ListingPage />} />
+          </Routes>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 

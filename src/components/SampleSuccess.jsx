@@ -31,34 +31,37 @@ const SampleSuccess = ({ formData, navigation }) => {
         sale,
     } = formData
     return (
-        <Container>
-            <h3>Confirm</h3>
-            <RenderAccordion summary='Names' go={go} details={[
-                { 'Name': name },
-                { 'Address': address },
-                { 'Description': description },
-                { 'Location': location },
-            ]} />
-            <RenderAccordion summary='Details' go={go} details={[
-                { 'Price': price },
-                { 'Landmark': landmark },
-                { 'Plots': plots },
-                { 'Apartment': apartment },
-                { 'Gate': isGated },
-                { 'Rent': rent },
-                { 'Sale': sale },
-                { 'Lease': lease },
+        <div className="hero min-h-screen bg-[#F5E0B8]">
+            <Container>
+                <h3 className='text-4xl font-primary font-bold text-[#008F97]'>Confirm</h3>
+                <RenderAccordion summary='Names' go={go} details={[
+                    { 'Name': name },
+                    { 'Address': address },
+                    { 'Description': description },
+                    { 'Location': location },
+                ]} />
+                <RenderAccordion summary='Details' go={go} details={[
+                    { 'Price': price },
+                    { 'Landmark': landmark },
+                    { 'Plots': plots },
+                    { 'Apartment': apartment },
+                    { 'Gate': isGated },
+                    { 'Rent': rent },
+                    { 'Sale': sale },
+                    { 'Lease': lease },
 
-            ]} />
-            <Button
-                color='primary'
-                variant='contained'
-                style={{ marginTop: '1.5rem' }}
-                onClick={() => go('submit')}
-            >
-                Submit
-            </Button>
-        </Container>
+                ]} />
+                {/* <Button
+                    color='primary'
+                    variant='contained'
+                    style={{ marginTop: '1.5rem' }}
+                    onClick={() => go('submit')}
+                >
+                    Submit
+                </Button> */}
+                <button className="btn font-primary text-base normal-case bg-[#118286] outline-none border-none hover:bg-[#118286] text-white w-full mb-2 mt-6" onClick={() => go('submit')}>Submit</button>
+            </Container>
+        </div>
     )
 }
 export const RenderAccordion = ({ summary, details, go }) => (

@@ -1,37 +1,96 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, TextField, Button, Box } from '@material-ui/core'
 import { ThemeProvider } from "@mui/styles";
 import { PrimaryMainTheme } from "./PrimaryMainTheme";
 import DrawerPage from './Drawer';
 import logo from '../../src/dreamcity/logo-transparent.png'
 import logo2 from '../../src/dreamcity/logo-slogan.png'
+import ImageUploader from './ImageUploader';
+// import { faSquarePlus } from "react-icons/fa6";
+// import { FontAwesomeIcon } from '@fontawesome/react-fontawesome'
+import { FaSquarePlus } from "react-icons/fa6";
+
+
+{/* <FontAwesomeIcon icon={faSquarePlus} style={{ color: "#080808", }} /> */ }
 
 
 const SampleFirst = ({ formData, setForm, navigation }) => {
     const { name, address, description, location } = formData
     console.log('formData :>> ', formData);
+
+    const [images, setImages] = useState([]);
+
+    const handleImageUpload = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            setImages((prevImages) => [...prevImages, reader.result]);
+        };
+    };
+
+    const renderCarousel = () => {
+        return (
+            <div className="carousel">
+                {images.map((image, index) => (
+                    <div key={index} className="carousel-item w-40 h-40 rounded-2xl mx-1">
+                        <img src={image} alt="Property Pictures" />
+                    </div>
+                ))}
+            </div>
+        )
+    };
+
     return (
-        <ThemeProvider theme={PrimaryMainTheme} >
-            <div className='flex flex-row md:flex md:flex-column'>
-                <div className='w-[315px] h-full fixed bg-[#F5E0B8]'>
-                    <div className='flex flex-col space-y-4'>
-                        <div>
-                            <img src={logo} alt="Logo" className='bg-[#F5E0B8] w-1/2 h-1/2 mx-auto' />
-                            <img src={logo2} alt="Logo" className='bg-[#F5E0B8] mx-auto mt-1' />
-                        </div>
-                        <a href="/create-admin" className='text-center active:bg-white text-[#118286] active:text-[#F48222]'>Create Admin</a>
-                        <a href="/listing" className='text-center active:bg-white text-[#118286] active:text-[#F48222]'>Listings</a>
-                        <a href="/create-listing" className='text-center active:bg-white text-[#118286] active:text-[#F48222]'>Create Listing</a>
+
+        <div className='flex flex-row md:flex md:flex-row'>
+            <div className='w-[315px] h-full min-h-screen bg-[#F5E0B8]'>
+                <div className='flex flex-col space-y-4'>
+                    <div>
+                        <img src={logo} alt="Logo" className='bg-[#F5E0B8] w-1/2 h-1/2 mx-auto' />
+                        <img src={logo2} alt="Logo" className='bg-[#F5E0B8] mx-auto mt-1' />
                     </div>
-                </div>
-                <div className="hero min-h-screen bg-white">
-                    <div className="form-control">
-                        <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" /><input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" /><input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" /><input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
-                    </div>
-                    <button className="btn font-primary text-base normal-case bg-[#118286] outline-none border-none hover:bg-[#118286] text-white mt-6" onClick={() => navigation.next()}>Next</button>
+                    <a href="/create-admin" className='text-center active:bg-white text-[#118286] active:text-[#F48222]'>Create Admin</a>
+                    <a href="/listing" className='text-center active:bg-white text-[#118286] active:text-[#F48222]'>Listings</a>
+                    <a href="/create-listing" className='text-center active:bg-white text-[#118286] active:text-[#F48222]'>Create Listing</a>
                 </div>
             </div>
-        </ThemeProvider>
+            <div className="hero min-h-screen bg-white">
+                <div>
+                    <div>
+                        <h1 className='text-[40px] text-[#008F97] font-bold font-primary'>Create Listing</h1>
+                        <p className='text-[#F48222] text-sm'>Please fill out all required informations.</p>
+                        <div>
+                            {/* <FaSquarePlus style={{ color: "#7C6A0A" }} onChange={handleImageUpload} type='file' /> */}
+                            <input type="file" min='4' max='6' accept='.jpg, .png, .jpeg, .avif' multiple required onChange={handleImageUpload} />
+
+                            <button onClick={() => setImages([])}>Clear Images</button>
+                            <div>{renderCarousel()}</div>
+                        </div>
+                    </div>
+                    <div className="form-control grid grid-cols-2 gap-4">
+                        <div>
+                            <label htmlFor="title" className='text-[#F48222] text-base font-medium'>Title of property</label>
+                            <input type="text" placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                        </div>
+                        <div>
+                            <label htmlFor="description" className='text-[#F48222] text-base font-medium'>Description</label>
+                            <input type="text" placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                        </div>
+                        <div>
+                            <label htmlFor="location" className='text-[#F48222] text-base font-medium'>Location</label>
+                            <input type="text" placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                        </div>
+                        <div>
+                            <label htmlFor="landmark" className='text-[#F48222] text-base font-medium'>Nearest Landmark</label>
+                            <input type="text" placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                        </div>
+                        <button className="btn font-primary text-base normal-case bg-[#118286] outline-none border-none hover:bg-[#118286] text-white mt-6" onClick={() => navigation.next()}>Add Listing</button>
+                        <button className="btn font-primary text-base font-semibold normal-case bg-white outline outline-[#118286] border-none hover:bg-white text-[#118286] mt-6" onClick={() => navigation.previous()}>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     )
 }
 

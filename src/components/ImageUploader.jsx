@@ -9,7 +9,11 @@ function ImageUploader() {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
-            setImages((prevImages) => [...prevImages, reader.result]);
+            if (images.length < 6) {
+                setImages((prevImages) => [...prevImages, reader.result])
+            } else {
+                alert('You can upload a maximum of six images')
+            }
         };
     };
 

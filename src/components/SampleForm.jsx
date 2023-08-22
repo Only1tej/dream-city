@@ -7,6 +7,7 @@ import SampleFirst from './SampleFirst'
 import SampleListing from './SampleListing'
 import SampleSuccess from './SampleSuccess'
 import SampleSubmit from './SampleSubmit'
+import SampleFirstSubmit from './SampleFirstSubmit'
 
 const defaultData = {
     name: '',
@@ -60,7 +61,8 @@ function SampleForm() {
         case 'names':
             return <SampleFirst {...props} />
         case 'details':
-            return <SampleListing {...props} />
+            return <SampleFirstSubmit {...props} />
+        // return <SampleListing {...props} />
         case "success":
             return <SampleSuccess {...props} />
         case "submit":

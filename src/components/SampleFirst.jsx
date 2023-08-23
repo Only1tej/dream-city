@@ -61,7 +61,7 @@ const SampleFirst = ({ onSubmit }) => {
 
     return (
 
-        <div className='flex flex-row md:flex md:flex-row max-h-screen lg:overflow-hidden md:overflow-auto'>
+        <div className='flex flex-row md:flex md:flex-row max-h-screen lg:overflow-hidden md:overflow-auto bg-white'>
             <div className='w-[315px] h-full min-h-screen bg-[#F5E0B8]'>
                 <div className='flex flex-col space-y-4'>
                     <div>

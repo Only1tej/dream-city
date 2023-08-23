@@ -63,8 +63,8 @@ const SampleFirst = ({ onSubmit }) => {
 
         <div className='flex flex-row md:flex md:flex-row max-h-screen lg:overflow-hidden md:overflow-auto bg-white'>
             <div className='w-[315px] h-full min-h-screen bg-[#F5E0B8]'>
-                <div className='flex flex-col space-y-4'>
-                    <div>
+                <div className='flex flex-col space-y-6'>
+                    <div className='py-4'>
                         <img src={logo} alt="Logo" className='bg-[#F5E0B8] w-1/2 h-1/2 mx-auto' />
                         <img src={logo2} alt="Logo" className='bg-[#F5E0B8] mx-auto mt-1' />
                     </div>

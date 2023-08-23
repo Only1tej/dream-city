@@ -20,30 +20,31 @@ function App() {
     setFormData(data);
   };
   return (
-    <div>
-      {!formData ? (
-        <SampleFirst onSubmit={handleFormSubmit} />
-      ) : (
-        <SampleFirstSubmit formData={formData} />
-      )}
-    </div>
+    // <div>
+    //   {!formData ? (
+    //     <SampleFirst onSubmit={handleFormSubmit} />
+    //   ) : (
+    //     <SampleFirstSubmit formData={formData} />
+    //   )}
+    // </div>
     // <div className="App">
     //   <SampleForm />
     // </div>
-    // <AuthProvider>
-    //   <Router>
-    //     <div className="App">
-    //       <Routes>
-    //         <Route path="/" element={<Home />} />
-    //         <Route path="/create-admin" element={<CreateAdmin />} />
-    //         <Route path="/listings" element={<Listings />} />
-    //         {/* <Route path="/create-listing" element={<CreateListing />} /> */}
-    //         <Route path="/create-listing" element={<SampleFirst />} />
-    //         <Route path="/listing-page" element={<ListingPage />} />
-    //       </Routes>
-    //     </div>
-    //   </Router>
-    // </AuthProvider>
+    <AuthProvider>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/create-admin" element={<CreateAdmin />} />
+            <Route path="/listings" element={<Listings />} />
+            {/* <Route path="/create-listing" element={<CreateListing />} /> */}
+            <Route path="/create-listing" element={<SampleFirst />} />
+            <Route path="/listing" element={<SampleFirstSubmit />} />
+            <Route path="/listing-page" element={<ListingPage />} />
+          </Routes>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 

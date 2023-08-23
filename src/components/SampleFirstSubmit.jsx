@@ -33,7 +33,7 @@ const SampleFirstSubmit = ({ formData }) => {
                     <div className='w-[200px] rounded-t-xl'>
                         {state?.images?.map((image, index) => (
                             <div key={index}>
-                                <img src={image} alt={`Image ${index}`} width='100' />
+                                <img src={image} alt={`Image ${index}`} width='100' className='flex flex-row' />
                             </div>
                         ))}
                     </div>

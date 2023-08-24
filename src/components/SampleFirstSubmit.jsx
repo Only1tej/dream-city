@@ -3,6 +3,8 @@ import logo from '../../src/dreamcity/logo-transparent.png'
 import logo2 from '../../src/dreamcity/logo-slogan.png'
 import SampleFirst from './SampleFirst'
 import { useLocation } from 'react-router-dom'
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 const SampleFirstSubmit = ({ formData }) => {
     const { state } = useLocation()
@@ -22,6 +24,24 @@ const SampleFirstSubmit = ({ formData }) => {
 
     // render
 
+
+    const responsive = {
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 1,
+            slidesToSlide: 1,
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 1,
+            slidesToSlide: 1,
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+            slidesToSlide: 1,
+        },
+    };
 
 
     return (
@@ -50,11 +70,19 @@ const SampleFirstSubmit = ({ formData }) => {
                                     <img src={image} alt={`Image ${index}`} width='100' />
                                 </div>
                             ))}
+                            {/* //Show only one image */}
                             {/* {state?.images?.length > 0 && (
                                 <div className=''>
                                     <img src={state.images[0]} alt={`Image 0`} width='100' className='carousel-item' />
                                 </div>
                             )} */}
+                            {/* <Carousel responsive={responsive}>
+                                        {images?.map((image, index) => (
+                                            <div key={index} className="carousel-image">
+                                                <img src={image} alt={`Image ${index}`} />
+                                            </div>
+                                        ))}
+                                    </Carousel> */}
                         </div>
                         <div className=' bg-[#F5E0B8] rounded-b-xl p-1'>
                             <p className='text-[#118286] text-sm font-primary font-semibold'>{state?.title}</p>

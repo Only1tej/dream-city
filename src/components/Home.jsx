@@ -35,21 +35,8 @@ function Home() {
         } else {
             setError(null);
         }
-
         setEmail(e.target.value);
     };
-
-    // const handleSubmit = event => {
-    //     event.preventDefault();
-
-    //     setError(null);
-
-    //     if (isValidEmail(email)) {
-    //         console.log('The email is valid');
-    //     } else {
-    //         setError('Email is invalid');
-    //     }
-    // };
 
     const handleSubmit = (e) => {
         e.preventDefault();

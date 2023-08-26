@@ -62,7 +62,7 @@ function Home() {
                         <div className='flex'>
                             <img src={logo} alt="Logo" className='' />
                         </div>
-                        <p className='font-primary italic'>...the future is now</p>
+                        <p className='font-primary italic text-black'>...the future is now</p>
                     </div>
                     <div className="hero min-h-screen bg-[#F5E0B8] p-0 w-1/2">
                         <div className="hero-content flex-col ">
@@ -85,7 +85,7 @@ function Home() {
                                             </label>
                                             <input type="password" required placeholder="Enter password" className="input bg-[#F5E0B8] disabled:bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] invalid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" onChange={(e) => setPassword(e.target.value)} />
                                             <label className="label">
-                                                <a href="#" className="label-text link link-hover">Forgot password?</a>
+                                                <a href="#" className="label-text link link-hover text-[#118286] underline">Forgot password?</a>
                                             </label>
                                         </div>
                                         <div className="form-control mt-6 space-y-3">

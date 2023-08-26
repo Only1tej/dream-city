@@ -15,7 +15,7 @@ function CreateAdmin() {
                         <div className='flex'>
                             <img src={logo} alt="Logo" className='' />
                         </div>
-                        <p className='font-primary italic'>...the future is now</p>
+                        <p className='font-primary italic text-black'>...the future is now</p>
                     </div>
                     <div className="hero min-h-screen bg-[#F5E0B8] w-1/2">
                         <div className="hero-content flex-col align">

@@ -11,7 +11,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SampleForm from "./components/SampleForm";
 import SampleFirst from "./components/SampleFirst";
 import SampleFirstSubmit from "./components/SampleFirstSubmit";
-import DrawerPage from "./components/Drawer";
 import { AuthProvider, useAuth } from "./components/Auth/Auth";
 
 function App() {

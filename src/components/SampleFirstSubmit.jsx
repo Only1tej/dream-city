@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import logo from '../../src/dreamcity/logo-transparent.png'
 import logo2 from '../../src/dreamcity/logo-slogan.png'
 import SampleFirst from './SampleFirst'
@@ -25,42 +26,43 @@ const SampleFirstSubmit = ({ formData }) => {
     // render
 
 
-    const responsive = {
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 1,
-            slidesToSlide: 1,
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 1,
-            slidesToSlide: 1,
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1,
-            slidesToSlide: 1,
-        },
-    };
+    // const responsive = {
+    //     desktop: {
+    //         breakpoint: { max: 3000, min: 1024 },
+    //         items: 1,
+    //         slidesToSlide: 1,
+    //     },
+    //     tablet: {
+    //         breakpoint: { max: 1024, min: 464 },
+    //         items: 1,
+    //         slidesToSlide: 1,
+    //     },
+    //     mobile: {
+    //         breakpoint: { max: 464, min: 0 },
+    //         items: 1,
+    //         slidesToSlide: 1,
+    //     },
+    // };
 
 
     return (
         <>
-            <div className='flex flex-row max-h-screen lg:overflow-hidden md:overflow-auto bg-white'>
+            {/* <div className='flex flex-row max-h-screen lg:overflow-hidden md:overflow-auto bg-white'> */}
+            <div className='flex flex-row md:flex md:flex-row max-h-screen lg:overflow-hidden md:overflow-auto bg-white' >
                 <div className='w-[315px] h-full min-h-screen bg-[#F5E0B8]'>
                     <div className='flex flex-col '>
                         <div className='py-4'>
                             <img src={logo} alt="Logo" className='bg-[#F5E0B8] w-1/2 h-1/2 mx-auto' />
                             <img src={logo2} alt="Logo" className='bg-[#F5E0B8] mx-auto mt-1' />
                         </div>
-                        <a href="/create-admin" className='text-left active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px] '>Create Admin</a>
-                        <a href="/listing" className='text-left active:bg-white focus:bg-white bg-white text-[#F48222] active:text-[#F48222] pl-[31px] py-[16px] font-medium text-lg font-primary'>Listings</a>
-                        <a href="/create-listing" className='text-left active:bg-white focus:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px]'>Create Listing</a>
+                        <Link to="/create-admin" className='text-left active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px] '>Create Admin</Link>
+                        <Link to="/listing" className='text-left active:bg-white focus:bg-white bg-white text-[#F48222] active:text-[#F48222] pl-[31px] py-[16px] font-medium text-lg font-primary'>Listings</Link>
+                        <Link to="/create-listing" className='text-left active:bg-white focus:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px]'>Create Listing</Link>
                     </div>
                 </div>
                 <div className='mt-[18px] mr-[33px] ml-[19px] mb-[19px]'>
                     <div>
-                        <input type="search" placeholder="Search" className="input input-bordered w-[275px] md:w-[468px] h-[33px] rounded-none" />
+                        <input type="search" placeholder="Search" className="input input-bordered w-[275px] md:w-[468px] h-[33px] rounded-none bg-white" />
                     </div>
 
                     <div className='w-[285px] h-[239px] mt-[40px]'>

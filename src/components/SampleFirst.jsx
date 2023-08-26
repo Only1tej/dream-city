@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Container, TextField, Button, Box } from '@material-ui/core'
 import { ThemeProvider } from "@mui/styles";
 import { PrimaryMainTheme } from "./PrimaryMainTheme";
-import DrawerPage from './Drawer';
 import logo from '../../src/dreamcity/logo-transparent.png'
 import logo2 from '../../src/dreamcity/logo-slogan.png'
 import ImageUploader from './ImageUploader';
@@ -68,9 +68,9 @@ const SampleFirst = ({ onSubmit }) => {
                         <img src={logo} alt="Logo" className='bg-[#F5E0B8] w-1/2 h-1/2 mx-auto' />
                         <img src={logo2} alt="Logo" className='bg-[#F5E0B8] mx-auto mt-1' />
                     </div>
-                    <a href="/create-admin" className='text-left active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px] '>Create Admin</a>
-                    <a href="/listing" className='text-left active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px]'>Listings</a>
-                    <a href="/create-listing" className='text-left active:bg-white focus:bg-white bg-white text-[#F48222] active:text-[#F48222] pl-[31px] py-[16px] font-medium text-lg font-primary'>Create Listing</a>
+                    <Link to="/create-admin" className='text-left active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px] '>Create Admin</Link>
+                    <Link to="/listing" className='text-left active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px]'>Listings</Link>
+                    <Link to="/create-listing" className='text-left active:bg-white focus:bg-white bg-white text-[#F48222] active:text-[#F48222] pl-[31px] py-[16px] font-medium text-lg font-primary'>Create Listing</Link>
                 </div>
             </div>
             <div className='sm:w-[500px] md:w-[650px] lg:w-[800px] pl-[28px] pt-[18px] pr-[32px] pb-[24px] '>

@@ -36,7 +36,6 @@ function ImageUploader() {
             <div>{renderCarousel()}</div>
         </div>
     )
-
 }
 
 

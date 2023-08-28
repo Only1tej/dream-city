@@ -68,14 +68,14 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
 
         <div className='flex flex-row max-h-screen lg:overflow-hidden md:overflow-auto bg-white'>
             <div className='w-[315px] h-full min-h-screen bg-[#F5E0B8]'>
-                <div className='flex flex-col '>
+                <div className='flex flex-col'>
                     <div className='py-4'>
                         <img src={logo} alt="Logo" className='bg-[#F5E0B8] w-1/2 h-1/2 mx-auto' />
                         <img src={logo2} alt="Logo" className='bg-[#F5E0B8] mx-auto mt-1' />
                     </div>
-                    <Link to="/create-admin" className='text-left active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px] '>Create Admin</Link>
-                    <Link to="/listing" className='text-left active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px]'>Listings</Link>
-                    <Link to="/create-listing" className='text-left active:bg-white focus:bg-white bg-white text-[#F48222] active:text-[#F48222] pl-[31px] py-[16px] font-medium text-lg font-primary'>Create Listing</Link>
+                    <Link to="/create-admin" className='text-left sm:text-base text-sm active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px]'>Create Admin</Link>
+                    <Link to="/listing" className='text-left sm:text-base text-sm active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px]'>Listings</Link>
+                    <Link to="/create-listing" className='text-left active:bg-white focus:bg-white bg-white text-[#F48222] active:text-[#F48222] pl-[31px] py-[16px] font-medium sm:text-lg text-sm font-primary'>Create Listing</Link>
                 </div>
             </div>
             <div className='sm:w-[500px] md:w-[650px] lg:w-[800px] pl-[28px] pt-[18px] pr-[32px] pb-[24px] '>

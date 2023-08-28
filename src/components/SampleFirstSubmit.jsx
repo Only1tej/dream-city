@@ -49,13 +49,13 @@ const SampleFirstSubmit = ({ formData, listings }) => {
         <>
             {/* <div className='flex flex-row max-h-screen lg:overflow-hidden md:overflow-auto bg-white'> */}
             <div className='flex flex-row md:flex md:flex-row max-h-screen  lg:h-full bg-white ' >
-                <div className='w-[315px] h-full fixed min-h-screen bg-[#F5E0B8]'>
+                <div className='w-[315px] h-full z-[1] fixed top-0 left-0 overflow-x-hidden min-h-screen bg-[#F5E0B8]'>
                     <div className='flex flex-col '>
                         <div className='py-4'>
                             <img src={logo} alt="Logo" className='bg-[#F5E0B8] w-1/2 h-1/2 mx-auto' />
                             <img src={logo2} alt="Logo" className='bg-[#F5E0B8] mx-auto mt-1' />
                         </div>
-                        <Link to="/create-admin" className='text-left active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px] '>Create Admin</Link>
+                        <Link to="/create-admin" className='text-left active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px] '>Create Adminat</Link>
                         <Link to="/listing" className='text-left active:bg-white focus:bg-white bg-white text-[#F48222] active:text-[#F48222] pl-[31px] py-[16px] font-medium text-lg font-primary'>Listings</Link>
                         <Link to="/create-listing" className='text-left active:bg-white focus:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px]'>Create Listing</Link>
                     </div>
@@ -76,15 +76,15 @@ const SampleFirstSubmit = ({ formData, listings }) => {
                             ))}
                         </ul>
                     </div> */}
-                    <div class="grid lg:grid-cols-4  md:grid-cols-3 gap-x-12 grid-cols-2">
+                    <div class="grid lg:grid-cols-4 md:grid-cols-3 gap-x-48 grid-cols-2">
                         {listings.map((listing, index) => (
-                            <div className='w-[285px] h-[239px] mt-[40px] mr-[200px]'>
+                            <div className='w-[285px] h-[239px] mt-[40px] mr-[40px]'>
                                 <div className='w-[285px] h-[160px] rounded-t-xl carousel carousel-center'>
-                                    {state?.images?.map((image, index) => (
+                                    {/* {state?.images?.map((image, index) => (
                                         <div key={index} className='' >
                                             <img src={image} alt={`Image ${index}`} width='100' />
                                         </div>
-                                    ))}
+                                    ))} */}
                                     {
                                         listing?.images?.map((image, index) => (
                                             <div key={index} className='' >
@@ -107,9 +107,10 @@ const SampleFirstSubmit = ({ formData, listings }) => {
                                 </div>
                                 <div className=' bg-[#F5E0B8] rounded-b-xl p-1'>
                                     <p className='text-[#118286] text-sm font-primary font-semibold'>{listing.title}</p>
-                                    <p className='text-[#118286] font-primary font-normal'>{state?.description}{listing.description}</p>
-                                    <p className='text-[#118286] text-xs font-primary font-normal'> {state?.location}{listing.location}</p>
-                                    <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.landmark}{listing.landmark}</p>
+                                    <p className='text-[#118286] font-primary font-normal'>{listing.description}</p>
+                                    <p className='text-[#118286] text-xs font-primary font-normal'>{listing.location}</p>
+                                    <p className='text-[#F48222] text-sm font-primary font-bold'>{listing.landmark}</p>
+                                    {/* <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.landmark}{listing.landmark}</p> */}
                                 </div>
                             </div>
                         ))}

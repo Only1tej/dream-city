@@ -33,8 +33,25 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
     }
 
 
-    const handleSave = () => {
-        onSaveListing({ title, description, location, landmark, images })
+    const handleSave = (e) => {
+        if (images.length === 0) {
+            return
+        }
+        if (title === '') {
+            return
+        }
+        if (description === '') {
+            return
+        }
+        if (location === '') {
+            return
+        }
+        if (landmark === '') {
+            return
+        }
+        const listingData = { title, description, location, landmark, images }
+        e.preventDefault()
+        onSaveListing(listingData)
         navigate('/listing')
     }
 
@@ -108,19 +125,19 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                                     <div className="form-control grid grid-cols-2 gap-4 pt-[44px]">
                                         <div>
                                             <label htmlFor="title" className='text-[#F48222] text-base font-medium'>Title of property</label>
-                                            <input type="text" value={title} name='title' onChange={(e) => setTitle(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                            <input type="text" value={title} name='title' required onChange={(e) => setTitle(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
                                         <div>
                                             <label htmlFor="description" className='text-[#F48222] text-base font-medium'>Description</label>
-                                            <input type="text" value={description} name='description' onChange={(e) => setDescription(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                            <input type="text" value={description} name='description' required onChange={(e) => setDescription(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
                                         <div>
                                             <label htmlFor="location" className='text-[#F48222] text-base font-medium'>Location</label>
-                                            <input type="text" value={location} name='location' onChange={(e) => setLocation(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                            <input type="text" value={location} name='location' required onChange={(e) => setLocation(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
                                         <div>
                                             <label htmlFor="landmark" className='text-[#F48222] text-base font-medium'>Nearest Landmark</label>
-                                            <input type="text" value={landmark} name='landmark' onChange={(e) => setLandmark(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                            <input type="text" value={landmark} name='landmark' required onChange={(e) => setLandmark(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
                                     </div>
                                 </div>

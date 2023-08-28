@@ -8,6 +8,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
 const SampleFirstSubmit = ({ formData, listings }) => {
+    const [search, setSearch] = useState('')
     const { state } = useLocation()
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
@@ -62,7 +63,7 @@ const SampleFirstSubmit = ({ formData, listings }) => {
                 </div>
                 <div className='mt-[18px] mr-[33px] ml-[333px] mb-[19px]'>
                     <div>
-                        <input type="search" placeholder="Search" className="input input-bordered w-[275px] md:w-[468px] h-[33px] rounded-none bg-white" />
+                        <input type="search" onChange={(e) => setSearch(e.target.value)} placeholder="Search" className="input input-bordered w-[275px] md:w-[468px] h-[33px] rounded-none bg-white" />
                     </div>
 
                     {/* <div className="listings">
@@ -77,43 +78,47 @@ const SampleFirstSubmit = ({ formData, listings }) => {
                         </ul>
                     </div> */}
                     <div class="grid lg:grid-cols-4 md:grid-cols-3 gap-x-48 grid-cols-2">
-                        {listings.map((listing, index) => (
-                            <div className='w-[285px] h-[239px] mt-[40px] mr-[40px]'>
-                                <div className='w-[285px] h-[160px] rounded-t-xl carousel carousel-center'>
-                                    {/* {state?.images?.map((image, index) => (
+                        {listings
+                            .filter((item) => {
+                                return search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)
+                            })
+                            .map((listing, index) => (
+                                <div className='w-[285px] h-[239px] mt-[40px] mr-[40px]'>
+                                    <div className='w-[285px] h-[160px] rounded-t-xl carousel carousel-center'>
+                                        {/* {state?.images?.map((image, index) => (
                                         <div key={index} className='' >
                                             <img src={image} alt={`Image ${index}`} width='100' />
                                         </div>
                                     ))} */}
-                                    {
-                                        listing?.images?.map((image, index) => (
-                                            <div key={index} className='' >
-                                                <img src={image} alt={`Image ${index}`} width='100' />
-                                            </div>
-                                        ))}
-                                    {/* //Show only one image */}
-                                    {/* {state?.images?.length > 0 && (
+                                        {
+                                            listing?.images?.map((image, index) => (
+                                                <div key={index} className='' >
+                                                    <img src={image} alt={`Image ${index}`} width='100' />
+                                                </div>
+                                            ))}
+                                        {/* //Show only one image */}
+                                        {/* {state?.images?.length > 0 && (
                                 <div className=''>
                                     <img src={state.images[0]} alt={`Image 0`} width='100' className='carousel-item' />
                                 </div>
                             )} */}
-                                    {/* <Carousel responsive={responsive}>
+                                        {/* <Carousel responsive={responsive}>
                                         {images?.map((image, index) => (
                                             <div key={index} className="carousel-image">
                                                 <img src={image} alt={`Image ${index}`} />
                                             </div>
                                         ))}
                                     </Carousel> */}
+                                    </div>
+                                    <div className=' bg-[#F5E0B8] rounded-b-xl p-1'>
+                                        <p className='text-[#118286] text-sm font-primary font-semibold'>{listing.title}</p>
+                                        <p className='text-[#118286] font-primary font-normal'>{listing.description}</p>
+                                        <p className='text-[#118286] text-xs font-primary font-normal'>{listing.location}</p>
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{listing.landmark}</p>
+                                        {/* <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.landmark}{listing.landmark}</p> */}
+                                    </div>
                                 </div>
-                                <div className=' bg-[#F5E0B8] rounded-b-xl p-1'>
-                                    <p className='text-[#118286] text-sm font-primary font-semibold'>{listing.title}</p>
-                                    <p className='text-[#118286] font-primary font-normal'>{listing.description}</p>
-                                    <p className='text-[#118286] text-xs font-primary font-normal'>{listing.location}</p>
-                                    <p className='text-[#F48222] text-sm font-primary font-bold'>{listing.landmark}</p>
-                                    {/* <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.landmark}{listing.landmark}</p> */}
-                                </div>
-                            </div>
-                        ))}
+                            ))}
                     </div>
                 </div>
             </div>

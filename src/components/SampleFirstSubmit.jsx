@@ -49,7 +49,7 @@ const SampleFirstSubmit = ({ formData, listings }) => {
         <>
             {/* <div className='flex flex-row max-h-screen lg:overflow-hidden md:overflow-auto bg-white'> */}
             <div className='flex flex-row md:flex md:flex-row max-h-screen  lg:h-full bg-white ' >
-                <div className='sm:w-[315px] h-full fixed overflow-x-hidden min-h-screen w-[200px] bg-[#F5E0B8]'>
+                <div className='w-[315px] h-full fixed min-h-screen bg-[#F5E0B8]'>
                     <div className='flex flex-col '>
                         <div className='py-4'>
                             <img src={logo} alt="Logo" className='bg-[#F5E0B8] w-1/2 h-1/2 mx-auto' />

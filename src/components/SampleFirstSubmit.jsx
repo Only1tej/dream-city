@@ -65,17 +65,7 @@ const SampleFirstSubmit = ({ formData, listings }) => {
                         <input type="search" placeholder="Search" className="input input-bordered w-[275px] md:w-[468px] h-[33px] rounded-none bg-white" />
                     </div>
 
-                    {/* <div className="listings">
-                        <h2>Listings</h2>
-                        <ul>
-                            {listings.map((listing, index) => (
-                                <li key={index}>
-                                    <Link to={`/listing/${index}`}>{listing.title}</Link>
-                                    <Link to={`/listing/${index}`}>{listing.description}</Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div> */}
+
                     <div class="grid grid-cols-4 gap-8">
                         {listings.map((listing, index) => (
                             <div className='w-[285px] h-[239px] mt-[40px] mr-[200px]'>

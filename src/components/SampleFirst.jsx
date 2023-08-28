@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 // const SampleFirst = ({ formData, setForm, navigation }) => {
-const SampleFirst = ({ onSubmit }) => {
+const SampleFirst = ({ onSubmit, onSaveListing }) => {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [location, setLocation] = useState('')
@@ -32,6 +32,11 @@ const SampleFirst = ({ onSubmit }) => {
         onSubmit(formData)
     }
 
+
+    const handleSave = () => {
+        onSaveListing({ title, description, location, landmark, images })
+        navigate('/listing')
+    }
 
     const handleImageUpload = (e) => {
         if (images.length >= 6) {
@@ -120,7 +125,7 @@ const SampleFirst = ({ onSubmit }) => {
                                     </div>
                                 </div>
                                 <div className='flex space-x-[44px] items-center'>
-                                    <button className="btn font-primary text-base normal-case bg-[#118286] outline-none border-none hover:bg-[#118286] text-white lg:w-[350px] md:w-[200px] w-[100px] h-[56px] " type='submit'>Add Listing</button>
+                                    <button className="btn font-primary text-base normal-case bg-[#118286] outline-none border-none hover:bg-[#118286] text-white lg:w-[350px] md:w-[200px] w-[100px] h-[56px] " onClick={handleSave} type='submit'>Add Listing</button>
                                     <button className="btn font-primary text-base normal-case bg-white outline outline-1 outline-[#118286] border-none  hover:bg-white text-[#118286] lg:w-[350px] md:w-[200px] w-[100px] h-[56px] " >Cancel</button>
                                     {/* <button className="btn font-primary text-base normal-case bg-[#118286] outline-none border-none hover:bg-[#118286] text-white mt-6" onClick={() => navigation.next()}>Add Listing</button> */}
                                     {/* <button className="btn font-primary text-base font-semibold normal-case bg-white outline outline-[#118286] outline-1 border-none hover:bg-white text-[#118286] md:w-[375px] w-[100px] h-[56px] " >Cancel</button> */}

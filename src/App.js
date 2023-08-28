@@ -18,6 +18,13 @@ function App() {
   const handleFormSubmit = (data) => {
     setFormData(data);
   };
+
+  const [listings, setListings] = useState([]);
+
+  const handleSaveListing = (newListing) => {
+    setListings((prevListings) => [...prevListings, newListing]);
+  };
+
   return (
     // <div>
     //   {!formData ? (
@@ -37,8 +44,14 @@ function App() {
             <Route path="/create-admin" element={<CreateAdmin />} />
             <Route path="/listings" element={<Listings />} />
             {/* <Route path="/create-listing" element={<CreateListing />} /> */}
-            <Route path="/create-listing" element={<SampleFirst />} />
-            <Route path="/listing" element={<SampleFirstSubmit />} />
+            <Route
+              path="/create-listing"
+              element={<SampleFirst onSaveListing={handleSaveListing} />}
+            />
+            <Route
+              path="/listing"
+              element={<SampleFirstSubmit listings={listings} />}
+            />
             <Route path="/listing-page" element={<ListingPage />} />
           </Routes>
         </div>

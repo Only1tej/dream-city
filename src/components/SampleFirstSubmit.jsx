@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-const SampleFirstSubmit = ({ formData }) => {
+const SampleFirstSubmit = ({ formData, listings }) => {
     const { state } = useLocation()
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
@@ -65,33 +65,54 @@ const SampleFirstSubmit = ({ formData }) => {
                         <input type="search" placeholder="Search" className="input input-bordered w-[275px] md:w-[468px] h-[33px] rounded-none bg-white" />
                     </div>
 
-                    <div className='w-[285px] h-[239px] mt-[40px]'>
-                        <div className='w-[285px] h-[160px] rounded-t-xl carousel carousel-center'>
-                            {state?.images?.map((image, index) => (
-                                <div key={index} className='' >
-                                    <img src={image} alt={`Image ${index}`} width='100' />
-                                </div>
+                    {/* <div className="listings">
+                        <h2>Listings</h2>
+                        <ul>
+                            {listings.map((listing, index) => (
+                                <li key={index}>
+                                    <Link to={`/listing/${index}`}>{listing.title}</Link>
+                                    <Link to={`/listing/${index}`}>{listing.description}</Link>
+                                </li>
                             ))}
-                            {/* //Show only one image */}
-                            {/* {state?.images?.length > 0 && (
+                        </ul>
+                    </div> */}
+                    <div class="grid grid-cols-4 gap-8">
+                        {listings.map((listing, index) => (
+                            <div className='w-[285px] h-[239px] mt-[40px] mr-[200px]'>
+                                <div className='w-[285px] h-[160px] rounded-t-xl carousel carousel-center'>
+                                    {state?.images?.map((image, index) => (
+                                        <div key={index} className='' >
+                                            <img src={image} alt={`Image ${index}`} width='100' />
+                                        </div>
+                                    ))}
+                                    {
+                                        listing?.images?.map((image, index) => (
+                                            <div key={index} className='' >
+                                                <img src={image} alt={`Image ${index}`} width='100' />
+                                            </div>
+                                        ))}
+                                    {/* //Show only one image */}
+                                    {/* {state?.images?.length > 0 && (
                                 <div className=''>
                                     <img src={state.images[0]} alt={`Image 0`} width='100' className='carousel-item' />
                                 </div>
                             )} */}
-                            {/* <Carousel responsive={responsive}>
+                                    {/* <Carousel responsive={responsive}>
                                         {images?.map((image, index) => (
                                             <div key={index} className="carousel-image">
                                                 <img src={image} alt={`Image ${index}`} />
                                             </div>
                                         ))}
                                     </Carousel> */}
-                        </div>
-                        <div className=' bg-[#F5E0B8] rounded-b-xl p-1'>
-                            <p className='text-[#118286] text-sm font-primary font-semibold'>{state?.title}</p>
-                            <p className='text-[#118286] font-primary font-normal'>{state?.description}</p>
-                            <p className='text-[#118286] text-xs font-primary font-normal'> {state?.location}</p>
-                            <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.landmark}</p>
-                        </div>
+                                </div>
+                                <div className=' bg-[#F5E0B8] rounded-b-xl p-1'>
+                                    <p className='text-[#118286] text-sm font-primary font-semibold'>{state?.title}{listing.title}</p>
+                                    <p className='text-[#118286] font-primary font-normal'>{state?.description}{listing.description}</p>
+                                    <p className='text-[#118286] text-xs font-primary font-normal'> {state?.location}{listing.location}</p>
+                                    <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.landmark}{listing.landmark}</p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

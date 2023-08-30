@@ -1,5 +1,4 @@
 import React from 'react'
-import house1 from '../../src/dreamcity/house1.jpeg'
 import house2 from '../../src/dreamcity/house2.jpeg'
 import house3 from '../../src/dreamcity/house3.jpeg'
 import house4 from '../../src/dreamcity/house4.jpeg'
@@ -13,7 +12,7 @@ const Listings = () => {
             <div>
                 <div className="carousel">
                     <div id="slide1" className="carousel-item relative w-full h-[400px]">
-                        <img src={house1} alt="Logo" className='w-full' />
+                        <img src={house2} alt="Logo" className='w-full' />
                         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                             <a href="#slide4" className="btn btn-circle">❮</a>
                             <a href="#slide2" className="btn btn-circle">❯</a>

@@ -103,8 +103,8 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
 
     return (
 
-        <div className='flex flex-row max-h-screen lg:overflow-hidden md:overflow-auto bg-white'>
-            <div className='w-[315px] h-full min-h-screen bg-[#F5E0B8]'>
+        <div className=' max-h-screen relative  bg-white'>
+            <div className='lg:w-[315px] w-[200px] h-full min-h-screen fixed top-0 left-0 bg-[#F5E0B8]'>
                 <div className='flex flex-col'>
                     <div className='py-4'>
                         <img src={logo} alt="Logo" className='bg-[#F5E0B8] w-1/2 h-1/2 mx-auto' />
@@ -115,7 +115,7 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                     <Link to="/create-admin" className='text-left sm:text-base text-sm active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px]'>Create Admin</Link>
                 </div>
             </div>
-            <div className='sm:w-[500px] md:w-[650px] lg:w-[800px] pl-[28px] pt-[18px] pr-[32px] pb-[24px] '>
+            <div className='sm:w-[500px] md:w-[650px] lg:w-[800px] pl-[28px] pt-[18px] pr-[32px] pb-[24px] absolute top-0 left-[315px] overflow-auto z-1  '>
                 <form onSubmit={e => {
                     e.preventDefault()
                     navigate("/listing", {

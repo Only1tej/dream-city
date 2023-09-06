@@ -56,9 +56,10 @@ const SampleFirstSubmit = ({ formData, listings }) => {
                             <img src={logo} alt="Logo" className='bg-[#F5E0B8] w-1/2 h-1/2 mx-auto' />
                             <img src={logo2} alt="Logo" className='bg-[#F5E0B8] mx-auto mt-1' />
                         </div>
-                        <Link to="/create-admin" className='text-left active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px] '>Create Admin</Link>
+
                         <Link to="/listing" className='text-left active:bg-white focus:bg-white bg-white text-[#F48222] active:text-[#F48222] pl-[31px] py-[16px] font-medium text-lg font-primary'>Listings</Link>
                         <Link to="/create-listing" className='text-left active:bg-white focus:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px]'>Create Listing</Link>
+                        <Link to="/create-admin" className='text-left active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px] '>Create Admin</Link>
                     </div>
                 </div>
                 <div className='mt-[18px] mr-[33px] ml-[333px] mb-[19px]'>
@@ -115,8 +116,8 @@ const SampleFirstSubmit = ({ formData, listings }) => {
                                         {/* <p className='text-[#118286] font-primary font-normal'>{listing.description}</p>
                                         <p className='text-[#118286] text-xs font-primary font-normal'>{listing.location}</p>
                                         <p className='text-[#F48222] text-sm font-primary font-bold'>{listing.landmark}</p> */}
-                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.title}</p>
-                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.description}</p>
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.title}{listing.title}</p>
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.description}{listing.description}</p>
                                         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.location}{listing.location}</p>
                                         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.landmark}{listing.landmark}</p>
                                     </div>

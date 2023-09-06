@@ -21,13 +21,18 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
     const [description, setDescription] = useState('')
     const [location, setLocation] = useState('')
     const [landmark, setLandmark] = useState('')
+    const [plot, setPlot] = useState('')
+    const [amenities, setAmenities] = useState('')
+    const [document, setDocument] = useState('')
+    const [paymentType, setPaymentType] = useState('')
+    const [sale, setSale] = useState('')
     const [images, setImages] = useState([]);
     // console.log('formData :>> ', formData);
 
     const handleSubmit = (e) => {
         e.preventDefault()
         const formData = {
-            title, description, location, landmark, images
+            title, description, location, landmark, images, plot, amenities, document, paymentType, sale
         }
         onSubmit(formData)
     }
@@ -49,7 +54,22 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
         if (landmark === '') {
             return
         }
-        const listingData = { title, description, location, landmark, images }
+        if (plot === '') {
+            return
+        }
+        if (document === '') {
+            return
+        }
+        if (paymentType === '') {
+            return
+        }
+        if (amenities === '') {
+            return
+        }
+        if (sale === '') {
+            return
+        }
+        const listingData = { title, description, location, landmark, images, plot, amenities, document, paymentType, sale }
         e.preventDefault()
         onSaveListing(listingData)
         navigate('/listing')
@@ -90,9 +110,9 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                         <img src={logo} alt="Logo" className='bg-[#F5E0B8] w-1/2 h-1/2 mx-auto' />
                         <img src={logo2} alt="Logo" className='bg-[#F5E0B8] mx-auto mt-1' />
                     </div>
-                    <Link to="/create-admin" className='text-left sm:text-base text-sm active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px]'>Create Admin</Link>
                     <Link to="/listing" className='text-left sm:text-base text-sm active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px]'>Listings</Link>
                     <Link to="/create-listing" className='text-left active:bg-white focus:bg-white bg-white text-[#F48222] active:text-[#F48222] pl-[31px] py-[16px] font-medium sm:text-lg text-sm font-primary'>Create Listing</Link>
+                    <Link to="/create-admin" className='text-left sm:text-base text-sm active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px]'>Create Admin</Link>
                 </div>
             </div>
             <div className='sm:w-[500px] md:w-[650px] lg:w-[800px] pl-[28px] pt-[18px] pr-[32px] pb-[24px] '>
@@ -138,6 +158,26 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                                         <div>
                                             <label htmlFor="landmark" className='text-[#F48222] text-base font-medium'>Nearest Landmark</label>
                                             <input type="text" value={landmark} name='landmark' required onChange={(e) => setLandmark(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="amenities" className='text-[#F48222] text-base font-medium'>Amenities</label>
+                                            <input type="text" value={amenities} name='amenities' required onChange={(e) => setAmenities(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="plot" className='text-[#F48222] text-base font-medium'>Plot</label>
+                                            <input type="number" value={plot} name='plot' required onChange={(e) => setPlot(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="paymentType" className='text-[#F48222] text-base font-medium'>Payment Type</label>
+                                            <input type="text" value={paymentType} name='paymentType' required onChange={(e) => setPaymentType(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="document" className='text-[#F48222] text-base font-medium'>Document</label>
+                                            <input type="text" value={document} name='document' required onChange={(e) => setDocument(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="sale" className='text-[#F48222] text-base font-medium'>Sale</label>
+                                            <input type="text" value={sale} name='sale' required onChange={(e) => setSale(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
                                     </div>
                                 </div>

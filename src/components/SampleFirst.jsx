@@ -32,7 +32,7 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         const formData = {
-            title, description, location, landmark, images, plot, amenities, document, paymentType, sale
+            title, description, location, landmark, images
         }
         onSubmit(formData)
     }
@@ -54,24 +54,24 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
         if (landmark === '') {
             return
         }
-        if (plot === '') {
-            return
-        }
-        if (document === '') {
-            return
-        }
-        if (paymentType === '') {
-            return
-        }
-        if (amenities === '') {
-            return
-        }
-        if (sale === '') {
-            return
-        }
-        const listingData = { title, description, location, landmark, images, plot, amenities, document, paymentType, sale }
+        // if (plot === '') {
+        //     return
+        // }
+        // if (document === '') {
+        //     return
+        // }
+        // if (paymentType === '') {
+        //     return
+        // }
+        // if (amenities === '') {
+        //     return
+        // }
+        // if (sale === '') {
+        //     return
+        // }
+        const listings = { title, description, location, landmark, images }
         e.preventDefault()
-        onSaveListing(listingData)
+        onSaveListing(listings)
         navigate('/listing')
     }
 
@@ -103,7 +103,7 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
 
     return (
 
-        <div className=' max-h-screen relative  bg-white'>
+        <div className=' max-h-screen  bg-white'>
             <div className='lg:w-[315px] w-[200px] h-full min-h-screen fixed top-0 left-0 bg-[#F5E0B8]'>
                 <div className='flex flex-col'>
                     <div className='py-4'>
@@ -115,7 +115,7 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                     <Link to="/create-admin" className='text-left sm:text-base text-sm active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px]'>Create Admin</Link>
                 </div>
             </div>
-            <div className='sm:w-[500px] md:w-[650px] lg:w-[800px] pl-[28px] pt-[18px] pr-[32px] pb-[24px] absolute top-0 left-[315px] overflow-auto z-1  '>
+            <div className='sm:w-[500px] md:w-[650px] lg:w-[800px] pl-[28px] pt-[18px] pr-[32px] pb-[24px] lg:ml-[315px] ml-[200px]  '>
                 <form onSubmit={e => {
                     e.preventDefault()
                     navigate("/listing", {
@@ -159,7 +159,7 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                                             <label htmlFor="landmark" className='text-[#F48222] text-base font-medium'>Nearest Landmark</label>
                                             <input type="text" value={landmark} name='landmark' required onChange={(e) => setLandmark(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
-                                        <div>
+                                        {/* <div>
                                             <label htmlFor="amenities" className='text-[#F48222] text-base font-medium'>Amenities</label>
                                             <input type="text" value={amenities} name='amenities' required onChange={(e) => setAmenities(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
@@ -178,7 +178,7 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                                         <div>
                                             <label htmlFor="sale" className='text-[#F48222] text-base font-medium'>Sale</label>
                                             <input type="text" value={sale} name='sale' required onChange={(e) => setSale(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                                 <div className='flex space-x-[44px] items-center'>

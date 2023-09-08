@@ -26,7 +26,6 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
     const [amenities, setAmenities] = useState([])
     const [document, setDocument] = useState([])
     const [paymentType, setPaymentType] = useState('Installment')
-    // const [sale, setSale] = useState('')
     const [images, setImages] = useState([]);
     const [survey, setSurvey] = useState(false)
     const [isGated, setIsGated] = useState(false)
@@ -150,9 +149,6 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
         if (amenities === '') {
             return
         }
-        // if (sale === '') {
-        //     return
-        // }
         // const formData = { survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale }
         const listings = { title, description, location, landmark, images, plot, amenities, paymentType, document, survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale }
         // const listings = { title, description, location, landmark, images, plot, globalCOfO, certificateOfO, lawDeed }
@@ -250,7 +246,7 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                                             <input type="text" value={amenities} name='amenities' required onChange={(e) => setAmenities(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div> */}
                                         <div>
-                                            <label htmlFor="plot" className='text-[#F48222] text-base font-medium'>Plot</label>
+                                            <label htmlFor="plot" className='text-[#F48222] text-base font-medium'>Plot(s)</label>
                                             <input type="number" value={plot} name='plot' required onChange={(e) => setPlot(e.target.value)} placeholder="Enter the number of plots" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
                                         <div>
@@ -286,7 +282,7 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                                             </label>
                                         </div>
                                         <div className="form-control">
-                                            <label htmlFor="document" className='text-[#F48222] text-base font-medium'>Document</label>
+                                            <label htmlFor="document" className='text-[#F48222] text-base font-medium'>Documents</label>
                                             <label className="label cursor-pointer">
                                                 <span className="label-text">Global C of O</span>
                                                 <input type="checkbox" checked="checked" onChange={(e) => setGlobalCOfO((prevState) => !prevState)} className="checkbox" />

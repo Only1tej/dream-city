@@ -26,7 +26,7 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
     const [amenities, setAmenities] = useState([])
     const [document, setDocument] = useState([])
     const [paymentType, setPaymentType] = useState('Installment')
-    const [sale, setSale] = useState('')
+    // const [sale, setSale] = useState('')
     const [images, setImages] = useState([]);
     const [survey, setSurvey] = useState(false)
     const [isGated, setIsGated] = useState(false)
@@ -39,7 +39,7 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
     const [agreement, setAgreement] = useState(false)
     const [rent, setRent] = useState(false)
     const [lease, setLease] = useState(false)
-    // const [sale, setSale] = useState(false)
+    const [sale, setSale] = useState(false)
     // console.log('formData :>> ', formData);
 
     // const defaultData = {
@@ -70,6 +70,57 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
     //     survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale
     // }
 
+    // const [state, setState] = useState({
+    //     survey: false,
+    //     isGated: false,
+    //     isCctv: false,
+    //     isSecurityPersonnel: false,
+    //     isGarage: false,
+    //     // globalCOfO: true,
+    //     // certificateOfO: false,
+    //     // lawDeed: false,
+    //     agreement: false,
+    //     rent: false,
+    //     lease: false,
+    //     sale: true,
+    // });
+
+    // const setForm = (e) => {
+    //     setState((prevState) => ({
+    //         ...prevState,
+    //         [e.target.name]: e.target.checked,
+    //     }));
+    //     let boolean = null
+    //     if (e.target.value === 'true') {
+    //         boolean = true
+    //     } else if (e.target.value === 'false') {
+    //         boolean = false
+    //     }
+    // };
+
+
+    // const [isToggled, setIsToggled] = useState(false);
+    // const [lawDeed, setLawDeed] = useState(false)
+
+
+    // const lawDeed = () => {
+    //     setLawDeed((prevState) => !prevState);
+    // };
+    // const toggleState = () => {
+    //     setIsToggled((prevToggled) => !prevToggled);
+    // };
+
+    //     return (
+    //         <div>
+    //             <p>Boolean State: {isToggled ? 'True' : 'False'}</p>
+    //             <button onClick={toggleState}>Toggle</button>
+    //         </div>
+    //     );
+    // }
+
+    // export default BooleanStateExample;
+
+
 
     const handleSave = (e) => {
         if (images.length === 0) {
@@ -99,11 +150,12 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
         if (amenities === '') {
             return
         }
-        if (sale === '') {
-            return
-        }
+        // if (sale === '') {
+        //     return
+        // }
         // const formData = { survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale }
         const listings = { title, description, location, landmark, images, plot, amenities, paymentType, document, survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale }
+        // const listings = { title, description, location, landmark, images, plot, globalCOfO, certificateOfO, lawDeed }
         e.preventDefault()
         onSaveListing(listings)
         navigate('/listing')
@@ -156,7 +208,7 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                         // replace: true,
                         state: {
                             name: "raji",
-                            title, description, location, landmark, images, plot, amenities, paymentType, document, sale
+                            title, description, location, landmark, images, plot, amenities, paymentType, document, lawDeed
                         }
                     })
                     // handleSubmit()
@@ -179,82 +231,87 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                                     <div className="form-control grid grid-cols-2 gap-4 pt-[44px]">
                                         <div>
                                             <label htmlFor="title" className='text-[#F48222] text-base font-medium'>Title of property</label>
-                                            <input type="text" value={title} name='title' required onChange={(e) => setTitle(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                            <input type="text" value={title} name='title' required onChange={(e) => setTitle(e.target.value)} placeholder="Enter the title" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
                                         <div>
                                             <label htmlFor="description" className='text-[#F48222] text-base font-medium'>Description</label>
-                                            <input type="text" value={description} name='description' required onChange={(e) => setDescription(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                            <input type="text" value={description} name='description' required onChange={(e) => setDescription(e.target.value)} placeholder="Enter the description" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
                                         <div>
                                             <label htmlFor="location" className='text-[#F48222] text-base font-medium'>Location</label>
-                                            <input type="text" value={location} name='location' required onChange={(e) => setLocation(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                            <input type="text" value={location} name='location' required onChange={(e) => setLocation(e.target.value)} placeholder="Enter the location" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
                                         <div>
                                             <label htmlFor="landmark" className='text-[#F48222] text-base font-medium'>Nearest Landmark</label>
-                                            <input type="text" value={landmark} name='landmark' required onChange={(e) => setLandmark(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                            <input type="text" value={landmark} name='landmark' required onChange={(e) => setLandmark(e.target.value)} placeholder="Enter the nearest landmark" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
-                                        <div>
+                                        {/* <div>
                                             <label htmlFor="amenities" className='text-[#F48222] text-base font-medium'>Amenities</label>
                                             <input type="text" value={amenities} name='amenities' required onChange={(e) => setAmenities(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
-                                        </div>
-                                        <div className="form-control">
-                                            <label htmlFor="document" className='text-[#F48222] text-base font-medium'>Amenities</label>
-                                            <label className="label cursor-pointer">
-                                                <span className="label-text">Survey/Layout</span>
-                                                <input type="checkbox" className="checkbox" onChange={(e) => setSurvey(e.target.value)} />
-                                            </label>
-                                            <label className="label cursor-pointer">
-                                                <span className="label-text">Gate</span>
-                                                <input type="checkbox" className="checkbox" onChange={(e) => setIsGated(e.target.value)} />
-                                            </label>
-                                            <label className="label cursor-pointer">
-                                                <span className="label-text">CCTV</span>
-                                                <input type="checkbox" className="checkbox" onChange={(e) => setIsCctv(e.target.value)} />
-                                            </label>
-                                            <label className="label cursor-pointer">
-                                                <span className="label-text">Security Personnel</span>
-                                                <input type="checkbox" className="checkbox" onChange={(e) => setIsSecurityPersonnel(e.target.value)} />
-                                            </label>
-                                            <label className="label cursor-pointer">
-                                                <span className="label-text">Garage</span>
-                                                <input type="checkbox" className="checkbox" onChange={(e) => setIsGarage(e.target.value)} />
-                                            </label>
-                                        </div>
+                                        </div> */}
                                         <div>
                                             <label htmlFor="plot" className='text-[#F48222] text-base font-medium'>Plot</label>
-                                            <input type="number" value={plot} name='plot' required onChange={(e) => setPlot(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                            <input type="number" value={plot} name='plot' required onChange={(e) => setPlot(e.target.value)} placeholder="Enter the number of plots" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
                                         <div>
                                             <label htmlFor="paymentType" className='text-[#F48222] text-base font-medium'>Payment Type</label>
-                                            <input type="text" value={paymentType} name='paymentType' disabled required onChange={(e) => setPaymentType(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                            <input type="text" value={paymentType} name='paymentType' disabled required onChange={(e) => setPaymentType(e.target.value)} placeholder="Enter the payment type" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
-                                        <div>
+                                        {/* <div>
                                             <label htmlFor="document" className='text-[#F48222] text-base font-medium'>Document</label>
                                             <input type="text" value={document} name='document' required onChange={(e) => setDocument(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
 
+                                        </div> */}
+                                        <div className="form-control">
+                                            <label htmlFor="amenities" className='text-[#F48222] text-base font-medium'>Amenities</label>
+                                            <label className="label cursor-pointer">
+                                                <span className="label-text">Survey/Layout</span>
+                                                <input type="checkbox" className="checkbox" onChange={(e) => setSurvey((prevState) => !prevState)} />
+                                            </label>
+                                            <label className="label cursor-pointer">
+                                                <span className="label-text">Gate</span>
+                                                <input type="checkbox" className="checkbox" onChange={(e) => setIsGated((prevState) => !prevState)} />
+                                            </label>
+                                            <label className="label cursor-pointer">
+                                                <span className="label-text">CCTV</span>
+                                                <input type="checkbox" className="checkbox" onChange={(e) => setIsCctv((prevState) => !prevState)} />
+                                            </label>
+                                            <label className="label cursor-pointer">
+                                                <span className="label-text">Security Personnel</span>
+                                                <input type="checkbox" className="checkbox" onChange={(e) => setIsSecurityPersonnel((prevState) => !prevState)} />
+                                            </label>
+                                            <label className="label cursor-pointer">
+                                                <span className="label-text">Garage</span>
+                                                <input type="checkbox" className="checkbox" onChange={(e) => setIsGarage((prevState) => !prevState)} />
+                                            </label>
                                         </div>
                                         <div className="form-control">
                                             <label htmlFor="document" className='text-[#F48222] text-base font-medium'>Document</label>
                                             <label className="label cursor-pointer">
                                                 <span className="label-text">Global C of O</span>
-                                                <input type="checkbox" checked="checked" onChange={(e) => setGlobalCOfO(e.target.value)} className="checkbox" />
+                                                <input type="checkbox" checked="checked" onChange={(e) => setGlobalCOfO((prevState) => !prevState)} className="checkbox" />
                                             </label>
                                             <label className="label cursor-pointer">
                                                 <span className="label-text">Certificate of Ownership</span>
-                                                <input type="checkbox" className="checkbox" onChange={(e) => setCertificateOfO(e.target.value)} />
+                                                <input type="checkbox" className="checkbox" onChange={(e) => setCertificateOfO((prevState) => !prevState)} />
                                             </label>
                                             <label className="label cursor-pointer">
                                                 <span className="label-text">Law Deed</span>
-                                                <input type="checkbox" className="checkbox" onChange={(e) => setLawDeed(e.target.value)} />
+                                                <input type="checkbox" className="checkbox" onChange={e => setLawDeed((prevState) => !prevState)} />
                                             </label>
                                             <label className="label cursor-pointer">
                                                 <span className="label-text">Agreement</span>
-                                                <input type="checkbox" className="checkbox" onChange={(e) => setAgreement(e.target.value)} />
+                                                <input type="checkbox" className="checkbox" onChange={(e) => setAgreement((prevState) => !prevState)} />
                                             </label>
                                         </div>
                                         <div>
                                             <label htmlFor="sale" className='text-[#F48222] text-base font-medium'>Sale</label>
-                                            <input type="text" value={sale} name='sale' required onChange={(e) => setSale(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                            <label className="label cursor-pointer">
+                                                <span className="label-text">Sale</span>
+                                                <input type="checkbox" onChange={(e) => setSale((prevState) => !prevState)} className="checkbox" />
+                                            </label>
+                                            {/* <label htmlFor="sale" className='text-[#F48222] text-base font-medium'>Sale</label>
+                                            <input type="text" value={sale} name='sale' required onChange={(e) => setSale(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" /> */}
                                         </div>
                                     </div>
                                 </div>

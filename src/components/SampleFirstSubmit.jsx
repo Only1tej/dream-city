@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-const SampleFirstSubmit = ({ formData, listings }) => {
+const SampleFirstSubmit = ({ formData, listings, setForm }) => {
     const [search, setSearch] = useState('')
     const { state } = useLocation()
     const [title, setTitle] = useState('')
@@ -20,19 +20,6 @@ const SampleFirstSubmit = ({ formData, listings }) => {
         e.preventDefault()
         // console.log(title, description, location, landmark)
     }
-
-    if (listings?.length === 0) {
-        return <p>There is no property for sale for now</p>
-    }
-
-    const NoOfferMessage = () => {
-        return (
-            <div>
-                <p>There is no property for sale for now</p>
-            </div>
-        );
-    }
-
     // imports
 
 
@@ -61,7 +48,7 @@ const SampleFirstSubmit = ({ formData, listings }) => {
     return (
         <>
             {/* <div className='flex flex-row max-h-screen lg:overflow-hidden md:overflow-auto bg-white'> */}
-            <div className='flex flex-row md:flex md:flex-row max-h-screen  lg:h-full bg-white ' >
+            <div className='flex flex-row md:flex md:flex-row max-h-screen lg:h-full bg-white ' >
                 <div className='lg:w-[315px] w-[200px] h-full min-h-screen fixed top-0 left-0 bg-[#F5E0B8]'>
                     <div className='flex flex-col '>
                         <div className='py-4'>
@@ -76,16 +63,29 @@ const SampleFirstSubmit = ({ formData, listings }) => {
                 </div>
                 <div className='sm:w-[500px] md:w-[650px] lg:w-[800px] pl-[28px] pt-[18px] pr-[32px] pb-[24px] lg:ml-[315px] ml-[200px]  '>
                     <div>
-                        <input type="search" onChange={(e) => setSearch(e.target.value)} placeholder="Search" className="input input-bordered w-[275px] md:w-[468px] h-[33px] rounded-none bg-white" />
+                        <input type="search" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search" className="input input-bordered w-[275px] md:w-[468px] h-[33px] rounded-none bg-white" />
+                        {/* {listings.filter((item) => {
+                            return search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)
+                        })} */}
                     </div>
-                    <div class="grid lg:grid-cols-4 md:grid-cols-3 gap-x-48 grid-cols-2">
-                        {listings
+                    <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-x-48 grid-cols-2">
+                        {/* {listings
                             ?.filter((item) => {
                                 return search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)
-                            })}
+                            })} */}
                         {listings?.length === 0 ?
-                            (<p>There is no property for sale for now</p>)
-                            : (listings?.map((listing, index) => (
+                            (
+                                <div>
+                                    <p className='lg:ml-[150px] md:ml-[40px] ml-[10px] mt-[200px] w-[400px] text-2xl font-semibold font-primary text-center'>There is no property listing for sale.
+                                        <br /> To create a property listing, click <Link to="/create-listing">here.</Link></p>
+                                </div>
+                            )
+                            :
+                            (listings.filter((item) => {
+                                return search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search.toLowerCase())
+                            })
+                            ) &&
+                            (listings?.map((listing, index) => (
                                 <div key={index} className='w-[285px] h-[239px] mt-[40px] mr-[40px]'>
                                     <div className='w-[285px] h-[160px] rounded-t-xl carousel carousel-center'>
                                         {/* {state?.images?.map((image, index) => (
@@ -118,15 +118,15 @@ const SampleFirstSubmit = ({ formData, listings }) => {
                                         {/* <p className='text-[#118286] font-primary font-normal'>{listing.description}</p>
                                         <p className='text-[#118286] text-xs font-primary font-normal'>{listing.location}</p>
                                         <p className='text-[#F48222] text-sm font-primary font-bold'>{listing.landmark}</p> */}
-                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.title}{listings?.title}</p>
-                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.description}{listings?.description}</p>
-                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.location}{listings?.location}</p>
-                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.landmark}{listings?.landmark}</p>
-                                        {/* <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.plot}{listing.plot}</p>
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.title}{listing?.title}</p>
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.description}{listing?.description}</p>
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.location}{listing?.location}</p>
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.landmark}{listing?.landmark}</p>
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.plot}{listing.plot}</p>
                                         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.document}{listing.document}</p>
                                         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.paymentType}{listing.paymentType}</p>
                                         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.amenities}{listing.amenities}</p>
-                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.sale}{listing.sale}</p> */}
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.sale}{listing.sale}</p>
                                     </div>
                                 </div>
                             )))}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useForm } from 'react-hooks-helper'
 import { Link } from 'react-router-dom'
 import { Container, TextField, Button, Box } from '@material-ui/core'
 import { ThemeProvider } from "@mui/styles";
@@ -22,19 +23,39 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
     const [location, setLocation] = useState('')
     const [landmark, setLandmark] = useState('')
     const [plot, setPlot] = useState('')
-    const [amenities, setAmenities] = useState('')
-    const [document, setDocument] = useState('')
-    const [paymentType, setPaymentType] = useState('')
+    const [amenities, setAmenities] = useState([])
+    const [document, setDocument] = useState([])
+    const [paymentType, setPaymentType] = useState('Installment')
     const [sale, setSale] = useState('')
     const [images, setImages] = useState([]);
     // console.log('formData :>> ', formData);
 
+    const defaultData = {
+        // payment: '',
+        // paymentFormat: '',
+        // initialDeposit: '',
+        // outright: '',
+        survey: false,
+        isGated: false,
+        isCctv: false,
+        isSecurityPersonnel: false,
+        isGarage: false,
+        globalCOfO: true,
+        certificateOfO: false,
+        lawDeed: false,
+        agreement: false,
+        rent: false,
+        lease: false,
+        sale: true,
+    }
+    const [formData, setForm] = useForm(defaultData)
+    console.log(setForm);
     const handleSubmit = (e) => {
         e.preventDefault()
-        const formData = {
-            title, description, location, landmark, images
-        }
-        onSubmit(formData)
+        // const formData = {
+        //     title, description, location, landmark, images, plot, amenities, paymentType, document, sale
+        // }
+        //     onSubmit(formData)
     }
 
 
@@ -54,22 +75,22 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
         if (landmark === '') {
             return
         }
-        // if (plot === '') {
-        //     return
-        // }
-        // if (document === '') {
-        //     return
-        // }
-        // if (paymentType === '') {
-        //     return
-        // }
-        // if (amenities === '') {
-        //     return
-        // }
-        // if (sale === '') {
-        //     return
-        // }
-        const listings = { title, description, location, landmark, images }
+        if (plot === '') {
+            return
+        }
+        if (document === '') {
+            return
+        }
+        if (paymentType === '') {
+            return
+        }
+        if (amenities === '') {
+            return
+        }
+        if (sale === '') {
+            return
+        }
+        const listings = { title, description, location, landmark, images, plot, amenities, paymentType, document, sale }
         e.preventDefault()
         onSaveListing(listings)
         navigate('/listing')
@@ -122,7 +143,7 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                         // replace: true,
                         state: {
                             name: "raji",
-                            title, description, location, landmark, images
+                            title, description, location, landmark, images, plot, amenities, paymentType, document, sale
                         }
                     })
                     // handleSubmit()
@@ -159,9 +180,32 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                                             <label htmlFor="landmark" className='text-[#F48222] text-base font-medium'>Nearest Landmark</label>
                                             <input type="text" value={landmark} name='landmark' required onChange={(e) => setLandmark(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
-                                        {/* <div>
+                                        <div>
                                             <label htmlFor="amenities" className='text-[#F48222] text-base font-medium'>Amenities</label>
                                             <input type="text" value={amenities} name='amenities' required onChange={(e) => setAmenities(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                        </div>
+                                        <div className="form-control">
+                                            <label htmlFor="document" className='text-[#F48222] text-base font-medium'>Amenities</label>
+                                            <label className="label cursor-pointer">
+                                                <span className="label-text">Survey/Layout</span>
+                                                <input type="checkbox" className="checkbox" onChange={setForm} />
+                                            </label>
+                                            <label className="label cursor-pointer">
+                                                <span className="label-text">Gate</span>
+                                                <input type="checkbox" className="checkbox" onChange={setForm} />
+                                            </label>
+                                            <label className="label cursor-pointer">
+                                                <span className="label-text">CCTV</span>
+                                                <input type="checkbox" className="checkbox" onChange={setForm} />
+                                            </label>
+                                            <label className="label cursor-pointer">
+                                                <span className="label-text">Security Personnel</span>
+                                                <input type="checkbox" className="checkbox" onChange={setForm} />
+                                            </label>
+                                            <label className="label cursor-pointer">
+                                                <span className="label-text">Garage</span>
+                                                <input type="checkbox" className="checkbox" onChange={setForm} />
+                                            </label>
                                         </div>
                                         <div>
                                             <label htmlFor="plot" className='text-[#F48222] text-base font-medium'>Plot</label>
@@ -169,23 +213,41 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                                         </div>
                                         <div>
                                             <label htmlFor="paymentType" className='text-[#F48222] text-base font-medium'>Payment Type</label>
-                                            <input type="text" value={paymentType} name='paymentType' required onChange={(e) => setPaymentType(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                            <input type="text" value={paymentType} name='paymentType' disabled required onChange={(e) => setPaymentType(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
                                         <div>
                                             <label htmlFor="document" className='text-[#F48222] text-base font-medium'>Document</label>
                                             <input type="text" value={document} name='document' required onChange={(e) => setDocument(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+
+                                        </div>
+                                        <div className="form-control">
+                                            <label htmlFor="document" className='text-[#F48222] text-base font-medium'>Document</label>
+                                            <label className="label cursor-pointer">
+                                                <span className="label-text">Global C of O</span>
+                                                <input type="checkbox" checked="checked" onChange={setForm} className="checkbox" />
+                                            </label>
+                                            <label className="label cursor-pointer">
+                                                <span className="label-text">Certificate of Ownership</span>
+                                                <input type="checkbox" className="checkbox" onChange={setForm} />
+                                            </label>
+                                            <label className="label cursor-pointer">
+                                                <span className="label-text">Law Deed</span>
+                                                <input type="checkbox" className="checkbox" onChange={setForm} />
+                                            </label>
+                                            <label className="label cursor-pointer">
+                                                <span className="label-text">Agreement</span>
+                                                <input type="checkbox" className="checkbox" onChange={setForm} />
+                                            </label>
                                         </div>
                                         <div>
                                             <label htmlFor="sale" className='text-[#F48222] text-base font-medium'>Sale</label>
                                             <input type="text" value={sale} name='sale' required onChange={(e) => setSale(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
-                                        </div> */}
+                                        </div>
                                     </div>
                                 </div>
                                 <div className='flex space-x-[44px] items-center'>
                                     <button className="btn font-primary text-base normal-case bg-[#118286] outline-none border-none hover:bg-[#118286] text-white lg:w-[350px] md:w-[200px] w-[100px] h-[56px] " onClick={handleSave} type='submit'>Add Listing</button>
                                     <button className="btn font-primary text-base normal-case bg-white outline outline-1 outline-[#118286] border-none  hover:bg-white text-[#118286] lg:w-[350px] md:w-[200px] w-[100px] h-[56px] " >Cancel</button>
-                                    {/* <button className="btn font-primary text-base normal-case bg-[#118286] outline-none border-none hover:bg-[#118286] text-white mt-6" onClick={() => navigation.next()}>Add Listing</button> */}
-                                    {/* <button className="btn font-primary text-base font-semibold normal-case bg-white outline outline-[#118286] outline-1 border-none hover:bg-white text-[#118286] md:w-[375px] w-[100px] h-[56px] " >Cancel</button> */}
                                 </div>
                             </div>
                         </div>
@@ -246,3 +308,5 @@ export default SampleFirst
     Next
 </Button> 
 </Container> */}
+{/* <button className="btn font-primary text-base normal-case bg-[#118286] outline-none border-none hover:bg-[#118286] text-white mt-6" onClick={() => navigation.next()}>Add Listing</button> */ }
+{/* <button className="btn font-primary text-base font-semibold normal-case bg-white outline outline-[#118286] outline-1 border-none hover:bg-white text-[#118286] md:w-[375px] w-[100px] h-[56px] " >Cancel</button> */ }

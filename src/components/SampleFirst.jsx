@@ -28,35 +28,47 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
     const [paymentType, setPaymentType] = useState('Installment')
     const [sale, setSale] = useState('')
     const [images, setImages] = useState([]);
+    const [survey, setSurvey] = useState(false)
+    const [isGated, setIsGated] = useState(false)
+    const [isCctv, setIsCctv] = useState(false)
+    const [isSecurityPersonnel, setIsSecurityPersonnel] = useState(false)
+    const [isGarage, setIsGarage] = useState(false)
+    const [globalCOfO, setGlobalCOfO] = useState(true)
+    const [certificateOfO, setCertificateOfO] = useState(false)
+    const [lawDeed, setLawDeed] = useState(false)
+    const [agreement, setAgreement] = useState(false)
+    const [rent, setRent] = useState(false)
+    const [lease, setLease] = useState(false)
+    // const [sale, setSale] = useState(false)
     // console.log('formData :>> ', formData);
 
-    const defaultData = {
-        // payment: '',
-        // paymentFormat: '',
-        // initialDeposit: '',
-        // outright: '',
-        survey: false,
-        isGated: false,
-        isCctv: false,
-        isSecurityPersonnel: false,
-        isGarage: false,
-        globalCOfO: true,
-        certificateOfO: false,
-        lawDeed: false,
-        agreement: false,
-        rent: false,
-        lease: false,
-        sale: true,
-    }
-    const [formData, setForm] = useForm(defaultData)
-    console.log(setForm);
+    // const defaultData = {
+    //     // payment: '',
+    //     // paymentFormat: '',
+    //     // initialDeposit: '',
+    //     // outright: '',
+    //     survey: false,
+    //     isGated: false,
+    //     isCctv: false,
+    //     isSecurityPersonnel: false,
+    //     isGarage: false,
+    //     globalCOfO: true,
+    //     certificateOfO: false,
+    //     lawDeed: false,
+    //     agreement: false,
+    //     rent: false,
+    //     lease: false,
+    //     sale: true,
+    // }
+    // const [formInfo, setForm] = useForm(defaultData)
+    // console.log('formInfo :>> ', formInfo);
     const handleSubmit = (e) => {
         e.preventDefault()
-        // const formData = {
-        //     title, description, location, landmark, images, plot, amenities, paymentType, document, sale
-        // }
         //     onSubmit(formData)
     }
+    // const formData = {
+    //     survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale
+    // }
 
 
     const handleSave = (e) => {
@@ -90,7 +102,8 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
         if (sale === '') {
             return
         }
-        const listings = { title, description, location, landmark, images, plot, amenities, paymentType, document, sale }
+        // const formData = { survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale }
+        const listings = { title, description, location, landmark, images, plot, amenities, paymentType, document, survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale }
         e.preventDefault()
         onSaveListing(listings)
         navigate('/listing')
@@ -188,23 +201,23 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                                             <label htmlFor="document" className='text-[#F48222] text-base font-medium'>Amenities</label>
                                             <label className="label cursor-pointer">
                                                 <span className="label-text">Survey/Layout</span>
-                                                <input type="checkbox" className="checkbox" onChange={setForm} />
+                                                <input type="checkbox" className="checkbox" onChange={(e) => setSurvey(e.target.value)} />
                                             </label>
                                             <label className="label cursor-pointer">
                                                 <span className="label-text">Gate</span>
-                                                <input type="checkbox" className="checkbox" onChange={setForm} />
+                                                <input type="checkbox" className="checkbox" onChange={(e) => setIsGated(e.target.value)} />
                                             </label>
                                             <label className="label cursor-pointer">
                                                 <span className="label-text">CCTV</span>
-                                                <input type="checkbox" className="checkbox" onChange={setForm} />
+                                                <input type="checkbox" className="checkbox" onChange={(e) => setIsCctv(e.target.value)} />
                                             </label>
                                             <label className="label cursor-pointer">
                                                 <span className="label-text">Security Personnel</span>
-                                                <input type="checkbox" className="checkbox" onChange={setForm} />
+                                                <input type="checkbox" className="checkbox" onChange={(e) => setIsSecurityPersonnel(e.target.value)} />
                                             </label>
                                             <label className="label cursor-pointer">
                                                 <span className="label-text">Garage</span>
-                                                <input type="checkbox" className="checkbox" onChange={setForm} />
+                                                <input type="checkbox" className="checkbox" onChange={(e) => setIsGarage(e.target.value)} />
                                             </label>
                                         </div>
                                         <div>
@@ -224,19 +237,19 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                                             <label htmlFor="document" className='text-[#F48222] text-base font-medium'>Document</label>
                                             <label className="label cursor-pointer">
                                                 <span className="label-text">Global C of O</span>
-                                                <input type="checkbox" checked="checked" onChange={setForm} className="checkbox" />
+                                                <input type="checkbox" checked="checked" onChange={(e) => setGlobalCOfO(e.target.value)} className="checkbox" />
                                             </label>
                                             <label className="label cursor-pointer">
                                                 <span className="label-text">Certificate of Ownership</span>
-                                                <input type="checkbox" className="checkbox" onChange={setForm} />
+                                                <input type="checkbox" className="checkbox" onChange={(e) => setCertificateOfO(e.target.value)} />
                                             </label>
                                             <label className="label cursor-pointer">
                                                 <span className="label-text">Law Deed</span>
-                                                <input type="checkbox" className="checkbox" onChange={setForm} />
+                                                <input type="checkbox" className="checkbox" onChange={(e) => setLawDeed(e.target.value)} />
                                             </label>
                                             <label className="label cursor-pointer">
                                                 <span className="label-text">Agreement</span>
-                                                <input type="checkbox" className="checkbox" onChange={setForm} />
+                                                <input type="checkbox" className="checkbox" onChange={(e) => setAgreement(e.target.value)} />
                                             </label>
                                         </div>
                                         <div>

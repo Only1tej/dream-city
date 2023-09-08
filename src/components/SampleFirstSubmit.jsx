@@ -86,6 +86,61 @@ const SampleFirstSubmit = ({ formData, listings, setForm }) => {
                             })
                             ) &&
                             (listings?.map((listing, index) => (
+                                // <div key={index} className='w-[285px] h-[239px] mt-[40px] mr-[40px]'>
+                                //     <div className='w-[285px] h-[160px] rounded-t-xl carousel carousel-center'>
+                                //         {/* {state?.images?.map((image, index) => (
+                                //         <div key={index} className='' >
+                                //             <img src={image} alt={`Image ${index}`} width='100' />
+                                //         </div>
+                                //     ))} */}
+                                //         {
+                                //             listing?.images?.map((image, index) => (
+                                //                 <div key={index} className='' >
+                                //                     <img src={image} alt={`Image ${index}`} width='100' />
+                                //                 </div>
+                                //             ))}
+                                //         {/* //Show only one image */}
+                                //         {/* {state?.images?.length > 0 && (
+                                //     <div className=''>
+                                //     <img src={state.images[0]} alt={`Image 0`} width='100' className='carousel-item' />
+                                //     </div>
+                                //     )} */}
+                                //         {/* <Carousel responsive={responsive}>
+                                //         {images?.map((image, index) => (
+                                //             <div key={index} className="carousel-image">
+                                //                 <img src={image} alt={`Image ${index}`} />
+                                //             </div>
+                                //         ))}
+                                //     </Carousel> */}
+                                //     </div>
+                                //     <div className=' bg-[#F5E0B8] rounded-b-xl p-1'>
+                                //         {/* <p className='text-[#118286] text-sm font-primary font-semibold'>{listing.title}</p> */}
+                                //         {/* <p className='text-[#118286] font-primary font-normal'>{listing.description}</p>
+                                //         <p className='text-[#118286] text-xs font-primary font-normal'>{listing.location}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{listing.landmark}</p> */}
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.title}{listing?.title}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.description}{listing?.description}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.location}{listing?.location}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.landmark}{listing?.landmark}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.plot}{listing.plot}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.document}{listing.document}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.paymentType}{listing.paymentType}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.amenities}{listing.amenities}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.sale}{listing.sale}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>Agreement is {listing.agreement}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.lawDeed}{listing.lawDeed}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.isGated}{listing.isGated}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.survey}{listing.survey}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.isCctv}{listing.isCctv}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.isSecurityPersonnel}{listing.isSecurityPersonnel}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.globalCOfO}{listing.globalCOfO}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.isGarage}{listing.isGarage}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.globalCOfO}{listing.globalCOfO}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.certificateOfO}{listing.certificateOfO}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.rent}{listing.rent}</p>
+                                //         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.sale}{listing.sale}</p>
+                                //     </div>
+                                // </div>
                                 <div key={index} className='w-[285px] h-[239px] mt-[40px] mr-[40px]'>
                                     <div className='w-[285px] h-[160px] rounded-t-xl carousel carousel-center'>
                                         {/* {state?.images?.map((image, index) => (
@@ -127,6 +182,18 @@ const SampleFirstSubmit = ({ formData, listings, setForm }) => {
                                         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.paymentType}{listing.paymentType}</p>
                                         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.amenities}{listing.amenities}</p>
                                         <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.sale}{listing.sale}</p>
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Agreement is {listing.agreement}</p>
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.lawDeed}{listing.lawDeed}</p>
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.isGated}{listing.isGated}</p>
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.survey}{listing.survey}</p>
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.isCctv}{listing.isCctv}</p>
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.isSecurityPersonnel}{listing.isSecurityPersonnel}</p>
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.globalCOfO}{listing.globalCOfO}</p>
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.isGarage}{listing.isGarage}</p>
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.globalCOfO}{listing.globalCOfO}</p>
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.certificateOfO}{listing.certificateOfO}</p>
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.rent}{listing.rent}</p>
+                                        <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.sale}{listing.sale}</p>
                                     </div>
                                 </div>
                             )))}
@@ -141,3 +208,58 @@ export default SampleFirstSubmit
 
 
 
+    // < div key = { index } className = 'w-[285px] h-[239px] mt-[40px] mr-[40px]' >
+    //                                 <div className='w-[285px] h-[160px] rounded-t-xl carousel carousel-center'>
+    //                                     {/* {state?.images?.map((image, index) => (
+    //                                     <div key={index} className='' >
+    //                                         <img src={image} alt={`Image ${index}`} width='100' />
+    //                                     </div>
+    //                                 ))} */}
+    //                                     {
+    //                                         listing?.images?.map((image, index) => (
+    //                                             <div key={index} className='' >
+    //                                                 <img src={image} alt={`Image ${index}`} width='100' />
+    //                                             </div>
+    //                                         ))}
+    //                                     {/* //Show only one image */}
+    //                                     {/* {state?.images?.length > 0 && (
+    //                                 <div className=''>
+    //                                 <img src={state.images[0]} alt={`Image 0`} width='100' className='carousel-item' />
+    //                                 </div>
+    //                                 )} */}
+    //                                     {/* <Carousel responsive={responsive}>
+    //                                     {images?.map((image, index) => (
+    //                                         <div key={index} className="carousel-image">
+    //                                             <img src={image} alt={`Image ${index}`} />
+    //                                         </div>
+    //                                     ))}
+    //                                 </Carousel> */}
+    //                                 </div>
+    //                                 <div className=' bg-[#F5E0B8] rounded-b-xl p-1'>
+    //                                     {/* <p className='text-[#118286] text-sm font-primary font-semibold'>{listing.title}</p> */}
+    //                                     {/* <p className='text-[#118286] font-primary font-normal'>{listing.description}</p>
+    //                                     <p className='text-[#118286] text-xs font-primary font-normal'>{listing.location}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{listing.landmark}</p> */}
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.title}{listing?.title}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.description}{listing?.description}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.location}{listing?.location}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.landmark}{listing?.landmark}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.plot}{listing.plot}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.document}{listing.document}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.paymentType}{listing.paymentType}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.amenities}{listing.amenities}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.sale}{listing.sale}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>Agreement is {listing.agreement}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.lawDeed}{listing.lawDeed}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.isGated}{listing.isGated}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.survey}{listing.survey}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.isCctv}{listing.isCctv}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.isSecurityPersonnel}{listing.isSecurityPersonnel}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.globalCOfO}{listing.globalCOfO}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.isGarage}{listing.isGarage}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.globalCOfO}{listing.globalCOfO}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.certificateOfO}{listing.certificateOfO}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.rent}{listing.rent}</p>
+    //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.sale}{listing.sale}</p>
+    //                                 </div>
+    //                             </div >

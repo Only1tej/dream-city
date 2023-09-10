@@ -44,6 +44,57 @@ const SampleFirstSubmit = ({ formData, listings, setForm }) => {
         },
     };
 
+    // function ListingSearch() {
+    // const [searchTerm, setSearchTerm] = useState('');
+    // const [listings, setListings] = useState([
+    //     { id: 1, title: 'Listing 1', description: 'Description 1' },
+    //     { id: 2, title: 'Listing 2', description: 'Description 2' },
+    //     { id: 3, title: 'Listing 3', description: 'Description 3' },
+    //     // Add more listings here
+    // ]);
+    const [searchResults, setSearchResults] = useState([]);
+
+    // Function to handle the search
+    const handleSearch = () => {
+        const filteredListings = listings.filter((listing) =>
+            listing.title.toLowerCase().includes(search.toLowerCase())
+        );
+        setSearchResults(filteredListings);
+    };
+    console.log(searchResults);
+    // const handleSearch = () => {
+    //     const filteredListings = listings.filter((listing) =>
+    //         listing.title.toLowerCase().includes(searchTerm.toLowerCase())
+    //     );
+    //     setSearchResults(filteredListings);
+    // };
+
+
+    // <div>
+    //     <input
+    //         type="text"
+    //         placeholder="Search by title"
+    //         value={searchTerm}
+    //         onChange={(e) => setSearchTerm(e.target.value)}
+    //     />
+    //     <button onClick={handleSearch}>Search</button>
+
+    //     {searchResults.length === 0 ? (
+    //         <p>No results found.</p>
+    //     ) : (
+    //         <ul>
+    //             {searchResults.map((listing) => (
+    //                 <li key={listing.id}>
+    //                     <h3>{listing.title}</h3>
+    //                     <p>{listing.description}</p>
+    //                 </li>
+    //             ))}
+    //         </ul>
+    //     )}
+    // </div>
+
+
+
 
     return (
         <>
@@ -64,47 +115,39 @@ const SampleFirstSubmit = ({ formData, listings, setForm }) => {
                 <div className='sm:w-[500px] md:w-[650px] lg:w-[800px] pl-[28px] pt-[18px] pr-[32px] pb-[24px] lg:ml-[315px] ml-[200px]  '>
                     <div>
                         <input type="search" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search" className="input input-bordered w-[275px] md:w-[468px] h-[33px] rounded-none bg-white" />
+                        <button onClick={handleSearch}>Search</button>
+                        {/* <input
+                            type="text"
+                            placeholder="Search by title"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        /> */}
                         {/* {listings.filter((item) => {
                             return search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)
                         })} */}
                     </div>
-                    {/* <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-x-48 grid-cols-2"> */}
-                    {/* <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-x-64 space-y-48 md:space-y-24"> */}
+
                     <div className="grid grid-cols-1 lg:gap-x-64 space-y-48 ">
-                        {/* {listings
-                            ?.filter((item) => {
+                        {/* {listings?.filter((item) => {
                                 return search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)
                             })} */}
+
                         {listings?.length === 0 ?
                             (
                                 <div>
-                                    <p className='lg:ml-[150px] md:ml-[40px] ml-[10px] mt-[200px] w-[400px] text-2xl font-semibold font-primary text-center'>There is no property listing for sale.
+                                    <p className='lg:ml-[150px] md:ml-[40px] ml-[10px] mt-[200px] w-[400px] text-[#118286] bg-[#F5E0B8] p-2 rounded-md text-2xl font-semibold font-primary text-center'>There is no property listing for sale.
                                         <br /> To create a property listing, click <Link to="/create-listing">here.</Link></p>
                                 </div>
                             )
                             :
-                            (listings.filter((item) => {
-                                return search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search.toLowerCase())
-                            })
-                            ) &&
+
+
+
                             (listings?.map((listing, index) => (
                                 <div key={index} className='w-[285px] h-[239px] mt-[40px] mr-[40px]'>
                                     <div className="card lg:card-side flex flex-column shadow-xl w-[950px] h-[350px] bg-[#9eecef]">
                                         <figure>
                                             <div className='w-[350px] h-[350px] rounded-t-xl'>
-                                                {/* {
-                                                        listing?.images?.map((image, index) => (
-                                                            <div key={index} className='' >
-                                                                <img src={image} alt={`Image ${index}`} width='100' />
-                                                            </div>
-                                                        ))} */}
-
-                                                {/* {listing?.images?.length > 0 && (
-                                                        <div className=''>
-                                                            <img src={listing.images[0]} alt={`Image 0`} width='100' className='carousel-item' />
-                                                        </div>
-                                                    )} */}
-
                                                 <Carousel responsive={responsive}>
                                                     {listing?.images?.map((image, index) => (
                                                         <div key={index} className="carousel-image w-[350px] h-[350px]">
@@ -211,3 +254,82 @@ export default SampleFirstSubmit
 //                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.sale}{listing.sale}</p>
 //                                 </div>
 //                             </div >
+
+{/* <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-x-48 grid-cols-2"> */ }
+{/* <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-x-64 space-y-48 md:space-y-24"> */ }
+
+
+//                     const handleSearch = () => {
+//     const filteredListings = listings.filter((listing) =>
+//                     listing.title.toLowerCase().includes(searchTerm.toLowerCase())
+//                     );
+//                     setSearchResults(filteredListings);
+// };
+// (listings?.filter((listing) =>
+//     search.toLowerCase() === '' ? listing : listing.title.toLowerCase().includes(search.toLowerCase())
+// )
+// )
+
+// (searchResults.length === 0 ? (
+//     <p>No results found.</p>
+// ) : (
+
+
+{/* 
+
+ {
+                                    search? {
+
+                            < ul >
+                                {
+                                    searchResults.map((listing, index) => (
+                                        // <li>
+                                        //     <h3>{listing.title}</h3>
+                                        //     <p>{listing.description}</p>
+                                        // </li>
+                                        <div key={index} className='w-[285px] h-[239px] mt-[40px] mr-[40px]'>
+                                            <div className="card lg:card-side flex flex-column shadow-xl w-[950px] h-[350px] bg-[#9eecef]">
+                                                <figure>
+                                                    <div className='w-[350px] h-[350px] rounded-t-xl'>
+                                                        <Carousel responsive={responsive}>
+                                                            {listing?.images?.map((image, index) => (
+                                                                <div key={index} className="carousel-image w-[350px] h-[350px]">
+                                                                    <img src={image} alt={`Image ${index}`} className='h-[100%] w-[350px]' />
+                                                                </div>
+                                                            ))}
+                                                        </Carousel>
+                                                    </div>
+                                                </figure>
+                                                <div className="card-body">
+                                                    <h2 className="card-title text-[#F48222] text-xl">{listing.title}</h2>
+                                                    <p className='text-[#F48222] text-sm font-primary font-bold'>Description: <span className='font-thin'>{listing.description}</span></p>
+                                                    <p className='text-[#F48222] text-sm font-primary font-bold'>Location: <span className='font-thin'>{listing.location}</span></p>
+                                                    <div className='flex flex-row'>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Plot: <span className='font-thin'>{listing.plot}</span></p>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Payment Type: <span className='font-thin'>{listing.paymentType}</span></p>
+                                                    </div>
+                                                    <p className='text-[#F48222] text-sm font-primary font-bold'>Certificate of Ownership: <span className='font-thin'>{listing?.certificateOfO === false ? 'No' : 'Yes'}</span></p>
+                                                    <p className='text-[#F48222] text-sm font-primary font-bold'>Global Certificate of Ownership: <span className='font-thin'>{state?.globalCOfO}{listing.globalCOfO === false ? 'No' : 'Yes'}</span></p>
+                                                    <div className='flex flex-row'>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Agreement: <span className='font-thin'>{state?.agreement}{listing.agreement === false ? 'No' : 'Yes'}</span></p>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Law Deed: <span className='font-thin'>{state?.lawDeed}{listing.lawDeed === false ? 'No' : 'Yes'}</span></p>
+                                                    </div>
+                                                    <div className='flex flex-row'>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Sale: <span className='font-thin'>{state?.sale}{listing.sale === false ? 'No' : 'Yes'}</span></p>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Survey: <span className='font-thin'>{listing.survey === false ? 'No' : 'Yes'}</span></p>
+                                                    </div>
+                                                    <div className='flex flex-row'>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Gate: <span className='font-thin'>{state?.isGated}{listing.isGated === false ? 'No' : 'Yes'}</span></p>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Garage: <span className='font-thin'>{state?.isGarage}{listing.isGarage === false ? 'No' : 'Yes'}</span></p>
+                                                    </div>
+                                                    <div className='flex flex-row'>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Security Personnel: <span className='font-thin'>{state?.isSecurityPersonnel}{listing.isSecurityPersonnel === false ? 'No' : 'Yes'}</span></p>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>CCTV: <span className='font-thin'>{state?.isCctv}{listing.isCctv === false ? 'No' : 'Yes'}</span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+                            </ul>}
+*/}

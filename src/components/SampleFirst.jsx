@@ -241,23 +241,14 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                                             <label htmlFor="landmark" className='text-[#F48222] text-base font-medium'>Nearest Landmark</label>
                                             <input type="text" value={landmark} name='landmark' required onChange={(e) => setLandmark(e.target.value)} placeholder="Enter the nearest landmark" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
-                                        {/* <div>
-                                            <label htmlFor="amenities" className='text-[#F48222] text-base font-medium'>Amenities</label>
-                                            <input type="text" value={amenities} name='amenities' required onChange={(e) => setAmenities(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
-                                        </div> */}
                                         <div>
                                             <label htmlFor="plot" className='text-[#F48222] text-base font-medium'>Plot(s)</label>
-                                            <input type="number" value={plot} name='plot' required onChange={(e) => setPlot(e.target.value)} placeholder="Enter the number of plots" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                            <input type="number" min={1} value={plot} name='plot' required onChange={(e) => setPlot(e.target.value)} placeholder="Enter the number of plots" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
                                         <div>
                                             <label htmlFor="paymentType" className='text-[#F48222] text-base font-medium'>Payment Type</label>
                                             <input type="text" value={paymentType} name='paymentType' disabled required onChange={(e) => setPaymentType(e.target.value)} placeholder="Enter the payment type" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
-                                        {/* <div>
-                                            <label htmlFor="document" className='text-[#F48222] text-base font-medium'>Document</label>
-                                            <input type="text" value={document} name='document' required onChange={(e) => setDocument(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
-
-                                        </div> */}
                                         <div className="form-control">
                                             <label htmlFor="amenities" className='text-[#F48222] text-base font-medium'>Amenities</label>
                                             <label className="label cursor-pointer">
@@ -285,7 +276,7 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                                             <label htmlFor="document" className='text-[#F48222] text-base font-medium'>Documents</label>
                                             <label className="label cursor-pointer">
                                                 <span className="label-text">Global C of O</span>
-                                                <input type="checkbox" checked="checked" onChange={(e) => setGlobalCOfO((prevState) => !prevState)} className="checkbox" />
+                                                <input type="checkbox" checked='checked' onChange={(e) => setGlobalCOfO((prevState) => !prevState)} className="checkbox" />
                                             </label>
                                             <label className="label cursor-pointer">
                                                 <span className="label-text">Certificate of Ownership</span>

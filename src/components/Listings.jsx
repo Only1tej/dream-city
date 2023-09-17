@@ -1,91 +1,440 @@
-import React from 'react'
-import house2 from '../../src/dreamcity/house2.jpeg'
-import house3 from '../../src/dreamcity/house3.jpeg'
-import house4 from '../../src/dreamcity/house4.jpeg'
-import { FaLocationDot } from "react-icons/fa6";
-import { FaCar } from "react-icons/fa6";
+import React, { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import { useNavigate, Link } from 'react-router-dom'
+import logo from '../../src/dreamcity/logo-transparent.png'
+import logo2 from '../../src/dreamcity/logo-slogan.png'
+import SampleFirst from './SampleFirst'
+import { useLocation } from 'react-router-dom'
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+
+const Listings = ({ formData, listings, setForm }) => {
+    const [search, setSearch] = useState('')
+    const { state } = useLocation()
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+    const [landmark, setLandmark] = useState('')
+    const [searchResults, setSearchResults] = useState([]);
+    const navigate = useNavigate()
+    const handleSubmit = (e) => {
+        e.preventDefault()
+    }
+    // imports
+
+    // const values = () => {
+    //     description;
+    //     id: uuid
+    // }
+    // render
+    console.log(uuidv4());
+
+    const responsive = {
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 1,
+            slidesToSlide: 1,
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 1,
+            slidesToSlide: 1,
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+            slidesToSlide: 1,
+        },
+    };
+
+    // function ListingSearch() {
+    // const [searchTerm, setSearchTerm] = useState('');
+    // const [listings, setListings] = useState([
+    //     { id: 1, title: 'Listing 1', description: 'Description 1' },
+    //     { id: 2, title: 'Listing 2', description: 'Description 2' },
+    //     { id: 3, title: 'Listing 3', description: 'Description 3' },
+    //     // Add more listings here
+    // ]);
 
 
-const Listings = () => {
+    // Function to handle the search
+    const handleSearch = () => {
+        const filteredListings = listings.filter((listing) =>
+            listing.title.toLowerCase().includes(search.toLowerCase())
+        );
+        setSearchResults(filteredListings);
+    };
+    console.log(searchResults);
+
+
+
+    //     {searchResults.length === 0 ? (
+    //         <p>No results found.</p>
+    //     ) : (
+    //         <ul>
+    //             {searchResults.map((listing) => (
+    //                 <li key={listing.id}>
+    //                     <h3>{listing.title}</h3>
+    //                     <p>{listing.description}</p>
+    //                 </li>
+    //             ))}
+    //         </ul>
+    //     )}
+    // </div>
+
+    // Function to generate unique IDs for listings
+    const generateUniqueIds = () => {
+        return listings.map((listing, index) => ({
+            ...listing,
+            id: uuidv4(),
+        }));
+    };
+    const listingsWithIds = generateUniqueIds();
+
+
+    // <div>
+    //     <h1>Listings with Unique IDs</h1>
+    //     <ul>
+    //         {listingsWithIds.map((listing) => (
+    //             <li key={listing.id}>
+    //                 <strong>{listing.name}</strong>: {listing.description}
+    //             </li>
+    //         ))}
+    //     </ul>
+    // </div>
+    const id = uuidv4()
+    const listingPage = () => {
+        navigate(`/listing/:id`)
+    }
+
+
     return (
-        <div className='bg-[#F5E0B8]'>
-            <div>
-                <div className="carousel">
-                    <div id="slide1" className="carousel-item relative w-full h-[400px]">
-                        <img src={house2} alt="Logo" className='w-full' />
-                        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                            <a href="#slide4" className="btn btn-circle">❮</a>
-                            <a href="#slide2" className="btn btn-circle">❯</a>
+        <>
+            {/* <div className='flex flex-row max-h-screen lg:overflow-hidden md:overflow-auto bg-white'> */}
+            <div className='flex flex-row md:flex md:flex-row max-h-screen lg:h-full bg-white ' >
+                <div className='lg:w-[315px] w-[200px] h-full min-h-screen fixed top-0 left-0 bg-[#F5E0B8]'>
+                    <div className='flex flex-col '>
+                        <div className='py-4'>
+                            <img src={logo} alt="Logo" className='bg-[#F5E0B8] w-1/2 h-1/2 mx-auto' />
+                            <img src={logo2} alt="Logo" className='bg-[#F5E0B8] mx-auto mt-1' />
                         </div>
+
+                        <Link to="/listing" className='text-left active:bg-white focus:bg-white bg-white text-[#F48222] active:text-[#F48222] pl-[31px] py-[16px] font-medium text-lg font-primary'>Listings</Link>
+                        <Link to="/create-listing" className='text-left active:bg-white focus:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px]'>Create Listing</Link>
+                        <Link to="/create-admin" className='text-left active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px] '>Create Admin</Link>
                     </div>
-                    <div id="slide2" className="carousel-item relative w-full h-[400px]">
-                        <img src={house2} alt="Logo" className='w-full' />
-                        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                            <a href="#slide1" className="btn btn-circle">❮</a>
-                            <a href="#slide3" className="btn btn-circle">❯</a>
-                        </div>
+                </div>
+                <div className='sm:w-[500px] md:w-[650px] lg:w-[800px] pl-[28px] pt-[18px] pr-[32px] pb-[24px] lg:ml-[315px] ml-[200px]  '>
+                    <div>
+                        <input type="search" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search" className="input input-bordered w-[275px] md:w-[468px] h-[33px] rounded-none bg-white" />
+                        <button onClick={handleSearch}>Search</button>
+                        {/* <input
+                            type="text"
+                            placeholder="Search by title"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        /> */}
+                        {/* {listings.filter((item) => {
+                            return search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)
+                        })} */}
                     </div>
-                    <div id="slide3" className="carousel-item relative w-full h-[400px]">
-                        <img src={house3} alt="Logo" className='w-full' />
-                        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                            <a href="#slide2" className="btn btn-circle">❮</a>
-                            <a href="#slide4" className="btn btn-circle">❯</a>
-                        </div>
-                    </div>
-                    <div id="slide4" className="carousel-item relative w-full h-[400px]">
-                        <img src={house4} alt="Logo" className='w-full' />
-                        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                            <a href="#slide3" className="btn btn-circle">❮</a>
-                            <a href="#slide1" className="btn btn-circle">❯</a>
-                        </div>
-                    </div>
+
+                    {/* <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-x-48 grid-cols-2"> */}
+                    {/* <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-x-64 space-y-48 md:space-y-24"> */}
+
+                    {/* <div className="grid grid-cols-1 lg:gap-x-64 " grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2> */}
+                    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-x-64 " >
+                        {/* {listings?.filter((item) => {
+                                return search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)
+                            })} */}
+                        {/* The filter function */}
+                        {/* <>
+
+                            {
+
+                                < ul >
+                                    {
+                                        searchResults.filter((listing) => (
+                                            // <li>
+                                            //     <h3>{listing.title}</h3>
+                                            //     <p>{listing.description}</p>
+                                            // </li>
+                                            <div className='w-[285px] h-[239px] mt-[40px] mr-[40px]'>
+                                                <div className="card lg:card-side flex flex-column shadow-xl w-[950px] h-[350px] bg-[#9eecef]">
+                                                    <figure>
+                                                        <div className='w-[350px] h-[350px] rounded-t-xl'>
+                                                            <Carousel responsive={responsive}>
+                                                                {listing?.images?.map((image, index) => (
+                                                                    <div key={index} className="carousel-image w-[350px] h-[350px]">
+                                                                        <img src={image} alt={`Image ${index}`} className='h-[100%] w-[350px]' />
+                                                                    </div>
+                                                                ))}
+                                                            </Carousel>
+                                                        </div>
+                                                    </figure>
+                                                    <div className="card-body">
+                                                        <h2 className="card-title text-[#F48222] text-xl">{listing.title}</h2>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Description: <span className='font-thin'>{listing.description}</span></p>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Location: <span className='font-thin'>{listing.location}</span></p>
+                                                        <div className='flex flex-row'>
+                                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Plot: <span className='font-thin'>{listing.plot}</span></p>
+                                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Payment Type: <span className='font-thin'>{listing.paymentType}</span></p>
+                                                        </div>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Certificate of Ownership: <span className='font-thin'>{listing?.certificateOfO === false ? 'No' : 'Yes'}</span></p>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Global Certificate of Ownership: <span className='font-thin'>{state?.globalCOfO}{listing.globalCOfO === false ? 'No' : 'Yes'}</span></p>
+                                                        <div className='flex flex-row'>
+                                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Agreement: <span className='font-thin'>{state?.agreement}{listing.agreement === false ? 'No' : 'Yes'}</span></p>
+                                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Law Deed: <span className='font-thin'>{state?.lawDeed}{listing.lawDeed === false ? 'No' : 'Yes'}</span></p>
+                                                        </div>
+                                                        <div className='flex flex-row'>
+                                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Sale: <span className='font-thin'>{state?.sale}{listing.sale === false ? 'No' : 'Yes'}</span></p>
+                                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Survey: <span className='font-thin'>{listing.survey === false ? 'No' : 'Yes'}</span></p>
+                                                        </div>
+                                                        <div className='flex flex-row'>
+                                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Gate: <span className='font-thin'>{state?.isGated}{listing.isGated === false ? 'No' : 'Yes'}</span></p>
+                                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Garage: <span className='font-thin'>{state?.isGarage}{listing.isGarage === false ? 'No' : 'Yes'}</span></p>
+                                                        </div>
+                                                        <div className='flex flex-row'>
+                                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Security Personnel: <span className='font-thin'>{state?.isSecurityPersonnel}{listing.isSecurityPersonnel === false ? 'No' : 'Yes'}</span></p>
+                                                            <p className='text-[#F48222] text-sm font-primary font-bold'>CCTV: <span className='font-thin'>{state?.isCctv}{listing.isCctv === false ? 'No' : 'Yes'}</span></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))
+                                    }
+                                </ul>}
+                        </> */}
+
+
+                        {listings?.length === 0 ?
+                            (
+                                <div>
+                                    <p className='lg:ml-[150px] md:ml-[40px] ml-[10px] mt-[150px] w-[400px] text-[#118286] bg-[#F5E0B8] p-2 rounded-md text-2xl font-semibold font-primary text-center'>There is no property listing for sale.
+                                        <br /> To create a property listing, click <Link to="/create-listing">here.</Link></p>
+                                </div>
+                            )
+                            :
+
+                            // {/*                             
+                            // //     listingsWithIds.map((listing) => (
+                            // //         <li key={listing.id}>
+                            // //             <strong>{listing.name}</strong>: {listing.description}
+                            // //         </li>
+                            // //     ))&& listingsWithIds.map((listing)
+                            // // }
+                            // // && */}
+
+                            (listings?.map((listing, index) => (
+                                <div key={index} className=' w-[350px] h-[350px] mt-[40px] mr-[40px]'>
+                                    {/* <div className="card lg:card-side flex flex-column shadow-xl w-[950px] h-[350px] bg-[#9eecef]"> */}
+                                    {/* <figure>
+                                            <div className='w-[350px] h-[350px] rounded-t-xl'>
+                                                <Carousel responsive={responsive}>
+                                                    {listing?.images?.map((image, index) => (
+                                                        <div key={index} className="carousel-image w-[350px] h-[350px]">
+                                                            <img src={image} alt={`Image ${index}`} className='h-[100%] w-[350px]' />
+                                                        </div>
+                                                    ))}
+                                                </Carousel>
+                                            </div>
+                                        </figure> */}
+
+                                    <div className="w-[300px] h-[300px]  rounded-lg shadow-xl" onClick={listingPage}>
+                                        <figure>
+                                            <div className='w-[300px] h-[200px]'>
+                                                <Carousel responsive={responsive}>
+                                                    {listing?.images?.map((image, index) => (
+                                                        <div key={index} className="carousel-image w-[300px] h-[200px]">
+                                                            <img src={image} alt={`Image ${index}`} className='h-[100%] w-[300px]' />
+                                                        </div>
+                                                    ))}
+                                                </Carousel>
+                                            </div>
+                                        </figure>
+                                        <div className="p-2 bg-[#F5E0B8]">
+                                            <h2 className="font-bold text-xl break-words">{listing.title}</h2>
+                                            <p className='font-semibold text-[#F48222] text-sm font-primary break-words'><span className='text-[#118286]'>Description:</span> {listing.description}</p>
+                                            <p className='font-bold'><span className='text-[#118286]'>Price:</span> {listing.price}</p>
+
+                                        </div>
+                                    </div>
+                                    {/* <div className="card-body">
+                                            <h2 className="card-title text-[#F48222] text-xl">{listing.title}</h2>
+                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Description: <span className='font-thin'>{listing.description}</span></p>
+                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Location: <span className='font-thin'>{listing.location}</span></p>
+                                            <div className='flex flex-row'>
+                                                <p className='text-[#F48222] text-sm font-primary font-bold'>Plot: <span className='font-thin'>{listing.plot}</span></p>
+                                                <p className='text-[#F48222] text-sm font-primary font-bold'>Payment Type: <span className='font-thin'>{listing.paymentType}</span></p>
+                                            </div>
+                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Certificate of Ownership: <span className='font-thin'>{listing?.certificateOfO === false ? 'No' : 'Yes'}</span></p>
+                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Global Certificate of Ownership: <span className='font-thin'>{state?.globalCOfO}{listing.globalCOfO === false ? 'No' : 'Yes'}</span></p>
+                                            <div className='flex flex-row'>
+                                                <p className='text-[#F48222] text-sm font-primary font-bold'>Agreement: <span className='font-thin'>{state?.agreement}{listing.agreement === false ? 'No' : 'Yes'}</span></p>
+                                                <p className='text-[#F48222] text-sm font-primary font-bold'>Law Deed: <span className='font-thin'>{state?.lawDeed}{listing.lawDeed === false ? 'No' : 'Yes'}</span></p>
+                                            </div>
+                                            <div className='flex flex-row'>
+                                                <p className='text-[#F48222] text-sm font-primary font-bold'>Sale: <span className='font-thin'>{state?.sale}{listing.sale === false ? 'No' : 'Yes'}</span></p>
+                                                <p className='text-[#F48222] text-sm font-primary font-bold'>Survey: <span className='font-thin'>{listing.survey === false ? 'No' : 'Yes'}</span></p>
+                                            </div>
+                                            <div className='flex flex-row'>
+                                                <p className='text-[#F48222] text-sm font-primary font-bold'>Gate: <span className='font-thin'>{state?.isGated}{listing.isGated === false ? 'No' : 'Yes'}</span></p>
+                                                <p className='text-[#F48222] text-sm font-primary font-bold'>Garage: <span className='font-thin'>{state?.isGarage}{listing.isGarage === false ? 'No' : 'Yes'}</span></p>
+                                            </div>
+                                            <div className='flex flex-row'>
+                                                <p className='text-[#F48222] text-sm font-primary font-bold'>Security Personnel: <span className='font-thin'>{state?.isSecurityPersonnel}{listing.isSecurityPersonnel === false ? 'No' : 'Yes'}</span></p>
+                                                <p className='text-[#F48222] text-sm font-primary font-bold'>CCTV: <span className='font-thin'>{state?.isCctv}{listing.isCctv === false ? 'No' : 'Yes'}</span></p>
+                                            </div>
+                                        </div> */}
+                                    {/* </div> */}
+                                </div>
+
+                            )))}
+                    </div >
                 </div>
             </div>
-            <div className='mx-4 my-6'>
-                <div>
-                    <h1 className='font-semibold font-monteserrat text-2xl text-yellow-800'>New Town Estate</h1>
-                    <p className='mt-4 font-monteserrat text-yellow-800'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam porro ipsa corrupti eligendi sequi quidem accusamus perspiciatis alias magni, quod atque cum consequuntur, ipsam quis. Ratione eius enim qui necessitatibus.</p>
-                </div>
-                <div className='mt-4 space-y-3'>
-                    <div className='flex space-x-4 items-center'>
-                        <span className='text-[#008F97]'><FaLocationDot /></span>
-                        <p className='font-semibold font-monteserrat text-xl text-[#008F97]'>Kangile, Behind Royal Valley Estate, Sango, Ilorin, Kwara State.</p>
-                    </div>
-                    <div className='flex space-x-4 items-center'>
-                        <span className='text-[#008F97]'><FaCar /></span>
-                        <p className='font-semibold text-lg text-[#008F97]'>20 minutes drive from Palms Mall.</p>
-                    </div>
-                </div>
-                <div className='my-3'>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div className='bg-yellow-500 rounded-sm p-3'>
-                            <h1 className='text-yellow-800 font-monteserrat'>Plot</h1>
-                            <p className='text-[#008F97] font-semibold font-monteserrat'>150 plots available</p>
-                        </div>
-                        <div className='bg-yellow-500 rounded-sm p-3'>
-                            <h1 className='text-yellow-800 font-monteserrat'>Status</h1>
-                            <p className='text-[#008F97] font-semibold font-monteserrat'>For Sale</p>
-                        </div>
-                        <div className='bg-yellow-500 rounded-sm p-3'>
-                            <h1 className='text-yellow-800 font-monteserrat'>Payment type</h1>
-                            <p className='text-[#008F97] font-semibold font-monteserrat'>Outright</p>
-                        </div>
-                        <div className='bg-yellow-500 rounded-sm p-3'>
-                            <h1 className='text-yellow-800 font-monteserrat'>Price</h1>
-                            <p className='text-[#008F97] font-semibold font-monteserrat'>#6,000,000</p>
-                        </div>
-                        <div className='bg-yellow-500 rounded-sm p-3'>
-                            <h1 className='text-yellow-800 font-monteserrat'>Amenities</h1>
-                            <p className='text-[#008F97] font-semibold font-monteserrat'>Gate</p>
-                        </div>
-                    </div>
-                </div>
-                <div className='my-3'>
-                    <button className="btn w-full font-primary text-base normal-case bg-[#118286] outline-none border-none hover:bg-[#118286] text-white">Invest</button>
-                </div>
-            </div>
-        </div>
+        </>
     )
 }
 
 export default Listings
+
+
+
+// < div key = { index } className = 'w-[285px] h-[239px] mt-[40px] mr-[40px]' >
+//                                 <div className='w-[285px] h-[160px] rounded-t-xl carousel carousel-center'>
+//                                     {/* {state?.images?.map((image, index) => (
+//                                     <div key={index} className='' >
+//                                         <img src={image} alt={`Image ${index}`} width='100' />
+//                                     </div>
+//                                 ))} */}
+//                                     {
+//                                         listing?.images?.map((image, index) => (
+//                                             <div key={index} className='' >
+//                                                 <img src={image} alt={`Image ${index}`} width='100' />
+//                                             </div>
+//                                         ))}
+//                                     {/* //Show only one image */}
+//                                     {/* {state?.images?.length > 0 && (
+//                                 <div className=''>
+//                                 <img src={state.images[0]} alt={`Image 0`} width='100' className='carousel-item' />
+//                                 </div>
+//                                 )} */}
+//                                     {/* <Carousel responsive={responsive}>
+//                                     {images?.map((image, index) => (
+//                                         <div key={index} className="carousel-image">
+//                                             <img src={image} alt={`Image ${index}`} />
+//                                         </div>
+//                                     ))}
+//                                 </Carousel> */}
+//                                 </div>
+//                                 <div className=' bg-[#F5E0B8] rounded-b-xl p-1'>
+//                                     {/* <p className='text-[#118286] text-sm font-primary font-semibold'>{listing.title}</p> */}
+//                                     {/* <p className='text-[#118286] font-primary font-normal'>{listing.description}</p>
+//                                     <p className='text-[#118286] text-xs font-primary font-normal'>{listing.location}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{listing.landmark}</p> */}
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.title}{listing?.title}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.description}{listing?.description}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.location}{listing?.location}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.landmark}{listing?.landmark}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.plot}{listing.plot}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.document}{listing.document}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.paymentType}{listing.paymentType}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.amenities}{listing.amenities}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.sale}{listing.sale}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>Agreement is {listing.agreement}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.lawDeed}{listing.lawDeed}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.isGated}{listing.isGated}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.survey}{listing.survey}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.isCctv}{listing.isCctv}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.isSecurityPersonnel}{listing.isSecurityPersonnel}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.globalCOfO}{listing.globalCOfO}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.isGarage}{listing.isGarage}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.globalCOfO}{listing.globalCOfO}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.certificateOfO}{listing.certificateOfO}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.rent}{listing.rent}</p>
+//                                     <p className='text-[#F48222] text-sm font-primary font-bold'>{state?.sale}{listing.sale}</p>
+//                                 </div>
+//                             </div >
+
+{/* <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-x-48 grid-cols-2"> */ }
+{/* <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-x-64 space-y-48 md:space-y-24"> */ }
+
+
+//                     const handleSearch = () => {
+//     const filteredListings = listings.filter((listing) =>
+//                     listing.title.toLowerCase().includes(searchTerm.toLowerCase())
+//                     );
+//                     setSearchResults(filteredListings);
+// };
+// (listings?.filter((listing) =>
+//     search.toLowerCase() === '' ? listing : listing.title.toLowerCase().includes(search.toLowerCase())
+// )
+// )
+
+// (searchResults.length === 0 ? (
+//     <p>No results found.</p>
+// ) : (
+
+
+{/* 
+
+ {
+                                    search? {
+
+                            < ul >
+                                {
+                                    searchResults.map((listing, index) => (
+                                        // <li>
+                                        //     <h3>{listing.title}</h3>
+                                        //     <p>{listing.description}</p>
+                                        // </li>
+                                        <div key={index} className='w-[285px] h-[239px] mt-[40px] mr-[40px]'>
+                                            <div className="card lg:card-side flex flex-column shadow-xl w-[950px] h-[350px] bg-[#9eecef]">
+                                                <figure>
+                                                    <div className='w-[350px] h-[350px] rounded-t-xl'>
+                                                        <Carousel responsive={responsive}>
+                                                            {listing?.images?.map((image, index) => (
+                                                                <div key={index} className="carousel-image w-[350px] h-[350px]">
+                                                                    <img src={image} alt={`Image ${index}`} className='h-[100%] w-[350px]' />
+                                                                </div>
+                                                            ))}
+                                                        </Carousel>
+                                                    </div>
+                                                </figure>
+                                                <div className="card-body">
+                                                    <h2 className="card-title text-[#F48222] text-xl">{listing.title}</h2>
+                                                    <p className='text-[#F48222] text-sm font-primary font-bold'>Description: <span className='font-thin'>{listing.description}</span></p>
+                                                    <p className='text-[#F48222] text-sm font-primary font-bold'>Location: <span className='font-thin'>{listing.location}</span></p>
+                                                    <div className='flex flex-row'>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Plot: <span className='font-thin'>{listing.plot}</span></p>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Payment Type: <span className='font-thin'>{listing.paymentType}</span></p>
+                                                    </div>
+                                                    <p className='text-[#F48222] text-sm font-primary font-bold'>Certificate of Ownership: <span className='font-thin'>{listing?.certificateOfO === false ? 'No' : 'Yes'}</span></p>
+                                                    <p className='text-[#F48222] text-sm font-primary font-bold'>Global Certificate of Ownership: <span className='font-thin'>{state?.globalCOfO}{listing.globalCOfO === false ? 'No' : 'Yes'}</span></p>
+                                                    <div className='flex flex-row'>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Agreement: <span className='font-thin'>{state?.agreement}{listing.agreement === false ? 'No' : 'Yes'}</span></p>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Law Deed: <span className='font-thin'>{state?.lawDeed}{listing.lawDeed === false ? 'No' : 'Yes'}</span></p>
+                                                    </div>
+                                                    <div className='flex flex-row'>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Sale: <span className='font-thin'>{state?.sale}{listing.sale === false ? 'No' : 'Yes'}</span></p>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Survey: <span className='font-thin'>{listing.survey === false ? 'No' : 'Yes'}</span></p>
+                                                    </div>
+                                                    <div className='flex flex-row'>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Gate: <span className='font-thin'>{state?.isGated}{listing.isGated === false ? 'No' : 'Yes'}</span></p>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Garage: <span className='font-thin'>{state?.isGarage}{listing.isGarage === false ? 'No' : 'Yes'}</span></p>
+                                                    </div>
+                                                    <div className='flex flex-row'>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Security Personnel: <span className='font-thin'>{state?.isSecurityPersonnel}{listing.isSecurityPersonnel === false ? 'No' : 'Yes'}</span></p>
+                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>CCTV: <span className='font-thin'>{state?.isCctv}{listing.isCctv === false ? 'No' : 'Yes'}</span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+                            </ul>}
+*/}
+
+// import React from 'react';
+
+

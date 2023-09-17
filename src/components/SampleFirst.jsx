@@ -3,7 +3,6 @@ import { useForm } from 'react-hooks-helper'
 import { Link } from 'react-router-dom'
 import { Container, TextField, Button, Box } from '@material-ui/core'
 import { ThemeProvider } from "@mui/styles";
-import { PrimaryMainTheme } from "./PrimaryMainTheme";
 import logo from '../../src/dreamcity/logo-transparent.png'
 import logo2 from '../../src/dreamcity/logo-slogan.png'
 import ImageUploader from './ImageUploader';
@@ -39,6 +38,10 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
     const [rent, setRent] = useState(false)
     const [lease, setLease] = useState(false)
     const [sale, setSale] = useState(false)
+    const [id, setId] = useState('')
+
+    const ids = Math.floor(Math.random(10 * 9999))
+    console.log(ids);
     // console.log('formData :>> ', formData);
 
     // const defaultData = {
@@ -150,7 +153,7 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
             return
         }
         // const formData = { survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale }
-        const listings = { title, description, location, landmark, images, plot, amenities, paymentType, document, survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale }
+        const listings = { title, description, location, landmark, images, plot, amenities, paymentType, document, survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale, ids }
         // const listings = { title, description, location, landmark, images, plot, globalCOfO, certificateOfO, lawDeed }
         e.preventDefault()
         onSaveListing(listings)

@@ -51,7 +51,7 @@ function App() {
             <Route path="/listing" element={<Listings listings={listings} />} />
             <Route
               path="/listing/:id"
-              element={<ListingPage listing={listing} />}
+              element={<ListingPage listings={listings} />}
             />
           </Routes>
         </div>

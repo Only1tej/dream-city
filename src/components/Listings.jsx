@@ -103,7 +103,12 @@ const Listings = ({ formData, listings, setForm }) => {
     // </div>
     const id = uuidv4()
     const listingPage = () => {
-        navigate(`/listing/:id`)
+        navigate('/listing/:id', {
+            replace: false,
+            state: {
+                listings
+            }
+        })
     }
 
 

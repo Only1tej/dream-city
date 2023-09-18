@@ -1,10 +1,13 @@
 import React from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, useLocation, Link } from 'react-router-dom'
 import logo from '../../src/dreamcity/logo-transparent.png'
 import logo2 from '../../src/dreamcity/logo-slogan.png'
 
 
-const ListingPage = ({ listing }) => {
+const ListingPage = ({ listings }) => {
+    const location = useLocation()
+    console.log(location);
+    let data = location.state.listings
     return (
         <div className='min-h-screen'>
             {/* <div className='lg:w-[315px] w-[200px] h-full min-h-screen fixed top-0 left-0 bg-[#F5E0B8]'>
@@ -21,31 +24,32 @@ const ListingPage = ({ listing }) => {
             </div> */}
             <div>
                 <h1 className='text-3xl font-bold text-center pt-4'>Welcome to our Listing Page</h1>
+                <h4>Welcome {location.state.listings[1].title}</h4>
                 <div className="card-body">
-                    <h2 className="card-title text-[#F48222] text-xl">{listing.title}</h2>
-                    <p className='text-[#F48222] text-sm font-primary font-bold'>Description: <span className='font-thin'>{listing.description}</span></p>
-                    <p className='text-[#F48222] text-sm font-primary font-bold'>Location: <span className='font-thin'>{listing.location}</span></p>
+                    <h2 className="card-title text-[#F48222] text-xl">{data[1].title}</h2>
+                    <p className='text-[#F48222] text-sm font-primary font-bold'>Description: <span className='font-thin'>{data[1].description}</span></p>
+                    <p className='text-[#F48222] text-sm font-primary font-bold'>Location: <span className='font-thin'>{data[1].location}</span></p>
                     <div className='flex flex-row'>
-                        <p className='text-[#F48222] text-sm font-primary font-bold'>Plot: <span className='font-thin'>{listing.plot}</span></p>
-                        <p className='text-[#F48222] text-sm font-primary font-bold'>Payment Type: <span className='font-thin'>{listing.paymentType}</span></p>
+                        <p className='text-[#F48222] text-sm font-primary font-bold'>Plot: <span className='font-thin'>{listings.plot}</span></p>
+                        <p className='text-[#F48222] text-sm font-primary font-bold'>Payment Type: <span className='font-thin'>{listings.paymentType}</span></p>
                     </div>
-                    <p className='text-[#F48222] text-sm font-primary font-bold'>Certificate of Ownership: <span className='font-thin'>{listing?.certificateOfO === false ? 'No' : 'Yes'}</span></p>
-                    <p className='text-[#F48222] text-sm font-primary font-bold'>Global Certificate of Ownership: <span className='font-thin'>{listing.globalCOfO === false ? 'No' : 'Yes'}</span></p>
+                    <p className='text-[#F48222] text-sm font-primary font-bold'>Certificate of Ownership: <span className='font-thin'>{listings?.certificateOfO === false ? 'No' : 'Yes'}</span></p>
+                    <p className='text-[#F48222] text-sm font-primary font-bold'>Global Certificate of Ownership: <span className='font-thin'>{listings.globalCOfO === false ? 'No' : 'Yes'}</span></p>
                     <div className='flex flex-row'>
-                        <p className='text-[#F48222] text-sm font-primary font-bold'>Agreement: <span className='font-thin'>{listing.agreement === false ? 'No' : 'Yes'}</span></p>
-                        <p className='text-[#F48222] text-sm font-primary font-bold'>Law Deed: <span className='font-thin'>{listing.lawDeed === false ? 'No' : 'Yes'}</span></p>
-                    </div>
-                    <div className='flex flex-row'>
-                        <p className='text-[#F48222] text-sm font-primary font-bold'>Sale: <span className='font-thin'>{listing.sale === false ? 'No' : 'Yes'}</span></p>
-                        <p className='text-[#F48222] text-sm font-primary font-bold'>Survey: <span className='font-thin'>{listing.survey === false ? 'No' : 'Yes'}</span></p>
+                        <p className='text-[#F48222] text-sm font-primary font-bold'>Agreement: <span className='font-thin'>{listings.agreement === false ? 'No' : 'Yes'}</span></p>
+                        <p className='text-[#F48222] text-sm font-primary font-bold'>Law Deed: <span className='font-thin'>{listings.lawDeed === false ? 'No' : 'Yes'}</span></p>
                     </div>
                     <div className='flex flex-row'>
-                        <p className='text-[#F48222] text-sm font-primary font-bold'>Gate: <span className='font-thin'>{listing.isGated === false ? 'No' : 'Yes'}</span></p>
-                        <p className='text-[#F48222] text-sm font-primary font-bold'>Garage: <span className='font-thin'>{listing.isGarage === false ? 'No' : 'Yes'}</span></p>
+                        <p className='text-[#F48222] text-sm font-primary font-bold'>Sale: <span className='font-thin'>{listings.sale === false ? 'No' : 'Yes'}</span></p>
+                        <p className='text-[#F48222] text-sm font-primary font-bold'>Survey: <span className='font-thin'>{listings.survey === false ? 'No' : 'Yes'}</span></p>
                     </div>
                     <div className='flex flex-row'>
-                        <p className='text-[#F48222] text-sm font-primary font-bold'>Security Personnel: <span className='font-thin'>{listing.isSecurityPersonnel === false ? 'No' : 'Yes'}</span></p>
-                        <p className='text-[#F48222] text-sm font-primary font-bold'>CCTV: <span className='font-thin'>{listing.isCctv === false ? 'No' : 'Yes'}</span></p>
+                        <p className='text-[#F48222] text-sm font-primary font-bold'>Gate: <span className='font-thin'>{listings.isGated === false ? 'No' : 'Yes'}</span></p>
+                        <p className='text-[#F48222] text-sm font-primary font-bold'>Garage: <span className='font-thin'>{listings.isGarage === false ? 'No' : 'Yes'}</span></p>
+                    </div>
+                    <div className='flex flex-row'>
+                        <p className='text-[#F48222] text-sm font-primary font-bold'>Security Personnel: <span className='font-thin'>{listings.isSecurityPersonnel === false ? 'No' : 'Yes'}</span></p>
+                        <p className='text-[#F48222] text-sm font-primary font-bold'>CCTV: <span className='font-thin'>{listings.isCctv === false ? 'No' : 'Yes'}</span></p>
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@ import logo2 from '../../src/dreamcity/logo-slogan.png'
 const ListingPage = ({ listings }) => {
     const location = useLocation()
     console.log(location);
-    let data = location.state.listings
+    let datas = location.state.listings
     return (
         <div className='min-h-screen'>
             {/* <div className='lg:w-[315px] w-[200px] h-full min-h-screen fixed top-0 left-0 bg-[#F5E0B8]'>
@@ -22,13 +22,26 @@ const ListingPage = ({ listings }) => {
                     <Link to="/create-admin" className='text-left active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px] '>Create Admin</Link>
                 </div>
             </div> */}
+            {/* (listings?.map((listing, index) => ( */}
+            {datas?.map((data, index) => (
+                <div key={index}>
+                    <h1 className='text-3xl font-bold text-center pt-4'>Welcome to our Listing Page</h1>
+                    <h4>Welcome {data?.title}</h4>
+                    <div className="card-body">
+                        <h2 className="card-title text-[#F48222] text-xl">{data[0].title}</h2>
+                        <p className='text-[#F48222] text-sm font-primary font-bold'>Description: <span className='font-thin'>{data.description}</span></p>
+                        <p className='text-[#F48222] text-sm font-primary font-bold'>Location: <span className='font-thin'>{data.location}</span></p>
+                    </div>
+                </div>
+            ))
+            }
             <div>
                 <h1 className='text-3xl font-bold text-center pt-4'>Welcome to our Listing Page</h1>
-                <h4>Welcome {location.state.listings[1].title}</h4>
+                <h4>Welcome {listings.title}</h4>
                 <div className="card-body">
-                    <h2 className="card-title text-[#F48222] text-xl">{data[1].title}</h2>
-                    <p className='text-[#F48222] text-sm font-primary font-bold'>Description: <span className='font-thin'>{data[1].description}</span></p>
-                    <p className='text-[#F48222] text-sm font-primary font-bold'>Location: <span className='font-thin'>{data[1].location}</span></p>
+                    <h2 className="card-title text-[#F48222] text-xl">{listings.title}</h2>
+                    <p className='text-[#F48222] text-sm font-primary font-bold'>Description: <span className='font-thin'>{listings.description}</span></p>
+                    <p className='text-[#F48222] text-sm font-primary font-bold'>Location: <span className='font-thin'>{listings.location}</span></p>
                     <div className='flex flex-row'>
                         <p className='text-[#F48222] text-sm font-primary font-bold'>Plot: <span className='font-thin'>{listings.plot}</span></p>
                         <p className='text-[#F48222] text-sm font-primary font-bold'>Payment Type: <span className='font-thin'>{listings.paymentType}</span></p>

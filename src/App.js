@@ -7,7 +7,12 @@ import CreateListing from "./components/CreateListing";
 import FormListing from "./components/FormListing";
 import ConfirmListings from "./components/ConfirmListings";
 import ListingPage from "./components/ListingPage";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useParams,
+} from "react-router-dom";
 import SampleForm from "./components/SampleForm";
 import SampleFirst from "./components/SampleFirst";
 import Listings from "./components/Listings";
@@ -18,7 +23,7 @@ function App() {
   const handleFormSubmit = (data) => {
     setFormData(data);
   };
-
+  const { ids } = useParams();
   const [listings, setListings] = useState([]);
 
   const handleSaveListing = (newListing) => {
@@ -50,7 +55,7 @@ function App() {
             />
             <Route path="/listing" element={<Listings listings={listings} />} />
             <Route
-              path="/listing/:id"
+              path="/listing/:ids"
               element={<ListingPage listings={listings} />}
             />
           </Routes>

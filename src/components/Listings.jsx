@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useParams } from 'react-router-dom'
 import logo from '../../src/dreamcity/logo-transparent.png'
 import logo2 from '../../src/dreamcity/logo-slogan.png'
 import SampleFirst from './SampleFirst'
@@ -101,9 +101,10 @@ const Listings = ({ formData, listings, setForm }) => {
     //         ))}
     //     </ul>
     // </div>
+    const { ids } = useParams()
     const id = uuidv4()
     const listingPage = () => {
-        navigate('/listing/:id', {
+        navigate('/listing/:ids', {
             replace: false,
             state: {
                 listings

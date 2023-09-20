@@ -82,13 +82,13 @@ const Listings = ({ formData, listings, setForm }) => {
     // </div>
 
     // Function to generate unique IDs for listings
-    const generateUniqueIds = () => {
-        return listings.map((listing, index) => ({
-            ...listing,
-            id: uuidv4(),
-        }));
-    };
-    const listingsWithIds = generateUniqueIds();
+    // const generateUniqueIds = () => {
+    //     return listings.map((listing, index) => ({
+    //         ...listing,
+    //         id: uuidv4(),
+    //     }));
+    // };
+    // const listingsWithIds = generateUniqueIds();
 
 
     // <div>
@@ -102,16 +102,17 @@ const Listings = ({ formData, listings, setForm }) => {
     //     </ul>
     // </div>
     const { ids } = useParams()
-    const id = uuidv4()
-    const listingPage = () => {
-        navigate('/listing/${listing.id}', {
-            replace: true,
-            state: {
-                listings
-            }
-        })
+    // const id = uuidv4()
+    // const listingPage = () => {
+    //     navigate(`/listing/${listings.id}`, {
+    //         replace: true,
+    //         state: {
+    //             listings
+    //         }
+    //     })
+    // onClick = {`/listing/${listing.id}`
+    // }
 
-    }
 
 
     return (
@@ -259,11 +260,13 @@ const Listings = ({ formData, listings, setForm }) => {
                                             </div>
                                         </figure>
                                         {/* {onClick = { listingPage } } */}
-                                        <Link to={`/listing/${listing.id}`} className="p-2 bg-[#F5E0B8] rounded-b-3xl" >
-                                            <h2 className="font-bold text-xl break-words">{listing.title}</h2>
-                                            <p className='font-semibold text-[#F48222] text-sm font-primary break-words'><span className='text-[#118286]'>Description:</span> {listing.description}</p>
-                                            <p className='font-bold'><span className='text-[#118286]'>Price:</span> {listing.price}</p>
-                                        </Link>
+                                        <div className='p-2 bg-[#F5E0B8] rounded-b-3xl'>
+                                            <Link to={`/listing/${listing.id}`} className="" >
+                                                <h2 className="font-bold text-xl break-words">{listing.title}</h2>
+                                                <p className='font-semibold text-[#F48222] text-sm font-primary break-words'><span className='text-[#118286]'>Description:</span> {listing.description}</p>
+                                                <p className='font-bold'><span className='text-[#118286]'>Price:</span> {listing.price}</p>
+                                            </Link>
+                                        </div>
                                     </div>
                                     {/* <div className="card-body">
                                             <h2 className="card-title text-[#F48222] text-xl">{listing.title}</h2>

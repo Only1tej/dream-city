@@ -7,6 +7,7 @@ import logo2 from '../../src/dreamcity/logo-slogan.png'
 
 
 const ListingPage = ({ listings }) => {
+    const navigate = useNavigate()
     const { id } = useParams()
     // const location = useLocation()
     // console.log(location);
@@ -30,7 +31,10 @@ const ListingPage = ({ listings }) => {
         },
     };
 
-    // const data = datas.find((data) => data.id === id)
+    const back = () => {
+        navigate(-1)
+    }
+
     const listing = listings.find((listing) => listing.id === id)
 
     return (
@@ -53,8 +57,9 @@ const ListingPage = ({ listings }) => {
                 {/* {datas?.find((data) => ( */}
                 {/* // console.log(data); */}
                 <div>
+                    <button className='ml-[180px] lg:ml-[900px] md:ml-[450px] sm:ml-[300px] py-1 px-2 text-[#118286] text-lg font-bold font-primary bg-[#F48222] rounded-lg ' onClick={back}>Back</button>
                     <p className='font-bold font-primary text-4xl text-center text-[#F48222] mb-5'>{listing?.title}</p>
-                    {/* <figure>
+                    <figure>
                         <div className='lg:w-[900px] h-[450px] sm:w-[350px] md:w-[500px] '>
                             <Carousel responsive={responsive}>
                                 {listing?.images?.map((image, index) => (
@@ -64,7 +69,7 @@ const ListingPage = ({ listings }) => {
                                 ))}
                             </Carousel>
                         </div>
-                    </figure> */}
+                    </figure>
                     <div className='lg:w-[900px] sm:w-[350px] md:w-[500px]'>
                         <div className="card-body bg-[#9eecef] rounded-3xl mt-2">
 

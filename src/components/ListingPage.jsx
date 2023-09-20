@@ -52,12 +52,8 @@ const ListingPage = ({ listings }) => {
                 </div>
             </div>
             <div className='sm:w-[500px] md:w-[650px] lg:w-[800px] pl-[28px] pt-[18px] pr-[32px] pb-[24px] lg:ml-[315px] ml-[200px]'>
-
-                {/* {datas?.forEach((data, index) => { */}
-                {/* {datas?.find((data) => ( */}
-                {/* // console.log(data); */}
                 <div>
-                    <button className='ml-[180px] lg:ml-[900px] md:ml-[450px] sm:ml-[300px] py-1 px-2 text-[#118286] text-lg font-bold font-primary bg-[#F48222] rounded-lg ' onClick={back}>Back</button>
+                    <button className='ml-[180px] lg:ml-[900px] md:ml-[450px] sm:ml-[300px] py-1 px-3 text-[#118286] text-lg font-bold font-primary bg-[#F5E0B8] rounded-lg ' onClick={back}>Back</button>
                     <p className='font-bold font-primary text-4xl text-center text-[#F48222] mb-5'>{listing?.title}</p>
                     <figure>
                         <div className='lg:w-[900px] h-[450px] sm:w-[350px] md:w-[500px] '>

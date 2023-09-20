@@ -6,14 +6,11 @@ import { ThemeProvider } from "@mui/styles";
 import logo from '../../src/dreamcity/logo-transparent.png'
 import logo2 from '../../src/dreamcity/logo-slogan.png'
 import ImageUploader from './ImageUploader';
-// import { faSquarePlus } from "react-icons/fa6";
-// import { FontAwesomeIcon } from '@fontawesome/react-fontawesome'
 import { FaSquarePlus } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid';
 
 
-{/* <FontAwesomeIcon icon={faSquarePlus} style={{ color: "#080808", }} /> */ }
 
 
 // const SampleFirst = ({ formData, setForm, navigation }) => {
@@ -40,133 +37,12 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
     const [rent, setRent] = useState(false)
     const [lease, setLease] = useState(false)
     const [sale, setSale] = useState(false)
-    // const [id, setId] = useState('')
 
-    // const ids = Math.floor(Math.random(10 * 9999))
-    // console.log(ids);
-    // console.log('formData :>> ', formData);
-
-    // const defaultData = {
-    //     // payment: '',
-    //     // paymentFormat: '',
-    //     // initialDeposit: '',
-    //     // outright: '',
-    //     survey: false,
-    //     isGated: false,
-    //     isCctv: false,
-    //     isSecurityPersonnel: false,
-    //     isGarage: false,
-    //     globalCOfO: true,
-    //     certificateOfO: false,
-    //     lawDeed: false,
-    //     agreement: false,
-    //     rent: false,
-    //     lease: false,
-    //     sale: true,
-    // }
-    // const [formInfo, setForm] = useForm(defaultData)
-    // console.log('formInfo :>> ', formInfo);
     const handleSubmit = (e) => {
         e.preventDefault()
         //     onSubmit(formData)
     }
-    // const formData = {
-    //     survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale
-    // }
 
-    // const [state, setState] = useState({
-    //     survey: false,
-    //     isGated: false,
-    //     isCctv: false,
-    //     isSecurityPersonnel: false,
-    //     isGarage: false,
-    //     // globalCOfO: true,
-    //     // certificateOfO: false,
-    //     // lawDeed: false,
-    //     agreement: false,
-    //     rent: false,
-    //     lease: false,
-    //     sale: true,
-    // });
-
-    // const setForm = (e) => {
-    //     setState((prevState) => ({
-    //         ...prevState,
-    //         [e.target.name]: e.target.checked,
-    //     }));
-    //     let boolean = null
-    //     if (e.target.value === 'true') {
-    //         boolean = true
-    //     } else if (e.target.value === 'false') {
-    //         boolean = false
-    //     }
-    // };
-
-
-    // const [isToggled, setIsToggled] = useState(false);
-    // const [lawDeed, setLawDeed] = useState(false)
-
-
-    // const lawDeed = () => {
-    //     setLawDeed((prevState) => !prevState);
-    // };
-    // const toggleState = () => {
-    //     setIsToggled((prevToggled) => !prevToggled);
-    // };
-
-    //     return (
-    //         <div>
-    //             <p>Boolean State: {isToggled ? 'True' : 'False'}</p>
-    //             <button onClick={toggleState}>Toggle</button>
-    //         </div>
-    //     );
-    // }
-
-    // export default BooleanStateExample;
-    // function formatMoney(price, currencySymbol = '&#8358;') {
-    //     return `${currencySymbol}${price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`;
-    // }
-
-    // const ammount = 3000000;
-    // const formatedMoney = formatMoney(amount);
-
-    // console.log(formattedMoney); // Output: "$3,000,000.00"
-
-
-    // function formatMoney(number) {
-    //     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    //     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    //     return number.toString().replace(/\d(?=(\d{3})+\.)/g, '$&,')
-    //     // ${ currencySymbol }${ number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') }
-    // }
-    let currencySymbol = '&#8358;'
-    // const amount = 3000000;
-    // const formatttedMoney = formatMoney(amount);
-
-    // console.log(formatttedMoney); // Output: "3,000,000"
-    // const numbers = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-    // const numbers = price.(`${currencySymbol}${number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`)
-    // const newCurrancy = new Intl.NumberFormat('en-NG',
-    //     {
-    //         style: 'currency',
-    //         currency: 'NGN',
-    //         currencyDisplay: 'code'
-    //     }).format(number);
-    // console.log(newCurrancy);
-
-    const formatPrices = price => {
-        price.toLocaleString('en-NG', { style: 'currency', currency: 'NGN', currencyDisplay: 'NGN' })
-    }
-    // console.log(price)
-    const formatPrice = (price) => {
-        return new Intl.NumberFormat('en-NG', {
-            currency: 'NGN', style: 'currency', maximumFractionDigits: 0,
-            minimumFractionDigits: 0, useGrouping: true,
-        }).format(price)
-    }
-    const number = 3000
-    const formattedMoney = number.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
-    // console.log(formattedMoney);
     const id = uuidv4()
     const unique_id = id.slice(0, 5)
 
@@ -298,8 +174,8 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                                         <div>
                                             <label htmlFor="price" className='text-[#F48222] text-base font-medium'>Price</label>
                                             <div>
-                                                <span>&#8358;</span>
-                                                <input type="text" value={(price)} name='price' required onChange={(e) => setPrice(e.target.value)} min='1' max='999000000' placeholder="Enter the number of plots" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                                {/* <span>&#8358;</span> */}
+                                                <input type="text" value={(price)} name='price' required onChange={(e) => setPrice(e.target.value)} min='1' max='999000000' placeholder="Enter the price" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                             </div>
                                         </div>
                                         <div className="form-control">
@@ -371,54 +247,3 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
 }
 
 export default SampleFirst
-
-
-{/* <Container maxWidth='xs' >
-    <h3 className='text-4xl font-primary font-bold text-[#008F97]'>Names</h3>
-    <TextField
-        label='Name'
-        name='name'
-        value={name}
-        onChange={setForm}
-        margin='normal'
-        variant='outlined'
-        autoComplete='off'
-        fullWidth
-        className="bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]"
-    />
-    <TextField
-        label='Address'
-        name='address'
-        value={address}
-        onChange={setForm}
-        margin='normal'
-        variant='outlined'
-        autoComplete='off'
-        fullWidth
-    />
-    <TextField
-        label='Description'
-        name='description'
-        value={description}
-        onChange={setForm}
-        margin='normal'
-        variant='outlined'
-        autoComplete='off'
-        fullWidth
-    />
-    <TextField
-        label='Location'
-        name='location'
-        value={location}
-        onChange={setForm}
-        margin='normal'
-        variant='outlined'
-        autoComplete='off'
-        fullWidth
-    />
-    {/* <Button className="btn font-primary text-base normal-case bg-[#118286] outline-none border-none hover:bg-[#118286] text-white" variant='contained' fullWidth color='#118286' style={{ marginTop: '1rem' }} onClick={() => navigation.next()}>
-    Next
-</Button> 
-</Container> */}
-{/* <button className="btn font-primary text-base normal-case bg-[#118286] outline-none border-none hover:bg-[#118286] text-white mt-6" onClick={() => navigation.next()}>Add Listing</button> */ }
-{/* <button className="btn font-primary text-base font-semibold normal-case bg-white outline outline-[#118286] outline-1 border-none hover:bg-white text-[#118286] md:w-[375px] w-[100px] h-[56px] " >Cancel</button> */ }

@@ -19,13 +19,7 @@ const Listings = ({ formData, listings, setForm }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
     }
-    // imports
 
-    // const values = () => {
-    //     description;
-    //     id: uuid
-    // }
-    // render
     console.log(uuidv4());
 
     const responsive = {
@@ -45,15 +39,6 @@ const Listings = ({ formData, listings, setForm }) => {
             slidesToSlide: 1,
         },
     };
-
-    // function ListingSearch() {
-    // const [searchTerm, setSearchTerm] = useState('');
-    // const [listings, setListings] = useState([
-    //     { id: 1, title: 'Listing 1', description: 'Description 1' },
-    //     { id: 2, title: 'Listing 2', description: 'Description 2' },
-    //     { id: 3, title: 'Listing 3', description: 'Description 3' },
-    //     // Add more listings here
-    // ]);
 
 
     // Function to handle the search
@@ -102,18 +87,6 @@ const Listings = ({ formData, listings, setForm }) => {
     //     </ul>
     // </div>
     const { ids } = useParams()
-    // const id = uuidv4()
-    // const listingPage = () => {
-    //     navigate(`/listing/${listings.id}`, {
-    //         replace: true,
-    //         state: {
-    //             listings
-    //         }
-    //     })
-    // onClick = {`/listing/${listing.id}`
-    // }
-
-
 
     return (
         <>

@@ -104,12 +104,13 @@ const Listings = ({ formData, listings, setForm }) => {
     const { ids } = useParams()
     const id = uuidv4()
     const listingPage = () => {
-        navigate('/listing/:ids', {
-            replace: false,
+        navigate('/listing/${listing.id}', {
+            replace: true,
             state: {
                 listings
             }
         })
+
     }
 
 
@@ -230,8 +231,8 @@ const Listings = ({ formData, listings, setForm }) => {
                             // // }
                             // // && */}
 
-                            (listings?.map((listing, index) => (
-                                <div key={index} className=' w-[350px] h-[350px] mt-[40px] mr-[40px]'>
+                            (listings?.map((listing) => (
+                                <div key={listing.id} className=' w-[350px] h-[350px] mt-[40px] mr-[40px]'>
                                     {/* <div className="card lg:card-side flex flex-column shadow-xl w-[950px] h-[350px] bg-[#9eecef]"> */}
                                     {/* <figure>
                                             <div className='w-[350px] h-[350px] rounded-t-xl'>
@@ -245,24 +246,24 @@ const Listings = ({ formData, listings, setForm }) => {
                                             </div>
                                         </figure> */}
 
-                                    <div className="w-[300px] h-[300px]  rounded-lg shadow-xl" onClick={listingPage}>
+                                    <div className="w-[300px] h-[300px] shadow-xl rounded-3xl">
                                         <figure>
                                             <div className='w-[300px] h-[200px]'>
-                                                <Carousel responsive={responsive}>
+                                                <Carousel responsive={responsive} className='rounded-t-3xl'>
                                                     {listing?.images?.map((image, index) => (
                                                         <div key={index} className="carousel-image w-[300px] h-[200px]">
-                                                            <img src={image} alt={`Image ${index}`} className='h-[100%] w-[300px]' />
+                                                            <img src={image} alt={`Image ${index}`} className='h-[100%] w-[300px] rounded-t-3xl' />
                                                         </div>
                                                     ))}
                                                 </Carousel>
                                             </div>
                                         </figure>
-                                        <div className="p-2 bg-[#F5E0B8]">
+                                        {/* {onClick = { listingPage } } */}
+                                        <Link to={`/listing/${listing.id}`} className="p-2 bg-[#F5E0B8] rounded-b-3xl" >
                                             <h2 className="font-bold text-xl break-words">{listing.title}</h2>
                                             <p className='font-semibold text-[#F48222] text-sm font-primary break-words'><span className='text-[#118286]'>Description:</span> {listing.description}</p>
                                             <p className='font-bold'><span className='text-[#118286]'>Price:</span> {listing.price}</p>
-
-                                        </div>
+                                        </Link>
                                     </div>
                                     {/* <div className="card-body">
                                             <h2 className="card-title text-[#F48222] text-xl">{listing.title}</h2>

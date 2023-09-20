@@ -10,6 +10,7 @@ import ImageUploader from './ImageUploader';
 // import { FontAwesomeIcon } from '@fontawesome/react-fontawesome'
 import { FaSquarePlus } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom'
+import { v4 as uuidv4 } from 'uuid';
 
 
 {/* <FontAwesomeIcon icon={faSquarePlus} style={{ color: "#080808", }} /> */ }
@@ -38,10 +39,10 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
     const [rent, setRent] = useState(false)
     const [lease, setLease] = useState(false)
     const [sale, setSale] = useState(false)
-    const [id, setId] = useState('')
+    // const [id, setId] = useState('')
 
-    const ids = Math.floor(Math.random(10 * 9999))
-    console.log(ids);
+    // const ids = Math.floor(Math.random(10 * 9999))
+    // console.log(ids);
     // console.log('formData :>> ', formData);
 
     // const defaultData = {
@@ -122,7 +123,9 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
 
     // export default BooleanStateExample;
 
-
+    const id = uuidv4()
+    const unique_id = id.slice(0, 5)
+    // let idCounter = 1
 
     const handleSave = (e) => {
         if (images.length === 0) {
@@ -153,7 +156,7 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
             return
         }
         // const formData = { survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale }
-        const listings = { title, description, location, landmark, images, plot, amenities, paymentType, document, survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale, ids }
+        const listings = { title, description, location, landmark, images, plot, amenities, paymentType, document, survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale, id: unique_id }
         // const listings = { title, description, location, landmark, images, plot, globalCOfO, certificateOfO, lawDeed }
         e.preventDefault()
         onSaveListing(listings)

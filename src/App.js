@@ -55,9 +55,12 @@ function App() {
             />
             <Route path="/listing" element={<Listings listings={listings} />} />
             <Route
-              path="/listing/:ids"
+              path="/listing/:id"
               element={<ListingPage listings={listings} />}
             />
+            {/* <Route path="/listing/:id">
+              <ListingPage listings={listings} />
+            </Route> */}
           </Routes>
         </div>
       </Router>

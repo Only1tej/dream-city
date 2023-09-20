@@ -123,10 +123,52 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
     // }
 
     // export default BooleanStateExample;
+    // function formatMoney(price, currencySymbol = '&#8358;') {
+    //     return `${currencySymbol}${price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`;
+    // }
 
+    // const ammount = 3000000;
+    // const formatedMoney = formatMoney(amount);
+
+    // console.log(formattedMoney); // Output: "$3,000,000.00"
+
+
+    // function formatMoney(number) {
+    //     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    //     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    //     return number.toString().replace(/\d(?=(\d{3})+\.)/g, '$&,')
+    //     // ${ currencySymbol }${ number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') }
+    // }
+    let currencySymbol = '&#8358;'
+    // const amount = 3000000;
+    // const formatttedMoney = formatMoney(amount);
+
+    // console.log(formatttedMoney); // Output: "3,000,000"
+    // const numbers = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    // const numbers = price.(`${currencySymbol}${number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`)
+    // const newCurrancy = new Intl.NumberFormat('en-NG',
+    //     {
+    //         style: 'currency',
+    //         currency: 'NGN',
+    //         currencyDisplay: 'code'
+    //     }).format(number);
+    // console.log(newCurrancy);
+
+    const formatPrices = price => {
+        price.toLocaleString('en-NG', { style: 'currency', currency: 'NGN', currencyDisplay: 'NGN' })
+    }
+    // console.log(price)
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('en-NG', {
+            currency: 'NGN', style: 'currency', maximumFractionDigits: 0,
+            minimumFractionDigits: 0, useGrouping: true,
+        }).format(price)
+    }
+    const number = 3000
+    const formattedMoney = number.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+    // console.log(formattedMoney);
     const id = uuidv4()
     const unique_id = id.slice(0, 5)
-    // let idCounter = 1
 
     const handleSave = (e) => {
         if (images.length === 0) {
@@ -257,7 +299,7 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                                             <label htmlFor="price" className='text-[#F48222] text-base font-medium'>Price</label>
                                             <div>
                                                 <span>&#8358;</span>
-                                                <input type="number" value={price} name='price' required onChange={(e) => setPrice(e.target.value)} placeholder="Enter the number of plots" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                                <input type="text" value={(price)} name='price' required onChange={(e) => setPrice(e.target.value)} min='1' max='999000000' placeholder="Enter the number of plots" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                             </div>
                                         </div>
                                         <div className="form-control">

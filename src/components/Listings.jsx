@@ -247,7 +247,7 @@ const Listings = ({ formData, listings, setForm }) => {
                                             </div>
                                         </figure> */}
 
-                                    <div className="w-[300px] h-[300px] shadow-xl rounded-3xl">
+                                    <div className="w-[300px] h-[300px] shadow-xl rounded-3xl bg-[#F5E0B8]">
                                         <figure>
                                             <div className='w-[300px] h-[200px]'>
                                                 <Carousel responsive={responsive} className='rounded-t-3xl'>
@@ -264,7 +264,7 @@ const Listings = ({ formData, listings, setForm }) => {
                                             <Link to={`/listing/${listing.id}`} className="" >
                                                 <h2 className="font-bold text-xl break-words">{listing.title}</h2>
                                                 <p className='font-semibold text-[#F48222] text-sm font-primary break-words'><span className='text-[#118286]'>Description:</span> {listing.description}</p>
-                                                <p className='font-bold'><span className='text-[#118286]'>Price:</span> {listing.price}</p>
+                                                <p className='font-bold'><span className='text-[#118286]'>Price:</span> &#8358;{listing.price}</p>
                                             </Link>
                                         </div>
                                     </div>

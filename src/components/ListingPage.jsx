@@ -79,6 +79,7 @@ const ListingPage = ({ listings }) => {
                                 <p className='text-[#F48222] text-lg font-primary font-bold'>Plot: <span className='font-medium'>{listing?.plot}</span></p>
                                 <p className='text-[#F48222] text-lg font-primary font-bold'>Payment Type: <span className='font-medium'>{listing?.paymentType}</span></p>
                             </div>
+                            <p className='text-[#F48222] text-lg font-primary font-bold'>Price: <span className='font-medium'>&#8358;{listing?.price}</span></p>
                             <p className='text-[#F48222] text-lg font-primary font-bold'>Certificate of Ownership: <span className='font-medium'>{listing?.certificateOfO === false ? 'No' : 'Yes'}</span></p>
                             <p className='text-[#F48222] text-lg font-primary font-bold'>Global Certificate of Ownership: <span className='font-medium'>{listing?.globalCOfO === false ? 'No' : 'Yes'}</span></p>
                             <div className='flex flex-row'>

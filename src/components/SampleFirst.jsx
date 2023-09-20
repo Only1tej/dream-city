@@ -23,6 +23,7 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
     const [location, setLocation] = useState('')
     const [landmark, setLandmark] = useState('')
     const [plot, setPlot] = useState('')
+    const [price, setPrice] = useState('')
     const [amenities, setAmenities] = useState([])
     const [document, setDocument] = useState([])
     const [paymentType, setPaymentType] = useState('Installment')
@@ -146,6 +147,9 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
         if (plot === '') {
             return
         }
+        if (price === '') {
+            return
+        }
         if (document === '') {
             return
         }
@@ -155,9 +159,7 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
         if (amenities === '') {
             return
         }
-        // const formData = { survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale }
-        const listings = { title, description, location, landmark, images, plot, amenities, paymentType, document, survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale, id: unique_id }
-        // const listings = { title, description, location, landmark, images, plot, globalCOfO, certificateOfO, lawDeed }
+        const listings = { title, description, location, landmark, images, plot, price, amenities, paymentType, document, survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale, id: unique_id }
         e.preventDefault()
         onSaveListing(listings)
         navigate('/listing')
@@ -252,8 +254,11 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                                             <input type="number" min={1} value={plot} name='plot' required onChange={(e) => setPlot(e.target.value)} placeholder="Enter the number of plots" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
                                         <div>
-                                            <label htmlFor="paymentType" className='text-[#F48222] text-base font-medium'>Payment Type</label>
-                                            <input type="text" value={paymentType} name='paymentType' disabled required onChange={(e) => setPaymentType(e.target.value)} placeholder="Enter the payment type" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                            <label htmlFor="price" className='text-[#F48222] text-base font-medium'>Price</label>
+                                            <div>
+                                                <span>&#8358;</span>
+                                                <input type="number" value={price} name='price' required onChange={(e) => setPrice(e.target.value)} placeholder="Enter the number of plots" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                            </div>
                                         </div>
                                         <div className="form-control">
                                             <label htmlFor="amenities" className='text-[#F48222] text-base font-medium'>Amenities</label>
@@ -303,8 +308,10 @@ const SampleFirst = ({ onSubmit, onSaveListing }) => {
                                                 <span className="label-text">Sale</span>
                                                 <input type="checkbox" onChange={(e) => setSale((prevState) => !prevState)} className="checkbox" />
                                             </label>
-                                            {/* <label htmlFor="sale" className='text-[#F48222] text-base font-medium'>Sale</label>
-                                            <input type="text" value={sale} name='sale' required onChange={(e) => setSale(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" /> */}
+                                        </div>
+                                        <div>
+                                            <label htmlFor="paymentType" className='text-[#F48222] text-base font-medium'>Payment Type</label>
+                                            <input type="text" value={paymentType} name='paymentType' disabled required onChange={(e) => setPaymentType(e.target.value)} placeholder="Enter the payment type" className="input input-bordered w-full bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                         </div>
                                     </div>
                                 </div>

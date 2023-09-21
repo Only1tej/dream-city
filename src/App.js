@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Home from "./components/Home";
 import { v4 as uuidv4 } from "uuid";
 import CreateAdmin from "./components/CreateAdmin";
-import CreateListing from "./components/CreateListing";
+import PaymentForm from "./components/PaymentForm";
 import ListingPage from "./components/ListingPage";
 import {
   BrowserRouter as Router,
@@ -11,7 +11,6 @@ import {
   Routes,
   useParams,
 } from "react-router-dom";
-import SampleForm from "./components/SampleForm";
 import SampleFirst from "./components/SampleFirst";
 import Listings from "./components/Listings";
 import { AuthProvider, useAuth } from "./components/Auth/Auth";
@@ -45,6 +44,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/create-admin" element={<CreateAdmin />} />
+            <Route path="/payment" element={<PaymentForm />} />
             {/* <Route path="/listings" element={<Listings />} /> */}
             {/* <Route path="/create-listing" element={<CreateListing />} /> */}
             <Route

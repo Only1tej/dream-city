@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import logo from '../../src/dreamcity/logo_1.png'
 import { useNavigate, useLocation } from "react-router-dom";
-// import { useAuth } from "./Auth/Auth";
+import { useAuth } from "./Auth/Auth";
 
 
 function Home() {
@@ -14,13 +14,13 @@ function Home() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
-    // const auth = useAuth();
+    const auth = useAuth();
     const location = useLocation();
 
     const redirectPath = location.state?.path || "/";
 
     const handleLogin = () => {
-        // auth.login(email);
+        auth.login(email);
         // navigate("/", { replace: true });
         navigate("/create-listing", { replace: true });
     };

@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { useNavigate, Link, useParams } from 'react-router-dom'
 import logo from '../../src/dreamcity/logo-transparent.png'
 import logo2 from '../../src/dreamcity/logo-slogan.png'
-import SampleFirst from './SampleFirst'
+import CreateListings from './CreateListings'
 import { useLocation } from 'react-router-dom'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -79,7 +79,6 @@ const Listings = ({ formData, listings, setForm }) => {
                             <img src={logo} alt="Logo" className='bg-[#F5E0B8] w-1/2 h-1/2 mx-auto' />
                             <img src={logo2} alt="Logo" className='bg-[#F5E0B8] mx-auto mt-1' />
                         </div>
-
                         <Link to="/listing" className='text-left active:bg-white focus:bg-white bg-white text-[#F48222] active:text-[#F48222] pl-[31px] py-[16px] font-medium text-lg font-primary'>Listings</Link>
                         <Link to="/create-listing" className='text-left active:bg-white focus:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px]'>Create Listing</Link>
                         <Link to="/create-admin" className='text-left active:bg-white text-[#118286] active:text-[#F48222] pl-[31px] py-[16px] '>Create Admin</Link>
@@ -178,31 +177,8 @@ const Listings = ({ formData, listings, setForm }) => {
                                 </div>
                             )
                             :
-
-                            // {/*                             
-                            // //     listingsWithIds.map((listing) => (
-                            // //         <li key={listing.id}>
-                            // //             <strong>{listing.name}</strong>: {listing.description}
-                            // //         </li>
-                            // //     ))&& listingsWithIds.map((listing)
-                            // // }
-                            // // && */}
-
                             (listings?.map((listing) => (
                                 <div key={listing.id} className=' w-[350px] h-[350px] mt-[40px] mr-[40px]'>
-                                    {/* <div className="card lg:card-side flex flex-column shadow-xl w-[950px] h-[350px] bg-[#9eecef]"> */}
-                                    {/* <figure>
-                                            <div className='w-[350px] h-[350px] rounded-t-xl'>
-                                                <Carousel responsive={responsive}>
-                                                    {listing?.images?.map((image, index) => (
-                                                        <div key={index} className="carousel-image w-[350px] h-[350px]">
-                                                            <img src={image} alt={`Image ${index}`} className='h-[100%] w-[350px]' />
-                                                        </div>
-                                                    ))}
-                                                </Carousel>
-                                            </div>
-                                        </figure> */}
-
                                     <div className="w-[300px] h-[300px] shadow-xl rounded-3xl bg-[#F5E0B8]">
                                         <figure>
                                             <div className='w-[300px] h-[200px]'>
@@ -215,7 +191,6 @@ const Listings = ({ formData, listings, setForm }) => {
                                                 </Carousel>
                                             </div>
                                         </figure>
-                                        {/* {onClick = { listingPage } } */}
                                         <div className='p-2 bg-[#F5E0B8] rounded-b-3xl'>
                                             <Link to={`/listing/${listing.id}`} className="" >
                                                 <h2 className="font-bold text-xl break-words">{listing.title}</h2>
@@ -224,34 +199,6 @@ const Listings = ({ formData, listings, setForm }) => {
                                             </Link>
                                         </div>
                                     </div>
-                                    {/* <div className="card-body">
-                                            <h2 className="card-title text-[#F48222] text-xl">{listing.title}</h2>
-                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Description: <span className='font-thin'>{listing.description}</span></p>
-                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Location: <span className='font-thin'>{listing.location}</span></p>
-                                            <div className='flex flex-row'>
-                                                <p className='text-[#F48222] text-sm font-primary font-bold'>Plot: <span className='font-thin'>{listing.plot}</span></p>
-                                                <p className='text-[#F48222] text-sm font-primary font-bold'>Payment Type: <span className='font-thin'>{listing.paymentType}</span></p>
-                                            </div>
-                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Certificate of Ownership: <span className='font-thin'>{listing?.certificateOfO === false ? 'No' : 'Yes'}</span></p>
-                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Global Certificate of Ownership: <span className='font-thin'>{state?.globalCOfO}{listing.globalCOfO === false ? 'No' : 'Yes'}</span></p>
-                                            <div className='flex flex-row'>
-                                                <p className='text-[#F48222] text-sm font-primary font-bold'>Agreement: <span className='font-thin'>{state?.agreement}{listing.agreement === false ? 'No' : 'Yes'}</span></p>
-                                                <p className='text-[#F48222] text-sm font-primary font-bold'>Law Deed: <span className='font-thin'>{state?.lawDeed}{listing.lawDeed === false ? 'No' : 'Yes'}</span></p>
-                                            </div>
-                                            <div className='flex flex-row'>
-                                                <p className='text-[#F48222] text-sm font-primary font-bold'>Sale: <span className='font-thin'>{state?.sale}{listing.sale === false ? 'No' : 'Yes'}</span></p>
-                                                <p className='text-[#F48222] text-sm font-primary font-bold'>Survey: <span className='font-thin'>{listing.survey === false ? 'No' : 'Yes'}</span></p>
-                                            </div>
-                                            <div className='flex flex-row'>
-                                                <p className='text-[#F48222] text-sm font-primary font-bold'>Gate: <span className='font-thin'>{state?.isGated}{listing.isGated === false ? 'No' : 'Yes'}</span></p>
-                                                <p className='text-[#F48222] text-sm font-primary font-bold'>Garage: <span className='font-thin'>{state?.isGarage}{listing.isGarage === false ? 'No' : 'Yes'}</span></p>
-                                            </div>
-                                            <div className='flex flex-row'>
-                                                <p className='text-[#F48222] text-sm font-primary font-bold'>Security Personnel: <span className='font-thin'>{state?.isSecurityPersonnel}{listing.isSecurityPersonnel === false ? 'No' : 'Yes'}</span></p>
-                                                <p className='text-[#F48222] text-sm font-primary font-bold'>CCTV: <span className='font-thin'>{state?.isCctv}{listing.isCctv === false ? 'No' : 'Yes'}</span></p>
-                                            </div>
-                                        </div> */}
-                                    {/* </div> */}
                                 </div>
 
                             )))}

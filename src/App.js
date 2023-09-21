@@ -4,8 +4,6 @@ import Home from "./components/Home";
 import { v4 as uuidv4 } from "uuid";
 import CreateAdmin from "./components/CreateAdmin";
 import CreateListing from "./components/CreateListing";
-import FormListing from "./components/FormListing";
-import ConfirmListings from "./components/ConfirmListings";
 import ListingPage from "./components/ListingPage";
 import {
   BrowserRouter as Router,

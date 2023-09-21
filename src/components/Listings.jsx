@@ -66,26 +66,7 @@ const Listings = ({ formData, listings, setForm }) => {
     //     )}
     // </div>
 
-    // Function to generate unique IDs for listings
-    // const generateUniqueIds = () => {
-    //     return listings.map((listing, index) => ({
-    //         ...listing,
-    //         id: uuidv4(),
-    //     }));
-    // };
-    // const listingsWithIds = generateUniqueIds();
 
-
-    // <div>
-    //     <h1>Listings with Unique IDs</h1>
-    //     <ul>
-    //         {listingsWithIds.map((listing) => (
-    //             <li key={listing.id}>
-    //                 <strong>{listing.name}</strong>: {listing.description}
-    //             </li>
-    //         ))}
-    //     </ul>
-    // </div>
     const { ids } = useParams()
 
     return (

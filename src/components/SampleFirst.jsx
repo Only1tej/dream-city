@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hooks-helper'
 import { Link } from 'react-router-dom'
-import { Container, TextField, Button, Box } from '@material-ui/core'
-import { ThemeProvider } from "@mui/styles";
 import logo from '../../src/dreamcity/logo-transparent.png'
 import logo2 from '../../src/dreamcity/logo-slogan.png'
 import ImageUploader from './ImageUploader';

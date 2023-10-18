@@ -118,13 +118,11 @@ const Listings = ({ formData, listings, setListings, setForm }) => {
 
 
         // }, [listings])
-    }, [search])
+    }, [search, theList])
 
     useEffect(() => {
-
-
         setTheList(listings);
-    }, [theList])
+    }, [listings])
 
     // useEffect(() => {
     //     setSampler(sampleData);

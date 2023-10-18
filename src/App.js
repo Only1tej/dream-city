@@ -41,7 +41,12 @@ function App() {
               path="/create-listing"
               element={<CreateListings onSaveListing={handleSaveListing} />}
             />
-            <Route path="/listing" element={<Listings listings={listings} />} />
+            <Route
+              path="/listing"
+              element={
+                <Listings listings={listings} setListings={setListings} />
+              }
+            />
             <Route
               path="/listing/:id"
               element={<ListingPage listings={listings} />}

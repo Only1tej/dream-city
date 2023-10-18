@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { useNavigate, Link, useParams } from 'react-router-dom'
 import logo from '../../src/dreamcity/logo-transparent.png'
@@ -8,7 +8,15 @@ import { useLocation } from 'react-router-dom'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-const Listings = ({ formData, listings, setForm }) => {
+let sampleData = [
+    { name: "ayo", age: 10, id: 1 },
+    { name: "bayo", age: 20, id: 2 },
+    { name: "cayo", age: 30, id: 3 },
+    { name: "dayo", age: 40, id: 4 },
+]
+
+const Listings = ({ formData, listings, setListings, setForm }) => {
+    const [theList, setTheList] = useState([])
     const [search, setSearch] = useState('')
     const { state } = useLocation()
     const [title, setTitle] = useState('')
@@ -21,6 +29,8 @@ const Listings = ({ formData, listings, setForm }) => {
     }
 
     console.log(uuidv4());
+
+    console.log("all the listings: ", listings)
 
     const responsive = {
         desktop: {
@@ -43,15 +53,27 @@ const Listings = ({ formData, listings, setForm }) => {
 
     // Function to handle the search
     const handleSearch = () => {
-        const filteredListings = listings.filter((listing) =>
-            listing.title.toLowerCase().includes(search.toLowerCase())
-        );
-        setSearchResults(filteredListings);
+        // const filteredListings = listings.filter((listing) =>
+
     };
     console.log(searchResults);
 
+    //Delete listings
+    // const deleteListings = (listing) => {
+    //     listings.removeChild()
+    // }
 
 
+    // function removeListing(listings, listingToRemove) {
+    //     return listings.filter((listing) => listing.id !== listingToRemove);
+    //     console.log(removeListing)
+    // }
+
+
+    // const removeListing = (listingToRemove) => {
+    //     const updatedListings = listings.filter((listing) => listing.id !== listingToRemove.id);
+
+    // }
     //     {searchResults.length === 0 ? (
     //         <p>No results found.</p>
     //     ) : (
@@ -68,6 +90,48 @@ const Listings = ({ formData, listings, setForm }) => {
 
 
     const { ids } = useParams()
+
+    // const [sampler, setSampler] = useState([])
+
+    // const handleDelete = (id) => {
+    //     console.log("the id: ", id)
+    //     const newData = sampleData.filter((data) => data.id !== id)
+    //     sampleData = newData;
+    //     setSampler(sampleData);
+
+    //     console.log("the new data: ", newData)
+    //     console.log("the new sampleData: ", newData)
+    // }
+
+    function removeListing(id) {
+        const newListings = listings.filter((listing) => listing.id !== id);
+        setListings(newListings);
+    }
+
+    useEffect(() => {
+        const filteredListings = theList.filter((listing) =>
+            listing.title.toLowerCase().includes(search.toLowerCase())
+        );
+
+        if (filteredListings.length > 0) { setSearchResults(filteredListings) }
+        else setSearchResults(theList);
+
+
+        // }, [listings])
+    }, [search])
+
+    useEffect(() => {
+
+
+        setTheList(listings);
+    }, [theList])
+
+    // useEffect(() => {
+    //     setSampler(sampleData);
+    // }, [])
+
+    console.log("the listing: ", listings)
+    console.log("the theList: ", theList)
 
     return (
         <>
@@ -89,7 +153,7 @@ const Listings = ({ formData, listings, setForm }) => {
                 <div className='sm:w-[500px] md:w-[650px] lg:w-[800px] pl-[28px] pt-[18px] pr-[32px] pb-[24px] lg:ml-[315px] ml-[200px]  '>
                     <div>
                         <input type="search" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search" className="input input-bordered w-[275px] md:w-[468px] h-[33px] rounded-none bg-white" />
-                        <button onClick={handleSearch}>Search</button>
+                        {/* <button onClick={handleSearch}>Search</button> */}
                         {/* <input
                             type="text"
                             placeholder="Search by title"
@@ -169,7 +233,7 @@ const Listings = ({ formData, listings, setForm }) => {
                         </> */}
 
 
-                        {listings?.length === 0 ?
+                        {theList?.length === 0 ?
                             (
                                 <div>
                                     <p className='lg:ml-[150px] md:ml-[40px] ml-[10px] mt-[150px] w-[400px] text-[#118286] bg-[#F5E0B8] p-2 rounded-md text-2xl font-semibold font-primary text-center'>There is no property listing for sale.
@@ -177,7 +241,8 @@ const Listings = ({ formData, listings, setForm }) => {
                                 </div>
                             )
                             :
-                            (listings?.map((listing) => (
+                            // (theList?.map((listing) => (
+                            (searchResults?.map((listing) => (
                                 <div key={listing.id} className=' w-[350px] h-[350px] mt-[40px] mr-[40px]'>
                                     <div className="w-[300px] h-[300px] shadow-xl rounded-3xl bg-[#F5E0B8]">
                                         <figure>
@@ -196,19 +261,38 @@ const Listings = ({ formData, listings, setForm }) => {
                                                 <h2 className="font-bold text-xl break-words">{listing.title}</h2>
                                                 <p className='font-semibold text-[#F48222] text-sm font-primary break-words'><span className='text-[#118286]'>Description:</span> {listing.description}</p>
                                                 <p className='font-bold'><span className='text-[#118286]'>Price:</span> &#8358;{listing.price}</p>
+                                                {/* <p className='text-[#118286]' onClick={removeListing}>Delete listings</p> */}
                                             </Link>
+                                            <button type="button" className='border-solid rounded-lg bg-[#9deef1] text-[#5a371a] flex justify-between py-2 px-3 items-center ' onClick={() => removeListing(listing.id)}>
+                                                Remove
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
 
                             )))}
                     </div >
+
+                    {/* <div>
+                        <h2 className='text-3xl'>Testing place</h2>
+                        <div className='flex flex-col space-y-3 '>
+                            {
+                                sampler.map((data) => (
+                                    <div key={data.id} className='border-solid rounded-lg bg-red-100 flex justify-between p-3 items-center '>
+                                        <p>{data.name}: {data.age}</p>
+                                        <button onClick={() => handleDelete(data.id)} className='p-3 bg-green-300'>X</button>
+                                    </div>
+                                ))
+                            }
+                        </div>
+
+                    </div> */}
                 </div>
             </div>
         </>
     )
-}
 
+}
 export default Listings
 
 
@@ -346,8 +430,6 @@ export default Listings
                                     ))
                                 }
                             </ul>}
-*/}
+// */}
 
-// import React from 'react';
-
-
+// import React from 'react'

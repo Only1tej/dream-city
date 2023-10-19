@@ -7,6 +7,7 @@ import CreateListings from './CreateListings'
 import { useLocation } from 'react-router-dom'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import Confirmation from './Confirmation'
 
 let sampleData = [
     { name: "ayo", age: 10, id: 1 },
@@ -23,6 +24,7 @@ const Listings = ({ formData, listings, setListings, setForm }) => {
     const [description, setDescription] = useState('')
     const [landmark, setLandmark] = useState('')
     const [searchResults, setSearchResults] = useState([]);
+    const [showMyModal, setShowMyModal] = useState(false)
     const navigate = useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -50,6 +52,7 @@ const Listings = ({ formData, listings, setListings, setForm }) => {
         },
     };
 
+    const handleCloseModal = () => { setShowMyModal(false) }
 
     // Function to handle the search
     const handleSearch = () => {
@@ -261,11 +264,15 @@ const Listings = ({ formData, listings, setListings, setForm }) => {
                                                 <p className='font-bold'><span className='text-[#118286]'>Price:</span> &#8358;{listing.price}</p>
                                                 {/* <p className='text-[#118286]' onClick={removeListing}>Delete listings</p> */}
                                             </Link>
-                                            <button type="button" className='border-solid rounded-lg bg-[#9deef1] text-[#5a371a] flex justify-between py-2 px-3 items-center ' onClick={() => removeListing(listing.id)}>
+                                            <button type="button" className='border-solid rounded-lg bg-[#9deef1] text-[#5a371a] flex justify-between py-2 px-3 items-center ' onClick={() => setShowMyModal(true)}>
                                                 Remove
                                             </button>
+                                            {/* <button type="button" className='border-solid rounded-lg bg-[#9deef1] text-[#5a371a] flex justify-between py-2 px-3 items-center ' onClick={() => removeListing(listing.id)}>
+                                            Remove
+                                            </button> */}
                                         </div>
                                     </div>
+                                    <Confirmation onClose={handleCloseModal} visible={showMyModal} setListings={setListings} listing={listing} listings={listings} />
                                 </div>
 
                             )))}

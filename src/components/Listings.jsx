@@ -25,6 +25,9 @@ const Listings = ({ formData, listings, setListings, setForm }) => {
     const [landmark, setLandmark] = useState('')
     const [searchResults, setSearchResults] = useState([]);
     const [showMyModal, setShowMyModal] = useState(false)
+    const [selectedToDelete, setSelectedToDelete] = useState(null)
+
+
     const navigate = useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -262,17 +265,16 @@ const Listings = ({ formData, listings, setListings, setForm }) => {
                                                 <h2 className="font-bold text-xl break-words">{listing.title}</h2>
                                                 <p className='font-semibold text-[#F48222] text-sm font-primary break-words'><span className='text-[#118286]'>Description:</span> {listing.description}</p>
                                                 <p className='font-bold'><span className='text-[#118286]'>Price:</span> &#8358;{listing.price}</p>
-                                                {/* <p className='text-[#118286]' onClick={removeListing}>Delete listings</p> */}
                                             </Link>
-                                            <button type="button" className='border-solid rounded-lg bg-[#9deef1] text-[#5a371a] flex justify-between py-2 px-3 items-center ' onClick={() => setShowMyModal(true)}>
+                                            <button type="button" className='font-primary font-bold text-bold border-solid rounded-lg bg-[#9deef1] text-[#5a371a] flex justify-between py-2 px-3 items-center ' onClick={() => {
+                                                setSelectedToDelete(listing)
+                                                setShowMyModal(true)
+                                            }}>
                                                 Remove
                                             </button>
-                                            {/* <button type="button" className='border-solid rounded-lg bg-[#9deef1] text-[#5a371a] flex justify-between py-2 px-3 items-center ' onClick={() => removeListing(listing.id)}>
-                                            Remove
-                                            </button> */}
+
                                         </div>
                                     </div>
-                                    <Confirmation onClose={handleCloseModal} visible={showMyModal} setListings={setListings} listing={listing} listings={listings} />
                                 </div>
 
                             )))}
@@ -294,6 +296,7 @@ const Listings = ({ formData, listings, setListings, setForm }) => {
                     </div> */}
                 </div>
             </div>
+            <Confirmation onClose={handleCloseModal} visible={showMyModal} setListings={setListings} listings={listings} listing={selectedToDelete} />
         </>
     )
 

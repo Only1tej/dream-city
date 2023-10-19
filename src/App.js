@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Home from "./components/Home";
 import { v4 as uuidv4 } from "uuid";
 import CreateAdmin from "./components/CreateAdmin";
+import Admins from "./components/Admins";
 import PaymentForm from "./components/PaymentForm";
 import PaymentReceipt from "./components/PaymentReceipt";
 import ListingPage from "./components/ListingPage";
@@ -20,9 +21,13 @@ function App() {
   const { ids } = useParams();
   const [listings, setListings] = useState([]);
   const [paymentDetails, setPaymentDetails] = useState([]);
+  const [admin, setAdmin] = useState([]);
 
   const handleSaveListing = (newListing) => {
     setListings((prevListings) => [...prevListings, newListing]);
+  };
+  const handleAdminSave = (newAdmin) => {
+    setAdmin((prevAdmin) => [...prevAdmin, newAdmin]);
   };
   const handlePaymentReceipt = (receipt) => {
     setPaymentDetails((prevReceipt) => [...prevReceipt, receipt]);
@@ -34,7 +39,11 @@ function App() {
         <div className="App">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/create-admin" element={<CreateAdmin />} />
+            <Route
+              path="/create-admin"
+              element={<CreateAdmin onSaveAdminDetail={handleAdminSave} />}
+            />
+            <Route path="/admins" element={<Admins />} />
             <Route path="/payment" element={<PaymentForm />} />
             <Route path="/payment-receipt" element={<PaymentReceipt />} />
             <Route

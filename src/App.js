@@ -27,7 +27,8 @@ function App() {
     setListings((prevListings) => [...prevListings, newListing]);
   };
   const handleAdminSaved = (newAdmin) => {
-    setAdmin((prevAdmin) => [...prevAdmin, newAdmin]);
+    const totalAdmins = [...admin, newAdmin];
+    setAdmin(totalAdmins);
   };
   const handlePaymentReceipt = (receipt) => {
     setPaymentDetails((prevReceipt) => [...prevReceipt, receipt]);

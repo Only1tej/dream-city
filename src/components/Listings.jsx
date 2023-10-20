@@ -11,7 +11,7 @@ import Confirmation from './Confirmation'
 
 
 
-const Listings = ({ formData, listings, setListings, setForm }) => {
+const Listings = ({ formData, listings, setListings, setAdminCreated, setForm }) => {
     const [theList, setTheList] = useState([])
     const [search, setSearch] = useState('')
     const { state } = useLocation()

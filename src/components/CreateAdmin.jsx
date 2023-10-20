@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import logo from '../../src/dreamcity/logo_1.png'
 import { v4 as uuidv4 } from 'uuid';
 
-function CreateAdmin({ onSubmit, onSaveAdminDetail }) {
+function CreateAdmin({ onSubmit, onSaveAdminDetail, adminDetail }) {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
@@ -20,19 +20,19 @@ function CreateAdmin({ onSubmit, onSaveAdminDetail }) {
         if (firstName === '') {
             return
         }
-        // if (lastName === '') {
-        //     return
-        // }
-        // if (email === '') {
-        //     return
-        // }
-        // if (phoneNumber === '') {
-        //     return
-        // }
+        if (lastName === '') {
+            return
+        }
+        if (email === '') {
+            return
+        }
+        if (phoneNumber === '') {
+            return
+        }
 
         const adminDetail = { firstName, lastName, email, phoneNumber, photos, id: unique_id }
         e.preventDefault()
-        // onSaveAdminDetail(adminDetail)
+        onSaveAdminDetail(adminDetail)
         navigate('/admins')
         // console.log(adminDetail);
     }
@@ -106,7 +106,7 @@ function CreateAdmin({ onSubmit, onSaveAdminDetail }) {
                                                 <label className="label py-0">
                                                     <span className="label-text text-[#F48222]">Last Name</span>
                                                 </label>
-                                                <input type="text" placeholder="Enter last name" className="input bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                                <input type="text" value={lastName} name='lastName' required onChange={(e) => setLastName(e.target.value)} placeholder="Enter last name" className="input bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                             </div>
                                         </div>
                                         <div className='lg:flex lg:space-x-16 '>
@@ -114,13 +114,13 @@ function CreateAdmin({ onSubmit, onSaveAdminDetail }) {
                                                 <label className="label py-0">
                                                     <span className="label-text text-[#F48222]">Email</span>
                                                 </label>
-                                                <input type="text" placeholder="Enter email" className="input bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                                <input type="text" value={email} name='email' required onChange={(e) => setEmail(e.target.value)} placeholder="Enter email" className="input bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                             </div>
                                             <div className="form-control">
                                                 <label className="label py-0">
                                                     <span className="label-text text-[#F48222]">Phone Number</span>
                                                 </label>
-                                                <input type="text" placeholder="Enter phone number" className="input bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                                <input type="text" value={phoneNumber} name='phoneNumber' required onChange={(e) => setPhoneNumber(e.target.value)} placeholder="Enter phone number" className="input bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                             </div>
                                         </div>
                                         <div className=''>

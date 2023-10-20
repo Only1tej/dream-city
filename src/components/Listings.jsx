@@ -9,12 +9,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Confirmation from './Confirmation'
 
-let sampleData = [
-    { name: "ayo", age: 10, id: 1 },
-    { name: "bayo", age: 20, id: 2 },
-    { name: "cayo", age: 30, id: 3 },
-    { name: "dayo", age: 40, id: 4 },
-]
+
 
 const Listings = ({ formData, listings, setListings, setForm }) => {
     const [theList, setTheList] = useState([])
@@ -32,10 +27,6 @@ const Listings = ({ formData, listings, setListings, setForm }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
     }
-
-    console.log(uuidv4());
-
-    console.log("all the listings: ", listings)
 
     const responsive = {
         desktop: {
@@ -64,51 +55,6 @@ const Listings = ({ formData, listings, setListings, setForm }) => {
     };
     console.log(searchResults);
 
-    //Delete listings
-    // const deleteListings = (listing) => {
-    //     listings.removeChild()
-    // }
-
-
-    // function removeListing(listings, listingToRemove) {
-    //     return listings.filter((listing) => listing.id !== listingToRemove);
-    //     console.log(removeListing)
-    // }
-
-
-    // const removeListing = (listingToRemove) => {
-    //     const updatedListings = listings.filter((listing) => listing.id !== listingToRemove.id);
-
-    // }
-    //     {searchResults.length === 0 ? (
-    //         <p>No results found.</p>
-    //     ) : (
-    //         <ul>
-    //             {searchResults.map((listing) => (
-    //                 <li key={listing.id}>
-    //                     <h3>{listing.title}</h3>
-    //                     <p>{listing.description}</p>
-    //                 </li>
-    //             ))}
-    //         </ul>
-    //     )}
-    // </div>
-
-
-    const { ids } = useParams()
-
-    // const [sampler, setSampler] = useState([])
-
-    // const handleDelete = (id) => {
-    //     console.log("the id: ", id)
-    //     const newData = sampleData.filter((data) => data.id !== id)
-    //     sampleData = newData;
-    //     setSampler(sampleData);
-
-    //     console.log("the new data: ", newData)
-    //     console.log("the new sampleData: ", newData)
-    // }
-
     function removeListing(id) {
         const newListings = listings.filter((listing) => listing.id !== id);
         setListings(newListings);
@@ -134,8 +80,8 @@ const Listings = ({ formData, listings, setListings, setForm }) => {
     //     setSampler(sampleData);
     // }, [])
 
-    console.log("the listing: ", listings)
-    console.log("the theList: ", theList)
+    // console.log("the listing: ", listings)
+    // console.log("the theList: ", theList)
 
     return (
         <>
@@ -157,86 +103,8 @@ const Listings = ({ formData, listings, setListings, setForm }) => {
                 <div className='sm:w-[500px] md:w-[650px] lg:w-[800px] pl-[28px] pt-[18px] pr-[32px] pb-[24px] lg:ml-[315px] ml-[200px]  '>
                     <div>
                         <input type="search" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search" className="input input-bordered w-[275px] md:w-[468px] h-[33px] rounded-none bg-white" />
-                        {/* <button onClick={handleSearch}>Search</button> */}
-                        {/* <input
-                            type="text"
-                            placeholder="Search by title"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        /> */}
-                        {/* {listings.filter((item) => {
-                            return search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)
-                        })} */}
                     </div>
-
-                    {/* <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-x-48 grid-cols-2"> */}
-                    {/* <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-x-64 space-y-48 md:space-y-24"> */}
-
-                    {/* <div className="grid grid-cols-1 lg:gap-x-64 " grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2> */}
                     <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-x-64 " >
-                        {/* {listings?.filter((item) => {
-                                return search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)
-                            })} */}
-                        {/* The filter function */}
-                        {/* <>
-
-                            {
-
-                                < ul >
-                                    {
-                                        searchResults.filter((listing) => (
-                                            // <li>
-                                            //     <h3>{listing.title}</h3>
-                                            //     <p>{listing.description}</p>
-                                            // </li>
-                                            <div className='w-[285px] h-[239px] mt-[40px] mr-[40px]'>
-                                                <div className="card lg:card-side flex flex-column shadow-xl w-[950px] h-[350px] bg-[#9eecef]">
-                                                    <figure>
-                                                        <div className='w-[350px] h-[350px] rounded-t-xl'>
-                                                            <Carousel responsive={responsive}>
-                                                                {listing?.images?.map((image, index) => (
-                                                                    <div key={index} className="carousel-image w-[350px] h-[350px]">
-                                                                        <img src={image} alt={`Image ${index}`} className='h-[100%] w-[350px]' />
-                                                                    </div>
-                                                                ))}
-                                                            </Carousel>
-                                                        </div>
-                                                    </figure>
-                                                    <div className="card-body">
-                                                        <h2 className="card-title text-[#F48222] text-xl">{listing.title}</h2>
-                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Description: <span className='font-thin'>{listing.description}</span></p>
-                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Location: <span className='font-thin'>{listing.location}</span></p>
-                                                        <div className='flex flex-row'>
-                                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Plot: <span className='font-thin'>{listing.plot}</span></p>
-                                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Payment Type: <span className='font-thin'>{listing.paymentType}</span></p>
-                                                        </div>
-                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Certificate of Ownership: <span className='font-thin'>{listing?.certificateOfO === false ? 'No' : 'Yes'}</span></p>
-                                                        <p className='text-[#F48222] text-sm font-primary font-bold'>Global Certificate of Ownership: <span className='font-thin'>{state?.globalCOfO}{listing.globalCOfO === false ? 'No' : 'Yes'}</span></p>
-                                                        <div className='flex flex-row'>
-                                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Agreement: <span className='font-thin'>{state?.agreement}{listing.agreement === false ? 'No' : 'Yes'}</span></p>
-                                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Law Deed: <span className='font-thin'>{state?.lawDeed}{listing.lawDeed === false ? 'No' : 'Yes'}</span></p>
-                                                        </div>
-                                                        <div className='flex flex-row'>
-                                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Sale: <span className='font-thin'>{state?.sale}{listing.sale === false ? 'No' : 'Yes'}</span></p>
-                                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Survey: <span className='font-thin'>{listing.survey === false ? 'No' : 'Yes'}</span></p>
-                                                        </div>
-                                                        <div className='flex flex-row'>
-                                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Gate: <span className='font-thin'>{state?.isGated}{listing.isGated === false ? 'No' : 'Yes'}</span></p>
-                                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Garage: <span className='font-thin'>{state?.isGarage}{listing.isGarage === false ? 'No' : 'Yes'}</span></p>
-                                                        </div>
-                                                        <div className='flex flex-row'>
-                                                            <p className='text-[#F48222] text-sm font-primary font-bold'>Security Personnel: <span className='font-thin'>{state?.isSecurityPersonnel}{listing.isSecurityPersonnel === false ? 'No' : 'Yes'}</span></p>
-                                                            <p className='text-[#F48222] text-sm font-primary font-bold'>CCTV: <span className='font-thin'>{state?.isCctv}{listing.isCctv === false ? 'No' : 'Yes'}</span></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ))
-                                    }
-                                </ul>}
-                        </> */}
-
-
                         {theList?.length === 0 ?
                             (
                                 <div>
@@ -279,21 +147,6 @@ const Listings = ({ formData, listings, setListings, setForm }) => {
 
                             )))}
                     </div >
-
-                    {/* <div>
-                        <h2 className='text-3xl'>Testing place</h2>
-                        <div className='flex flex-col space-y-3 '>
-                            {
-                                sampler.map((data) => (
-                                    <div key={data.id} className='border-solid rounded-lg bg-red-100 flex justify-between p-3 items-center '>
-                                        <p>{data.name}: {data.age}</p>
-                                        <button onClick={() => handleDelete(data.id)} className='p-3 bg-green-300'>X</button>
-                                    </div>
-                                ))
-                            }
-                        </div>
-
-                    </div> */}
                 </div>
             </div>
             <Confirmation onClose={handleCloseModal} visible={showMyModal} setListings={setListings} listings={listings} listing={selectedToDelete} />

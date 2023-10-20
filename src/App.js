@@ -26,7 +26,7 @@ function App() {
   const handleSaveListing = (newListing) => {
     setListings((prevListings) => [...prevListings, newListing]);
   };
-  const handleAdminSave = (newAdmin) => {
+  const handleAdminSaved = (newAdmin) => {
     setAdmin((prevAdmin) => [...prevAdmin, newAdmin]);
   };
   const handlePaymentReceipt = (receipt) => {
@@ -41,11 +41,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route
               path="/create-admin"
-              element={<CreateAdmin onSaveAdminDetail={handleAdminSave} />}
+              element={<CreateAdmin onSaveAdminDetail={handleAdminSaved} />}
             />
-            <Route path="/admins" element={<Admins />} />
-            <Route path="/payment" element={<PaymentForm />} />
-            <Route path="/payment-receipt" element={<PaymentReceipt />} />
+            <Route path="/admins" element={<Admins admin={admin} />} />
             <Route
               path="/create-listing"
               element={<CreateListings onSaveListing={handleSaveListing} />}
@@ -60,6 +58,8 @@ function App() {
               path="/listing/:id"
               element={<ListingPage listings={listings} />}
             />
+            <Route path="/payment" element={<PaymentForm />} />
+            <Route path="/payment-receipt" element={<PaymentReceipt />} />
           </Routes>
         </div>
       </Router>

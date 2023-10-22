@@ -50,9 +50,6 @@ const Admins = ({ adminDetail }) => {
                                 </div>
                             ))}
                         </Carousel>
-                        <Carousel>
-                            {adminDetail?.phoneNumber?.map(())}
-                        </Carousel>
                     </div>
                 </figure>
             </div>

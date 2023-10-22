@@ -153,8 +153,6 @@ function CreateAdmin({ onSubmit, onSaveAdminDetail, adminDetail }) {
                                                 <div className="form-control mt-6 space-y-3">
                                                     <button className="btn font-primary text-base normal-case bg-[#118286] outline-none border-none hover:bg-[#118286] text-white" onClick={handleAdminSaved}>Create Admin</button>
                                                     <button onClick={handleLogin} className='btn font-primary text-base normal-case bg-[#F5E0B8] hover:bg-[#F5E0B8] border-none text-[#118286]'>Login</button>
-                                                    <button onClick={handleLogin} className='btn font-primary text-base normal-case bg-[#F5E0B8] hover:bg-[#F5E0B8] border-none text-[#118286]'>Login</button>
-
                                                 </div>
                                             </div>
                                         </form>

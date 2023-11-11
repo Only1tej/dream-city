@@ -1,5 +1,6 @@
 import "./App.css";
 import React, { useState } from "react";
+import axios from "axios";
 import Home from "./components/Home";
 import { v4 as uuidv4 } from "uuid";
 import CreateAdmin from "./components/CreateAdmin";
@@ -24,8 +25,23 @@ function App() {
   const [admin, setAdmin] = useState([]);
 
   const handleSaveListing = (newListing) => {
-    setListings((prevListings) => [...prevListings, newListing]);
+    async function postListings() {
+      try {
+        const response = await axios.post(
+          "https://dcanestate.onrender.com/listing/create-listing",
+          { newListing }
+        );
+        console.log("Response:", response.data);
+        setListings(response.data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+    postListings();
   };
+  // const handleSaveListing = (newListing) => {
+  //   setListings((prevListings) => [...prevListings, newListing]);
+  // };
   const handleAdminSaved = (newAdmin) => {
     const totalAdmins = [...admin, newAdmin];
     setAdmin(totalAdmins);
@@ -34,6 +50,7 @@ function App() {
     setPaymentDetails((prevReceipt) => [...prevReceipt, receipt]);
   };
   const id = uuidv4();
+
   return (
     <AuthProvider>
       <Router>
@@ -69,3 +86,28 @@ function App() {
 }
 
 export default App;
+
+//  const client = axios.create({
+//    baseURL: "https://dcanestate.onrender.com/listing/create-listing",
+//  });
+// const addListings = (newListing) => {
+//       client
+//         .post("", {
+//           newListing,
+//         })
+//         .then((response) => {
+//           setListings((newListing) => [response.data, ...newListing]);
+//         });
+//     };
+// async function postListings() {
+//   try {
+//     const response = await axios.post(
+//       "https://dcanestate.onrender.com/listing/create-listing",
+//       { newListing }
+//     );
+//     console.log("Response:", response.data);
+//   } catch (error) {
+//     console.error("Error:", error);
+//   }
+// }
+// postListings();

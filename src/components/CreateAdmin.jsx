@@ -1,14 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { register, reset } from '../features/auth/authSlice'
 import logo from '../../src/dreamcity/logo_1.png'
 import { v4 as uuidv4 } from 'uuid';
+import Spinner from './Spinner'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-function CreateAdmin({ onSubmit, onSaveAdminDetail, adminDetail }) {
+function CreateAdmin({ onSaveAdminDetail, adminDetail }) {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [password2, setPassword2] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
     const [photos, setPhotos] = useState([]);
 
@@ -35,34 +40,34 @@ function CreateAdmin({ onSubmit, onSaveAdminDetail, adminDetail }) {
     const id = uuidv4()
     const unique_id = id.slice(0, 7)
 
-    const handleAdminSaved = (e) => {
-        if (photos.length === 0) {
-            return
-        }
-        if (firstName === '') {
-            return
-        }
-        if (lastName === '') {
-            return
-        }
-        if (email === '') {
-            return
-        }
-        if (phoneNumber === '') {
-            return
-        }
-        console.log("first name: ", firstName)
-        console.log("last name: ", lastName)
-        console.log("email name: ", email)
-        console.log("phone name: ", phoneNumber)
+    // const handleAdminSaved = (e) => {
+    //     if (photos.length === 0) {
+    //         return
+    //     }
+    //     if (firstName === '') {
+    //         return
+    //     }
+    //     if (lastName === '') {
+    //         return
+    //     }
+    //     if (email === '') {
+    //         return
+    //     }
+    //     if (phoneNumber === '') {
+    //         return
+    //     }
+    //     console.log("first name: ", firstName)
+    //     console.log("last name: ", lastName)
+    //     console.log("email name: ", email)
+    //     console.log("phone name: ", phoneNumber)
 
-        const adminDetail = { firstName, lastName, email, phoneNumber, photos, id: unique_id }
-        e.preventDefault()
-        onSaveAdminDetail(adminDetail)
-        setAdminCreated(adminDetail)
-        // navigate('/admins')
-        // console.log(adminDetail);
-    }
+    //     const adminDetail = { firstName, lastName, email, phoneNumber, photos, id: unique_id }
+    //     e.preventDefault()
+    //     onSaveAdminDetail(adminDetail)
+    //     setAdminCreated(adminDetail)
+    //     // navigate('/admins')
+    //     // console.log(adminDetail);
+    // }
 
     const handlePhotoUpload = (e) => {
         if (photos.length >= 1) {
@@ -93,6 +98,42 @@ function CreateAdmin({ onSubmit, onSaveAdminDetail, adminDetail }) {
         navigate('/')
     }
 
+    const dispatch = useDispatch()
+
+    const { user, isLoading, isSuccess, isError, message, ...rest } = useSelector(state => state.auth)
+    useEffect(() => {
+        if (isError) {
+            // console.error(message)
+            console.log(message);
+        }
+
+        //Redirect when logged in
+        if (isSuccess || user) {
+            navigate('/')
+        }
+
+        dispatch(reset())
+    }, [isError, isSuccess, user, message, navigate, dispatch])
+
+    const onSubmit = (e) => {
+        e.preventDefault()
+
+        if (password !== password2) {
+            console.error('Passwords do not match')
+        }
+        if
+            (adminDetail = {
+                firstName, lastName, email, password, password2, phoneNumber, photos, id: unique_id
+            }) {
+            dispatch(register(adminDetail))
+        }
+    }
+
+    if (isLoading) {
+        return <Spinner />
+    }
+
+
     return (
         <>
             <div className=''>
@@ -113,7 +154,7 @@ function CreateAdmin({ onSubmit, onSaveAdminDetail, adminDetail }) {
                                     </div>
                                     <div className=" w-72 h-[530px] md:w-[500px] md:h-[470px] lg:w-[600px] lg:h-[380px] flex-shrink-0 min-w-sm bg-base-100">
 
-                                        <form>
+                                        <form onSubmit={onSubmit}>
                                             <div className="card-body bg-[#F5E0B8]">
                                                 <div className='lg:flex lg:space-x-16 '>
                                                     <div className="form-control mb-2">
@@ -143,6 +184,20 @@ function CreateAdmin({ onSubmit, onSaveAdminDetail, adminDetail }) {
                                                         <input type="text" value={phoneNumber} name='phoneNumber' required onChange={(e) => setPhoneNumber(e.target.value)} placeholder="Enter phone number" className="input bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
                                                     </div>
                                                 </div>
+                                                <div className='lg:flex lg:space-x-16 '>
+                                                    <div className="form-control mb-2">
+                                                        <label className="label py-0">
+                                                            <span className="label-text text-[#F48222]">Password</span>
+                                                        </label>
+                                                        <input type="password" value={password} name='password' required onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" className="input bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                                    </div>
+                                                    <div className="form-control">
+                                                        <label className="label py-0">
+                                                            <span className="label-text text-[#F48222]">Confirm Password</span>
+                                                        </label>
+                                                        <input type="password" value={password2} name='password2' required onChange={(e) => setPassword2(e.target.value)} placeholder="Confirm password" className="input bg-[#F5E0B8] border-5 border-[#ACABAB] valid:text-[#118286] focus:border-[#ACABAB] focus:outline-none focus:bg-[#F5E0B8]" />
+                                                    </div>
+                                                </div>
                                                 <div className=''>
                                                     {/* <FaSquarePlus style={{ color: "#7C6A0A" }} onChange={handleImageUpload} type='file' /> */}
                                                     <input type="file" max='1' accept='.jpg, .png, .jpeg, .avif' required onChange={handlePhotoUpload} disabled={isPhotoLimitReached} />
@@ -151,7 +206,7 @@ function CreateAdmin({ onSubmit, onSaveAdminDetail, adminDetail }) {
                                                     <div>{renderCarousel()}</div>
                                                 </div>
                                                 <div className="form-control mt-6 space-y-3">
-                                                    <button className="btn font-primary text-base normal-case bg-[#118286] outline-none border-none hover:bg-[#118286] text-white" onClick={handleAdminSaved}>Create Admin</button>
+                                                    <button className="btn font-primary text-base normal-case bg-[#118286] outline-none border-none hover:bg-[#118286] text-white" onClick={onSubmit}>Create Admin</button>
                                                     <button onClick={handleLogin} className='btn font-primary text-base normal-case bg-[#F5E0B8] hover:bg-[#F5E0B8] border-none text-[#118286]'>Login</button>
                                                 </div>
                                             </div>

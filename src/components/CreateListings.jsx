@@ -106,6 +106,43 @@ const CreateListings = ({ onSubmit, onSaveListing }) => {
     };
     const navigate = useNavigate()
 
+    // const update = {
+    //     title: 'Oyebode Yusuf',
+    //     body: 'Brilliant post on fetch API',
+    //     userId: id,
+    // };
+
+    // const options = {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(update),
+    // };
+
+    // fetch('https://dcanestate.onrender.com/listing/create-listing', options)
+    //     .then(data => {
+    //         if (!data.ok) {
+    //             throw Error(data.status);
+    //         }
+    //         return data.json();
+    //     }).then(update => {
+    //         console.log(update);
+    //         // // {
+    //         // //
+    //         // title: 'A blog post by Kingsley',
+    //         //     //
+    //         //     body: 'Brilliant post on fetch API',
+    //         //         //
+    //         //         userId: 1,
+    //         //             //
+    //         //             id: 101
+    //         // // };
+    //     }).catch(error => {
+    //         console.log(error);
+    //     });
+
+
     return (
 
         <div className=' max-h-screen  bg-white'>

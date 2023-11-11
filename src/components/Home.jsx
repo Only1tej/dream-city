@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from '../../src/dreamcity/logo_1.png'
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "./Auth/Auth";
+import { useSelector, useDispatch } from 'react-redux'
+import { login, reset } from '../features/auth/authSlice'
+import Spinner from "./Spinner";
 
 
 function Home() {
@@ -19,11 +22,11 @@ function Home() {
 
     const redirectPath = location.state?.path || "/";
 
-    const handleLogin = () => {
-        auth.login(email);
-        // navigate("/", { replace: true });
-        navigate("/create-listing", { replace: true });
-    };
+    // const handleLogin = () => {
+    //     auth.login(email);
+    //     // navigate("/", { replace: true });
+    //     navigate("/create-listing", { replace: true });
+    // };
 
     function isValidEmail(email) {
         return /\S+@\S+\.\S+/.test(email);
@@ -54,6 +57,49 @@ function Home() {
         return regex.test(email);
     };
 
+    const dispatch = useDispatch()
+    // const navigate = useNavigate()
+
+    const { user, isLoading, isSuccess, isError, message } = useSelector(state => state.auth)
+
+    useEffect(() => {
+        if (isError) {
+            console.error(message)
+        }
+
+        //Redirect when logged in
+        if (isSuccess || user) {
+            navigate('/')
+        }
+
+        dispatch(reset())
+    }, [isError, isSuccess, user, message, navigate, dispatch])
+
+    // const onChange = (e) => {
+    //     setFormData((prevState) => ({
+    //         ...prevState,
+    //         [e.target.name]: e.target.value,
+    //     }))
+    // }
+
+    const onSubmit = (e) => {
+        e.preventDefault()
+        if (!validateEmail(email)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+        const userData = {
+            email,
+            password
+        }
+
+        dispatch(login(userData))
+    }
+
+    if (isLoading) {
+        return <Spinner />
+    }
+
     return (
         <>
             <div>
@@ -70,7 +116,8 @@ function Home() {
                                 <h1 className="text-4xl lg:mr-[460px] font-bold text-[#008F97]">Login</h1>
                             </div>
                             <div className="w-72 md:w-[420px] lg:w-[560px] flex-shrink-0 min-w-sm bg-base-100">
-                                <form onSubmit={handleSubmit}>
+                                {/* <form onSubmit={handleSubmit}> */}
+                                <form onSubmit={onSubmit}>
                                     <div className="bg-[#F5E0B8]">
                                         <div className="form-control mb-2">
                                             <label className="label py-0">

@@ -1,12 +1,19 @@
-import React, { useState } from 'react'
-import { useForm } from 'react-hooks-helper'
+import React, { useState, useEffect } from 'react'
+// import { useForm } from 'react-hooks-helper'
 import { Link } from 'react-router-dom'
 import logo from '../../src/dreamcity/logo-transparent.png'
 import logo2 from '../../src/dreamcity/logo-slogan.png'
 import { FaSquarePlus } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid';
+import Spinner from './Spinner'
+import { useSelector, useDispatch } from 'react-redux'
+import axios from 'axios'
+import Rough from './Rough';
+import { createListing, reset } from '../features/listings/listingSlice';
 
+// import { Image } from 'cloudinary-react'
+// import cloudinary from '../cloudinaryConfig'
 
 
 
@@ -34,11 +41,31 @@ const CreateListings = ({ onSubmit, onSaveListing }) => {
     const [rent, setRent] = useState(false)
     const [lease, setLease] = useState(false)
     const [sale, setSale] = useState(false)
+    const [imageSelected, setImageSelected] = useState('')
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const { user } = useSelector((state) => state.auth)
+    const { isLoading, isError, isSuccess, message } = useSelector((state) => state.listings)
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
         //     onSubmit(formData)
     }
+
+    useEffect(() => {
+        if (isError) {
+            console.error("this is the error message: ", message)
+        }
+
+        if (isSuccess) {
+            dispatch(reset())
+            navigate('/listing')
+        }
+        dispatch(reset())
+    }, [dispatch, isSuccess, isError, navigate, message]
+    )
 
     const id = uuidv4()
     const unique_id = id.slice(0, 5)
@@ -74,23 +101,117 @@ const CreateListings = ({ onSubmit, onSaveListing }) => {
         if (amenities === '') {
             return
         }
-        const listings = { title, description, location, landmark, images, plot, price, amenities, paymentType, document, survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale, id: unique_id }
+        // const listings = { title, description, location, landmark, images, plot, price, amenities, paymentType, document, survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale, id: unique_id }
         e.preventDefault()
-        onSaveListing(listings)
+        // onSaveListing(listings)
+        // console.log(listings);
         navigate('/listing')
+        dispatch(createListing({ title, description, location, landmark, images, plot, price, amenities, paymentType, document, survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale, id: unique_id }))
     }
 
-    const handleImageUpload = (e) => {
+    // const { user, isLoading, isSuccess, isError, message, ...rest } = useSelector(state => state.auth)
+    if (isLoading) {
+        return <Spinner />
+    }
+
+
+
+    // const handleImageUpload = (e) => {
+    //     if (images.length >= 6) {
+    //         return;
+    //     }
+
+    //     const file = e.target.files[0];
+
+    //     function getBase64(file, callback) {
+    //         const reader = new FileReader();
+
+    //         reader.addEventListener('load', () => {
+    //             callback(reader.result);
+    //         });
+
+    //         reader.readAsDataURL(file);
+    //     }
+
+    //     getBase64(file, function (base64Data) {
+    //         // Here you can have your code which uses Base64 for its operation
+    //         console.log("Base64 of file is", base64Data);
+
+    //         // Move setImages inside the load event listener
+    //         setImages((prevImages) => [...prevImages, base64Data]);
+    //     });
+    // };
+
+
+
+    // const uploadImage = (files) => {
+    //     const formData = new FormData()
+    //     formData.append("file", imageSelected)
+    //     formData.append("upload_preset", "nmvblrg4")
+
+    //     axios.post('https://api.cloudinary.com/v1_1/dc7rhipsj/image/upload', formData)
+    //         .then((response) => {
+    //             console.log(response)
+    //         })
+    // }
+
+    // const ImageUpload = () => {
+    //     const [images, setImages] = useState([]);
+
+    /** */
+
+    // const handleImageUpload = async (e) => {
+    //     if (images.length >= 6) {
+    //         return;
+    //     }
+    //     const files = e.target.files;
+
+    //     // Iterate over selected files
+    //     for (const file of files) {
+    //         const formData = new FormData();
+    //         // formData.append('file', file);
+    //         // formData.append('upload_preset', 'nmvblrg4'); // Set your Cloudinary upload preset
+
+    //         // Upload file to Cloudinary////////
+
+    //         // const response = await axios.post('https://api.cloudinary.com/v1_1/dc7rhipsj/image/upload', formData);
+    //         // const data = await response.json();
+    //         // console.log(data);
+    //         // const imageUrl = data.secure_url;
+
+    //         // setImages((prevImages) => [...prevImages, imageUrl]);
+    //     }
+    // };
+
+    const handleImageUpload = async (e) => {
         if (images.length >= 6) {
             return;
         }
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            setImages((prevImages) => [...prevImages, reader.result])
-        }
-    };
+        const files = e.target.files;
+        console.log("the files: ", files)
+
+        console.log("the files: ", files.FileList)
+
+        // for (const file of files) {
+        //     const formData = new FormData();
+        //     formData.append('file', file);
+
+        // }
+        // console.log("individual file: ", formData)
+    }
+
+    /** */
+    // return (
+    //     <div>
+    //         <input type="file" multiple onChange={handleImageUpload} />
+    //         {images.map((image, index) => (
+    //             <img key={index} src={image} alt={`Image ${index}`} />
+    //         ))}
+    //     </div>
+    // );
+    // };
+
+    // export default ImageUpload;
 
     const isImageLimitReached = images.length >= 6;
     const renderCarousel = () => {
@@ -98,49 +219,13 @@ const CreateListings = ({ onSubmit, onSaveListing }) => {
             <div className="carousel rounded-3xl">
                 {images.map((image, index) => (
                     <div key={index} className="carousel-item w-[100px] h-[100px]">
-                        <img src={image} alt="Property Pictures" min='4' max='6' className='w-[280px] ' />
+                        <img src={image} alt="Property Pictures" min='1' max='6' className='w-[280px] ' />
                     </div>
                 ))}
             </div>
         )
     };
-    const navigate = useNavigate()
 
-    // const update = {
-    //     title: 'Oyebode Yusuf',
-    //     body: 'Brilliant post on fetch API',
-    //     userId: id,
-    // };
-
-    // const options = {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(update),
-    // };
-
-    // fetch('https://dcanestate.onrender.com/listing/create-listing', options)
-    //     .then(data => {
-    //         if (!data.ok) {
-    //             throw Error(data.status);
-    //         }
-    //         return data.json();
-    //     }).then(update => {
-    //         console.log(update);
-    //         // // {
-    //         // //
-    //         // title: 'A blog post by Kingsley',
-    //         //     //
-    //         //     body: 'Brilliant post on fetch API',
-    //         //         //
-    //         //         userId: 1,
-    //         //             //
-    //         //             id: 101
-    //         // // };
-    //     }).catch(error => {
-    //         console.log(error);
-    //     });
 
 
     return (
@@ -180,11 +265,27 @@ const CreateListings = ({ onSubmit, onSaveListing }) => {
                                 <div className='flex-1'>
                                     <div className='pt-[44px]'>
                                         {/* <FaSquarePlus style={{ color: "#7C6A0A" }} onChange={handleImageUpload} type='file' /> */}
-                                        <input type="file" min='4' max='6' accept='.jpg, .png, .jpeg, .avif' required onChange={handleImageUpload} disabled={isImageLimitReached} />
+                                        <input type="file" min='1' max='6' accept='.jpg, .png, .jpeg, .avif' required onChange={handleImageUpload} disabled={isImageLimitReached} />
                                         <p className='text-sm text-[#F48222]'>The images must not exceed six(6)</p>
                                         {/* <button onClick={() => setImages([])}>Clear Images</button> */}
                                         <div>{renderCarousel()}</div>
                                     </div>
+                                    <div>
+                                        <input type="file" multiple onChange={handleImageUpload} />
+                                        {images.map((image, index) => (
+                                            <img key={index} src={image} alt={`Image ${index}`} />
+                                        ))}
+                                    </div>
+                                    <div>
+                                        <Rough />
+                                    </div>
+                                    {/* <div>
+                                        <input type="file" name="cloud" min='1' max='6' accept='.jpg, .png, .jpeg, .avif' onChange={(e) => {
+                                            setImageSelected(e.target.files[0])
+                                        }} />
+                                        <button onClick={uploadImage}>Upload Image</button>
+                                        <Image style={{ width: 100 }} cloudName="dc7rhipsj" publicId="https://res.cloudinary.com/dc7rhipsj/image/upload/v1700153355/obzckgfwondnrdx94man.jpg" />
+                                    </div> */}
                                     <div className="form-control grid grid-cols-2 gap-4 pt-[44px]">
                                         <div>
                                             <label htmlFor="title" className='text-[#F48222] text-base font-medium'>Title of property</label>

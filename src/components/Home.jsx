@@ -94,6 +94,7 @@ function Home() {
         }
 
         dispatch(login(userData))
+        navigate('/listing')
     }
 
     if (isLoading) {

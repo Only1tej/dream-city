@@ -1,5 +1,6 @@
 import "./App.css";
 import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Home from "./components/Home";
 import { v4 as uuidv4 } from "uuid";
@@ -13,6 +14,7 @@ import {
   Route,
   Routes,
   useParams,
+  // useNavigate,
 } from "react-router-dom";
 import CreateListings from "./components/CreateListings";
 import Listings from "./components/Listings";
@@ -24,17 +26,21 @@ function App() {
   const [paymentDetails, setPaymentDetails] = useState([]);
   const [admin, setAdmin] = useState([]);
 
+  // const navigate = useNavigate();
+
   const handleSaveListing = (newListing) => {
     async function postListings() {
       try {
         const response = await axios.post(
           "https://dcanestate.onrender.com/listing/create-listing",
-          { newListing }
+          // "http://localhost:3000/listing/create-listing",
+          { newListing },
+          { headers: { "Content-Type": "application/json" } }
         );
         console.log("Response:", response.data);
         setListings(response.data);
       } catch (error) {
-        console.error("Error:", error);
+        console.error("Error:", error.response.data);
       }
     }
     postListings();
@@ -64,7 +70,8 @@ function App() {
             <Route path="/admins" element={<Admins admin={admin} />} />
             <Route
               path="/create-listing"
-              element={<CreateListings onSaveListing={handleSaveListing} />}
+              element={<CreateListings />}
+              // onSaveListing={handleSaveListing}
             />
             <Route
               path="/listing"

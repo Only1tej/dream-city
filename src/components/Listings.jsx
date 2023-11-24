@@ -8,6 +8,7 @@ import { useLocation } from 'react-router-dom'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Confirmation from './Confirmation'
+import Rough from './Rough'
 
 
 
@@ -110,11 +111,12 @@ const Listings = ({ formData, listings, setListings, setAdminCreated, setForm })
                                 <div>
                                     <p className='lg:ml-[150px] md:ml-[40px] ml-[10px] mt-[150px] w-[400px] text-[#118286] bg-[#F5E0B8] p-2 rounded-md text-2xl font-semibold font-primary text-center'>There is no property listing for sale.
                                         <br /> To create a property listing, click <Link to="/create-listing">here.</Link></p>
+                                    <Rough />
                                 </div>
                             )
                             :
-                            // (theList?.map((listing) => (
-                            (searchResults?.map((listing) => (
+                            (theList?.map((listing) => (
+                                // (searchResults?.map((listing) => (
                                 <div key={listing.id} className=' w-[350px] h-[350px] mt-[40px] mr-[40px]'>
                                     <div className="w-[300px] h-[300px] shadow-xl rounded-3xl bg-[#F5E0B8]">
                                         <figure>

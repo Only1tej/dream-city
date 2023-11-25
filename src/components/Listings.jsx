@@ -54,7 +54,7 @@ const Listings = ({ formData, listings, setListings, setAdminCreated, setForm })
         // const filteredListings = listings.filter((listing) =>
 
     };
-    console.log(searchResults);
+    // console.log(searchResults);
 
     function removeListing(id) {
         const newListings = listings.filter((listing) => listing.id !== id);
@@ -69,7 +69,8 @@ const Listings = ({ formData, listings, setListings, setAdminCreated, setForm })
         if (filteredListings.length > 0) { setSearchResults(filteredListings) }
         else setSearchResults(theList);
 
-
+        console.log('the list ', theList)
+        console.log('listing ', listings)
         // }, [listings])
     }, [search, theList])
 

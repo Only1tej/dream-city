@@ -32,8 +32,8 @@ function App() {
     async function postListings() {
       try {
         const response = await axios.post(
-          "https://dcanestate.onrender.com/listing/create-listing",
-          // "http://localhost:3000/listing/create-listing",
+          // "https://dcanestate.onrender.com/listing/create-listing",
+          "http://localhost:3000/listing/create-listing",
           { newListing },
           { headers: { "Content-Type": "application/json" } }
         );

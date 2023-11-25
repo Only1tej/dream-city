@@ -12,11 +12,11 @@ const initialState = {
 
 //Create new listing
 export const createListing = createAsyncThunk(
-  "listing/create",
-  async (listingData, thunkAPI) => {
+  "/create-listing",
+  async (listings, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-      return await listingService.createListing(listingData, token);
+      return await listingService.createListing(listings, token);
     } catch (error) {
       const message =
         (error.response &&

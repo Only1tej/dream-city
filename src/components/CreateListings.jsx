@@ -101,12 +101,14 @@ const CreateListings = ({ onSubmit, onSaveListing }) => {
         if (amenities === '') {
             return
         }
-        // const listings = { title, description, location, landmark, images, plot, price, amenities, paymentType, document, survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale, id: unique_id }
+        const listings = { title, description, location, landmark, images, plot, price, amenities, paymentType, document, survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale, id: unique_id }
         e.preventDefault()
         // onSaveListing(listings)
         // console.log(listings);
+        dispatch(createListing({ listings }))
         navigate('/listing')
-        dispatch(createListing({ title, description, location, landmark, images, plot, price, amenities, paymentType, document, survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale, id: unique_id }))
+        console.log(listings);
+        // dispatch(createListing({ title, description, location, landmark, images, plot, price, amenities, paymentType, document, survey, isGated, isCctv, isSecurityPersonnel, isGarage, globalCOfO, certificateOfO, lawDeed, agreement, rent, lease, sale, id: unique_id }))
     }
 
     // const { user, isLoading, isSuccess, isError, message, ...rest } = useSelector(state => state.auth)
